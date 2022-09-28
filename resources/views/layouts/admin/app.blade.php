@@ -102,17 +102,18 @@ input:checked[type="checkbox"]::after {
                     </div>
                     
                 </li>
-              {{--    <li class="menu-item has-submenu @if(isset($active) && $active == 'offers') active @endif">
+                <li class="menu-item has-submenu @if(isset($active) && $active == 'offers') active @endif">
                     <a class="menu-link" href="#">
                         <i class="icon material-icons md-shopping_bag"></i>
                         <span class="text">Offers & Discount</span>
                     </a>
                     <div class="submenu">
-                         <a href="{{ url('offerCategories') }}">Manage Offer Ads Category</a>
-                         <a href="{{ url('offers') }}">Add Offer</a>
+                         <a href="{{ url('offerCategories') }}">Offer Categories</a>
+                         <a href="{{ url('offers') }}">Offer</a>
+                         <!-- <a href="{{ url('createHomePageAds') }}">Home Page Ads</a> -->
                     </div>
                     
-                </li> --}}
+                </li>
                 <li class="menu-item has-submenu @if(isset($active) && $active == 'settings') active @endif">
                     <a class="menu-link" href="page-products-list.html">
                         <i class="icon material-icons md-settings"></i>

@@ -16,13 +16,10 @@ class CreateBrandsTable extends Migration
         Schema::create('brands', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('status');
+            $table->string('status')->nullable(true);
             $table->string('home_logo');
             $table->string('cover_img');
-            $table->foreignId('category_id')
-                ->constrained('categories', 'id')
-                ->onDelete('CASCADE')
-                ->onUpdate('CASCADE');
+            $table->integer('category_id');
             $table->string('description');
             $table->string('title');
             $table->string('meta_description');

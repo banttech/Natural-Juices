@@ -46,7 +46,7 @@ class ShippingCategoryController extends Controller
             }
         }
 
-        return redirect('shippingCategories')->with('flash_message_success','Record Added Successfully');
+        return redirect('viewShippingCategories')->with('flash_message_success','Record Added Successfully');
     }
 
     public function edit($id)
@@ -84,7 +84,7 @@ class ShippingCategoryController extends Controller
             }
         }
 
-        return redirect('shippingCategories')->with('flash_message_success','Record Added Successfully');
+        return redirect('viewShippingCategories')->with('flash_message_success','Record Added Successfully');
     }
 
     public function delete($id)
@@ -93,6 +93,6 @@ class ShippingCategoryController extends Controller
         $shippingCategory->delete();
         DB::table('shippingcategory_has_countries')->where('shipping_category_id', $id)->delete();
 
-        return redirect('shippingCategories')->with('flash_message_success','Record Deleted Successfully');
+        return redirect('viewShippingCategories')->with('flash_message_success','Record Deleted Successfully');
     }
 }

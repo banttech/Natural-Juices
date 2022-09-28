@@ -25,6 +25,7 @@ class CreateCategoriesTable extends Migration
             $table->string('url_slug')->nullable(true);
             $table->string('tags')->nullable(true);
             $table->string('meta_description')->nullable(true);
+            $table->integer('sort_order');
             $table->timestamps();
         });
     }

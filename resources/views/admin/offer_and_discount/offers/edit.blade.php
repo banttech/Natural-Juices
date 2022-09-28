@@ -25,7 +25,7 @@
                         <select class="form-control" name="offer_category">
                             <option value="" selected="true" disabled="disabled">Choose Category</option>
                             @foreach($offerCategories as $offerCategory)
-                            <option value="{{ $offerCategory->name }}" @if($offerCategory == $offer->name) selected @endif>{{ $offerCategory->name }}</option>
+                            <option value="{{ $offerCategory->name }}" @if($offerCategory->offer_category == $offer->name) selected @endif>{{ $offerCategory->name }}</option>
                             @endforeach
                         </select>
                     </div>

@@ -54,7 +54,7 @@
                                     - {{ $category->name }} <br>
                                 @endforeach
                             </td>
-                            <td><span class="badge rounded-pill {{ $category->status === 'active' ? 'alert-success' : 'alert-danger' }}">{{ strtoupper($category->status) }}</span></td>
+                            <td><span class="badge rounded-pill {{ $brand->status === 'active' ? 'alert-success' : 'alert-danger' }}">{{ strtoupper($brand->status) }}</span></td>
 
                             <td>
                                 <a href="{{ url('editBrand/' . $brand->id) }}" class="btn btn-sm font-sm rounded btn-brand"> <i class="material-icons md-edit"></i> Edit </a>

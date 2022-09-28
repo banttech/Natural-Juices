@@ -15,14 +15,8 @@ class CreateProductHasFeaturesTable extends Migration
     {
         Schema::create('product_has_features', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')
-                ->constrained('products', 'id')
-                ->onDelete('CASCADE')
-                ->onUpdate('CASCADE');
-            $table->foreignId('feature_id')
-                ->constrained('features', 'id')
-                ->onDelete('CASCADE')
-                ->onUpdate('CASCADE');
+            $table->integer('product_id');
+            $table->integer('feature_id');
             $table->timestamps();
         });
     }

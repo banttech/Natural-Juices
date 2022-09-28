@@ -395,7 +395,7 @@
                     <div class="row mb-3">
                         <div class="col-md-8">
                             <label for="seo_tags" class="form-label">Tags</label>
-                            <select class="form-control" id="seo-tags" name="seo_tags[]" multiple="multiple" placeholder = "Add Tags">
+                            <select class="form-control" id="seo-tags" name="seo_tags[]" value="{{ old('seo_tags') }}" multiple="multiple" placeholder = "Add Tags">
                                 <option value=""></option>
                             </select>
                         </div>

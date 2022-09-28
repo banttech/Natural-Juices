@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\HomeAdsController;
 use App\Http\Controllers\Admin\OfferCategoryController;
 use App\Http\Controllers\Admin\OfferController;
 use App\Http\Controllers\Admin\FeatureController;
@@ -151,6 +152,15 @@ Route::post('/updateOffer/{id}', [OfferController::class, 'update'])->name('upda
 
 Route::get('/searchProduct', [ProductController::class, 'search'])->name('searchProduct');
 Route::match(['get', 'post'],'/getSubCategories', [ProductController::class, 'subCategories'])->name('getSubCategories');
+
+
+// Home Page Ads
+Route::get('/createHomePageAds', [HomeAdsController::class, 'create'])->name('createHomePageAds');
+Route::post('/storeHomePageAds', [HomeAdsController::class, 'store'])->name('storeHomePageAds');
+Route::get('/editHomePageAds', [HomeAdsController::class, 'edit'])->name('editHomePageAds');
+Route::post('/updateHomePageAds', [HomeAdsController::class, 'update'])->name('updateHomePageAds');
+
+
 
 
 

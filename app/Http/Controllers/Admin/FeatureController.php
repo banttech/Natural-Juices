@@ -50,7 +50,7 @@ class FeatureController extends Controller
             }
         }
 
-        return redirect('productFeatures')->with('flash_message_success','Record Added Successfully');
+        return redirect('viewFeatures')->with('flash_message_success','Record Added Successfully');
     }
 
     public function edit($id)
@@ -71,6 +71,7 @@ class FeatureController extends Controller
     public function update(UpdateFeatureRequest $request, $id)
     {
         $feature = Feature::find($id);
+        $feature->name = $request->name;
         if($request->hasFile('icon')){
             $feature_icon = $request->file('icon');
             $feature_icon_name = time().'.'.$feature_icon->getClientOriginalExtension();
@@ -79,17 +80,8 @@ class FeatureController extends Controller
         }
         $feature->description = $request->description;
         $feature->short_description = $request->short_description;
-        $feature->save();
-        $feature_id = $feature->id;
-    
-
-        foreach ($request->categories as $key => $category) {
-            $dataArray['category_id'] = $category;
-            $dataArray['feature_id'] = $feature_id;
-            DB::table('feature_has_categories')->insert($dataArray);
-        }
-
         $feature->update();
+        $feature_id = $feature->id;
 
         DB::table('feature_has_categories')->where('feature_id',$id)->delete();
         
@@ -101,7 +93,7 @@ class FeatureController extends Controller
             }
         }
 
-        return redirect('productFeatures')->with('flash_message_success','Record Updated Successfully');
+        return redirect('viewFeatures')->with('flash_message_success','Record Updated Successfully');
     }
 
     public function delete($id)
@@ -110,6 +102,6 @@ class FeatureController extends Controller
         $feature->delete();
         DB::table('feature_has_categories')->where('feature_id', $id)->delete();
 
-        return redirect('productFeatures')->with('flash_message_success','Record Deleted Successfully');
+        return redirect('viewFeatures')->with('flash_message_success','Record Deleted Successfully');
     }
 }

@@ -15,14 +15,8 @@ class CreateFeatureHasCategoriesTable extends Migration
     {
         Schema::create('feature_has_categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('feature_id')
-                ->constrained('features', 'id')
-                ->onDelete('CASCADE')
-                ->onUpdate('CASCADE');
-            $table->foreignId('category_id')
-                ->constrained('categories', 'id')
-                ->onDelete('CASCADE')
-                ->onUpdate('CASCADE');
+            $table->integer('feature_id');
+            $table->integer('category_id');
             $table->timestamps();
         });
     }

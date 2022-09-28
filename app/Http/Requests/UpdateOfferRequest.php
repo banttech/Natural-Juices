@@ -24,7 +24,6 @@ class UpdateOfferRequest extends FormRequest
     public function rules()
     {
         return [
-            'status' => 'required',
             'offer_category' => 'required',
             'target_url' => 'required',
         ];
@@ -33,7 +32,6 @@ class UpdateOfferRequest extends FormRequest
     public function messages()
     {
         return [
-            'status.required' => 'Status field is required!',
             'offer_category.required' => 'Offer Category field is required',
             'target_url.required' => 'Target URL field is required',
         ];

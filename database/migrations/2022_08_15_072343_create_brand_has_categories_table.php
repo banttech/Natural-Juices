@@ -15,14 +15,8 @@ class CreateBrandHasCategoriesTable extends Migration
     {
         Schema::create('brand_has_categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('brand_id')
-                ->constrained('brands', 'id')
-                ->onDelete('CASCADE')
-                ->onUpdate('CASCADE');
-            $table->foreignId('category_id')
-                ->constrained('categories', 'id')
-                ->onDelete('CASCADE')
-                ->onUpdate('CASCADE');
+            $table->integer('brand_id');
+            $table->integer('category_id');
             $table->timestamps();
         });
     }

@@ -36,7 +36,7 @@ class BrandController extends Controller
 
         $brand = new Brand();
         $brand->name = $request->name;
-        $brand->status = $request->status;
+        $brand->status = $request->status == 'on' ? 'active' : 'inactive';
         $brand->description = $request->description;
         $brand->title = $request->title;
         $brand->url_slug = $request->url_slug;
@@ -89,7 +89,7 @@ class BrandController extends Controller
     {
         $brand = Brand::find($id);
         $brand->name = $request->name;
-        $brand->status = $request->status;
+        $brand->status = $request->status == 'on' ? 'active' : 'inactive';
 
         if($request->hasFile('home_logo')){
             $home_logo = $request->file('home_logo');
@@ -111,12 +111,13 @@ class BrandController extends Controller
         $brand->update();
 
         DB::table('brand_has_categories')->where('brand_id',$id)->delete();
-        
-        foreach ($request->categories as $key => $category) {
-       		$dataArray['category_id'] = $category;
-       		$dataArray['brand_id'] = $id;
-       		DB::table('brand_has_categories')->insert($dataArray);
-       	}
+        if(!is_null($request->categories)){
+            foreach ($request->categories as $key => $category) {
+           		$dataArray['category_id'] = $category;
+           		$dataArray['brand_id'] = $id;
+           		DB::table('brand_has_categories')->insert($dataArray);
+           	}
+        }
         return redirect('viewBrands')->with('flash_message_success','Record Updated Successfully');
     }
 
