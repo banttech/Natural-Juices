@@ -45,7 +45,7 @@ input:checked[type="checkbox"]::after {
 <section class="content-main">
     <div class="content-header">
         <div>
-            <h3 class="card-title">Update Brand</h3>
+            <h3 class="card-title">Edit Brand</h3>
         </div>
     </div>
     <div class="card mb-4">

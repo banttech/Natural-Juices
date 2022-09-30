@@ -12,6 +12,11 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\HomeAdsController;
 use App\Http\Controllers\Admin\OfferCategoryController;
 use App\Http\Controllers\Admin\OfferController;
+use App\Http\Controllers\Admin\BlogCategoryController;
+use App\Http\Controllers\Admin\BlogPostController;
+use App\Http\Controllers\Admin\NewCustomerOfferController;
+use App\Http\Controllers\Admin\ShoppingCartOfferController;
+use App\Http\Controllers\Admin\CouponCodeController;
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\ShippingCategoryController;
 use App\Http\Controllers\Admin\EmployeesController;
@@ -162,6 +167,48 @@ Route::post('/updateHomePageAds', [HomeAdsController::class, 'update'])->name('u
 
 
 
+
+// Newly Signup Customer Offers
+Route::get('/viewNewCustomerOffers', [NewCustomerOfferController::class, 'index'])->name('viewNewCustomerOffers');
+Route::get('/createNewCustomerOffer', [NewCustomerOfferController::class, 'create'])->name('createNewCustomerOffer');
+Route::post('/storeNewCustomerOffer', [NewCustomerOfferController::class, 'store'])->name('storeNewCustomerOffer');
+Route::get('/deleteNewCustomerOffer/{id}', [NewCustomerOfferController::class, 'delete'])->name('deleteNewCustomerOffer');
+Route::get('/editNewCustomerOffer/{id}', [NewCustomerOfferController::class, 'edit'])->name('editNewCustomerOffer');
+Route::post('/updateNewCustomerOffer/{id}', [NewCustomerOfferController::class, 'update'])->name('updateNewCustomerOffer');
+
+
+// Shopping Cart Offers
+Route::get('/viewShoppingCartOffers', [ShoppingCartOfferController::class, 'index'])->name('viewShoppingCartOffers');
+Route::get('/createShoppingCartOffer', [ShoppingCartOfferController::class, 'create'])->name('createShoppingCartOffer');
+Route::post('/storeShoppingCartOffer', [ShoppingCartOfferController::class, 'store'])->name('storeShoppingCartOffer');
+Route::get('/deleteShoppingCartOffer/{id}', [ShoppingCartOfferController::class, 'delete'])->name('deleteShoppingCartOffer');
+Route::get('/editShoppingCartOffer/{id}', [ShoppingCartOfferController::class, 'edit'])->name('editShoppingCartOffer');
+Route::post('/updateShoppingCartOffer/{id}', [ShoppingCartOfferController::class, 'update'])->name('updateShoppingCartOffer');
+
+// Coupon Codes
+Route::get('/viewCouponCodes', [CouponCodeController::class, 'index'])->name('viewCouponCodes');
+Route::get('/createCouponCode', [CouponCodeController::class, 'create'])->name('createCouponCode');
+Route::post('/storeCouponCode', [CouponCodeController::class, 'store'])->name('storeCouponCode');
+Route::get('/deleteCouponCode/{id}', [CouponCodeController::class, 'delete'])->name('deleteCouponCode');
+Route::get('/editCouponCode/{id}', [CouponCodeController::class, 'edit'])->name('editCouponCode');
+Route::post('/updateCouponCode/{id}', [CouponCodeController::class, 'update'])->name('updateCouponCode');
+
+// Blog Categories
+Route::get('/viewBlogCategories', [BlogCategoryController::class, 'index'])->name('viewBlogCategories');
+Route::get('/createBlogCategory', [BlogCategoryController::class, 'create'])->name('createBlogCategory');
+Route::post('/storeBlogCategory', [BlogCategoryController::class, 'store'])->name('storeBlogCategory');
+Route::get('/deleteBlogCategory/{id}', [BlogCategoryController::class, 'delete'])->name('deleteBlogCategory');
+Route::get('/editBlogCategory/{id}', [BlogCategoryController::class, 'edit'])->name('editBlogCategory');
+Route::post('/updateBlogCategory/{id}', [BlogCategoryController::class, 'update'])->name('updateBlogCategory');
+
+
+// Blog Categories
+Route::get('/viewBlogPosts', [BlogPostController::class, 'index'])->name('viewBlogPosts');
+Route::get('/createBlogPost', [BlogPostController::class, 'create'])->name('createBlogPost');
+Route::post('/storeBlogPost', [BlogPostController::class, 'store'])->name('storeBlogPost');
+Route::get('/deleteBlogPost/{id}', [BlogPostController::class, 'delete'])->name('deleteBlogPost');
+Route::get('/editBlogPost/{id}', [BlogPostController::class, 'edit'])->name('editBlogPost');
+Route::post('/updateBlogPost/{id}', [BlogPostController::class, 'update'])->name('updateBlogPost');
 
 
 
