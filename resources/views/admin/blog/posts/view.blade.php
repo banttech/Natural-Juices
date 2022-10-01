@@ -45,10 +45,11 @@
                          @foreach ($blogPosts as $blogPost)
                         <tr>
                             <td>{{ $count }}</td>
-                            <td><img src="images/blogPosts/{{ $blogPost->picture }}" class="img-sm img-thumbnail" alt="Item" style="width: 150px !important;" /></td>
+                            <td><img src="images/blogPosts/{{ $blogPost->feature_image }}" class="img-sm img-thumbnail" alt="Item" style="width: 150px !important;" /></td>
                             <td>{{ $blogPost->title }}</td>
                             <td>{{ $blogPost->description }}</td>
-                            <td>{{ $blogPost->status }}</td>
+                            <td><span class="badge rounded-pill {{ $blogPost->status === 'active' ? 'alert-success' : 'alert-danger' }}">{{ strtoupper($blogPost->status) }}</span></td>
+
                             <td>
                                 <a href="{{ url('editBlogPost/' . $blogPost->id) }}" class="btn btn-sm font-sm rounded btn-brand"> <i class="material-icons md-edit"></i> Edit </a>
                                 <a href="{{ url('deleteBlogPost/' . $blogPost->id) }}" class="btn btn-sm font-sm btn-light rounded" onclick="return confirm('Are you sure you want to delete this item?');"> <i class="material-icons md-delete_forever"></i> Delete </a>

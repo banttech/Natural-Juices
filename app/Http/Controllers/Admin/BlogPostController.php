@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\AddBrandRequest;
-use App\Http\Requests\UpdateBrandRequest;
+use App\Http\Requests\AddBlogPostRequest;
+use App\Http\Requests\UpdateBlogPostRequest;
 use App\Models\BlogPost;
 use App\Models\BlogCategory;
 use App\Models\Product;
+use App\Models\BlogHasProduct;
 use Illuminate\Support\Facades\Storage;
-use DB;
+
 
 class BlogPostController extends Controller
 {
@@ -29,104 +30,125 @@ class BlogPostController extends Controller
         return view('admin.blog.posts.add',  compact('active', 'blogCategories', 'products'));
     }
 
-    // public function store(AddBrandRequest $request)
-    // {        
-    //     $tags = '';
-    //     if(!is_null($request->tags)){
-    //         $tags = implode(',', $request->tags);
-    //     }
+    public function store(AddBlogPostRequest $request)
+    {        
+        $tags = '';
+        if(!is_null($request->tags)){
+            $tags = implode(',', $request->tags);
+        }
 
-    //     $brand = new Brand();
-    //     $brand->name = $request->name;
-    //     $brand->status = $request->status == 'on' ? 'active' : 'inactive';
-    //     $brand->description = $request->description;
-    //     $brand->title = $request->title;
-    //     $brand->url_slug = $request->url_slug;
-    //     $brand->tags = $tags;
-    //     $brand->meta_description = $request->meta_description;
-    //     if($request->hasFile('home_logo')){
-    //         $home_logo = $request->file('home_logo');
-    //         $logo_img_name = time().'.'.$home_logo->getClientOriginalExtension();
+        $blogPost = new BlogPost();
+        $blogPost->status = $request->status == 'on' ? 'active' : 'inactive';
+        $blogPost->title = $request->title;
+        $blogPost->sub_title = $request->sub_title;
+        $blogPost->description = $request->description;
+        $blogPost->tags = $tags;
+        $blogPost->category = $request->category;
+        $blogPost->sub_category = $request->sub_category;
+        $blogPost->category = $request->category;
+        $blogPost->category = $request->category;
+        if($request->hasFile('feature_image')){
+            $feature_img = $request->file('feature_image');
+            $feature_img_name = time().'.'.$feature_img->getClientOriginalExtension();
            
-    //         $home_logo->move(public_path('/images/brands'),$logo_img_name);
-    //         $brand->home_logo = $logo_img_name;
-    //     }
-    //     if($request->hasFile('cover_img')){
-    //         $cover_img = $request->file('cover_img');
-    //         $cover_img_name = time().'.'.$cover_img->getClientOriginalExtension();
-    //         $cover_img->move(public_path('/images/brands'),$cover_img_name);
-	   //      $brand->cover_img = $cover_img_name;
-    //     }
-    //     $brand->save();
-    //     $brand_id = $brand->id;
+            $feature_img->move(public_path('/images/blogPosts'),$feature_img_name);
+            $blogPost->feature_image = $feature_img_name;
+        }
+        $blogPost->seo_title = $request->seo_title;
+        $blogPost->seo_description = $request->seo_description;
+        $blogPost->save();
 
-    //     if(!is_null($request->categories)){
-    //         foreach ($request->categories as $key => $category) {
 
-    //             $dataArray['category_id'] = $category;
-    //             $dataArray['brand_id'] = $brand_id;
-    //             DB::table('brand_has_categories')->insert($dataArray);
-    //         }
-    //     }
+        $blogPost_id = $blogPost->id;
+        if(!is_null($request->respective_products)){
+            foreach ($request->respective_products as $key => $respective_product) {
+                $dataArray['blog_id'] = $blogPost_id;
+                $dataArray['product_id'] = $respective_product;
+                BlogHasProduct::insert($dataArray);
+            }
+        }
 
-	   //  return redirect('viewBrands')->with('flash_message_success','Record Added Successfully');
-    // }
+	    return redirect('viewBlogPosts')->with('flash_message_success','Record Added Successfully');
+    }
 
-    // public function edit($id)
-    // {
-    //     $active = 'product';
-    //     $brand = Brand::with('categories')->where('id', $id)->first();
-    //     $brand_has_categories  = DB::table('brand_has_categories')->where('brand_id',$id)->get();
-    //     $selected_categories_ids = array(); 
-    //     foreach ($brand_has_categories as $key => $brand_id) {
-    //         $selected_categories_ids[] = $brand_id->category_id;
-    //     }
-    //     // dd($selected_categories_ids);
-    //     $categories = Category::whereNull('parent_id')->where('status','active')->get();
+    public function edit($id)
+    {
+        $active = 'blogs';
+        $blogPost = BlogPost::where('id', $id)->first();
+        $blogCategories = BlogCategory::whereNull('parent_cat_id')->get();
+        $products = Product::select('id', 'prod_name')->get();
+        $selectedBlogProducts = BlogHasProduct::where('blog_id', $id)->pluck('product_id')->toArray();
 
-    //     return view('admin.brands.edit', compact('brand', 'categories','selected_categories_ids','active'));
-    // }
+        return view('admin.blog.posts.edit', compact('active', 'blogPost', 'blogCategories','products', 'selectedBlogProducts'));
+    }
 
-    // public function update(UpdateBrandRequest $request, $id)
-    // {
-    //     $brand = Brand::find($id);
-    //     $brand->name = $request->name;
-    //     $brand->status = $request->status == 'on' ? 'active' : 'inactive';
+    public function update(UpdateBlogPostRequest $request, $id)
+    {
+        $tags = '';
+        if(!is_null($request->tags)){
+            $tags = implode(',', $request->tags);
+        }
 
-    //     if($request->hasFile('home_logo')){
-    //         $home_logo = $request->file('home_logo');
-    //         $logo_img_name = time().'.'.$home_logo->getClientOriginalExtension();
-    //         $home_logo->move(public_path('/images/brands'),$logo_img_name);
-    //         $brand->home_logo = $logo_img_name;
-    //     }
-    //     if($request->hasFile('cover_img')){
-    //         $cover_img = $request->file('cover_img');
-    //         $cover_img_name = time().'.'.$cover_img->getClientOriginalExtension();
-    //         $cover_img->move(public_path('/images/brands'),$cover_img_name);
-    //         $brand->cover_img = $cover_img_name;
-    //     }
-    //     $brand->description = $request->description;
-    //     $brand->title = $request->title;
-    //     $brand->url_slug = $request->url_slug;
-    //     $brand->meta_description = $request->meta_description;
+        $blogPost = BlogPost::find($id);
+        $blogPost->status = $request->status == 'on' ? 'active' : 'inactive';
+        $blogPost->title = $request->title;
+        $blogPost->sub_title = $request->sub_title;
+        $blogPost->description = $request->description;
+        $blogPost->tags = $tags;
+        $blogPost->category = $request->category;
+        $blogPost->sub_category = $request->sub_category;
+        $blogPost->category = $request->category;
+        $blogPost->category = $request->category;
+        if($request->hasFile('feature_image')){
+            $feature_img = $request->file('feature_image');
+            $feature_img_name = time().'.'.$feature_img->getClientOriginalExtension();
+           
+            $feature_img->move(public_path('/images/blogPosts'),$feature_img_name);
+            $blogPost->feature_image = $feature_img_name;
+        }
+        $blogPost->seo_title = $request->seo_title;
+        $blogPost->seo_description = $request->seo_description;
+        $blogPost->update();
 
-    //     $brand->update();
+        $blogPost_id = $blogPost->id;
+        BlogHasProduct::where('blog_id',$id)->delete();
+        if(!is_null($request->respective_products)){
+            foreach ($request->respective_products as $key => $respective_product) {
+                $dataArray['blog_id'] = $blogPost_id;
+                $dataArray['product_id'] = $respective_product;
+                BlogHasProduct::insert($dataArray);
+            }
+        }
 
-    //     DB::table('brand_has_categories')->where('brand_id',$id)->delete();
-    //     if(!is_null($request->categories)){
-    //         foreach ($request->categories as $key => $category) {
-    //        		$dataArray['category_id'] = $category;
-    //        		$dataArray['brand_id'] = $id;
-    //        		DB::table('brand_has_categories')->insert($dataArray);
-    //        	}
-    //     }
-    //     return redirect('viewBrands')->with('flash_message_success','Record Updated Successfully');
-    // }
+        return redirect('viewBlogPosts')->with('flash_message_success','Record Updated Successfully');
+    }
 
-    // public function delete($id)
-    // {
-    //     $brand = Brand::find($id);
-    //     $brand->delete();
-    //     return redirect('viewBrands')->with('flash_message_success','Record Deleted Successfully');
-    // }
+    public function delete($id)
+    {
+        $blogPost = BlogPost::find($id);
+        $blogPost->delete();
+        return redirect('viewBlogPosts')->with('flash_message_success','Record Deleted Successfully');
+    }
+
+
+    public function subCategories(Request $request)
+    {
+        if(empty($request->val)){
+             return '<option value="">No Sub Category Found!</option>';
+        }
+        $sub_categories = BlogCategory::where('parent_cat_id',$request->val)->get();
+        
+        $html = "";
+        if(isset($sub_categories) && count($sub_categories) > 0){
+            $html .= '<option value="">Sub-Category</option>';
+
+            foreach($sub_categories as $sub_category){
+                
+                $html .= '<option value="'.$sub_category['id'].'">'.$sub_category['cat_name'].'</option>';
+            }
+        }else{
+            $html .= '<option value="">No Sub Category Found!</option>';
+        }
+        return $html;
+    }  
 }

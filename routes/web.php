@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -16,6 +17,7 @@ use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\BlogPostController;
 use App\Http\Controllers\Admin\NewCustomerOfferController;
 use App\Http\Controllers\Admin\ShoppingCartOfferController;
+use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\CouponCodeController;
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\ShippingCategoryController;
@@ -209,7 +211,13 @@ Route::post('/storeBlogPost', [BlogPostController::class, 'store'])->name('store
 Route::get('/deleteBlogPost/{id}', [BlogPostController::class, 'delete'])->name('deleteBlogPost');
 Route::get('/editBlogPost/{id}', [BlogPostController::class, 'edit'])->name('editBlogPost');
 Route::post('/updateBlogPost/{id}', [BlogPostController::class, 'update'])->name('updateBlogPost');
+Route::match(['get', 'post'],'/getBlogSubCategories', [BlogPostController::class, 'subCategories'])->name('getBlogSubCategories');
 
+
+// Blog Categories
+Route::get('/viewCustomers', [CustomerController::class, 'index'])->name('viewCustomers');
+Route::get('/deleteCustomer/{id}', [CustomerController::class, 'delete'])->name('deleteCustomer');
+Route::get('/searchCustomer', [CustomerController::class, 'search'])->name('searchCustomer');
 
 
 // Frontend Routes 

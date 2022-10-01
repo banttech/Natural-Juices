@@ -49,7 +49,7 @@
         </div>
     </div>
     <div class="card mb-4">
-        <form method="POST" action="{{ url('createBlogPost') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ url('storeBlogPost') }}" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
                 <div class="mb-3">
@@ -59,7 +59,7 @@
                 <div class="row mb-3">
                     <div class="">
                         <label for="name" class="form-label">Title<span class="text-danger" style="font-size: 17px;">*</span></label>
-                        <input type="text" value="{{ old('name') }}" name="title" placeholder="Title" class="form-control" />
+                        <input type="text" value="{{ old('title') }}" name="title" placeholder="Title" class="form-control" />
                         @if ($errors->has('title'))
                         <span class="text-danger text-left">{{ $errors->first('title') }}</span>
                         @endif
@@ -68,7 +68,7 @@
                 <div class="row mb-3">
                     <div class="">
                         <label for="name" class="form-label">Sub Title</label>
-                        <input type="text" value="{{ old('sub_title') }}" name="title" placeholder="Sub Title" class="form-control" />
+                        <input type="text" value="{{ old('sub_title') }}" name="sub_title" placeholder="Sub Title" class="form-control" />
                         @if ($errors->has('sub_title'))
                         <span class="text-danger text-left">{{ $errors->first('sub_title') }}</span>
                         @endif
@@ -91,24 +91,27 @@
                 </div>
                <div class="row mb-3">
                     <div class="">
-                        <label for="name" class="form-label">Choose Category</label>
-                        <select class="form-control" name="category">
+                        <label for="name" class="form-label">Choose Category<span class="text-danger" style="font-size: 17px;">*</span></label>
+                        <select class="form-control" name="category" onchange="changeCategory(this.value)">
                             <option value="" selected="true" disabled="true">Select Category</option>
                             @foreach($blogCategories as $blogCategory)
                             <option value="{{ $blogCategory->id }}">{{ $blogCategory->cat_name }}</option>
                             @endforeach
                         </select>
+                        @if ($errors->has('category'))
+                        <span class="text-danger text-left">{{ $errors->first('category') }}</span>
+                        @endif
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="">
-                        <label for="name" class="form-label">Choose Sub Category</label>
-                        <select class="form-control" name="sub_category">
-                            <option value="" selected="true" disabled="true">Select Category</option>
-                            @foreach($blogCategories as $blogCategory)
-                            <option value="{{ $blogCategory->id }}">{{ $blogCategory->cat_name }}</option>
-                            @endforeach
+                        <label for="name" class="form-label">Choose Sub Category<span class="text-danger" style="font-size: 17px;">*</span></label>
+                        <select class="form-select" name="sub_category" id="sub_category">
+                            <option selected="true" disabled="disabled">Sub-Category</option>
                         </select>
+                        @if ($errors->has('sub_category'))
+                        <span class="text-danger text-left">{{ $errors->first('sub_category') }}</span>
+                        @endif
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -137,18 +140,16 @@
                 <div class="row mb-3">
                     <div class="">
                         <label for="name" class="form-label">Set SEO Title<span class="text-danger" style="font-size: 17px;">*</span></label>
-                        <input type="text" value="{{ old('title') }}"name="seo_title" placeholder="Title" class="form-control" value="{{ old('seo_title') }}" />
+                        <input type="text" value="{{ old('seo_title') }}"name="seo_title" placeholder="Title" class="form-control" value="{{ old('seo_title') }}" />
                     </div>
                     @if ($errors->has('seo_title'))
                     <span class="text-danger text-left">{{ $errors->first('seo_title') }}</span>
                     @endif  
                 </div>
-
                  <div class="mb-3">
                     <label class="form-label">Set SEO Description<span class="text-danger" style="font-size: 17px;">*</span></label>
-                    <br />
-                    <textarea placeholder="Type here"rows="4" cols="50" name="seo_description" value="{{ old('seo_description') }}"></textarea>
-                    @if ($errors->has('seo_description'))
+                    <textarea placeholder="Type here" class="form-control" rows="4" name="seo_description">{{ old('seo_description') }}</textarea>
+                     @if ($errors->has('seo_description'))
                     <span class="text-danger text-left">{{ $errors->first('seo_description') }}</span>
                     @endif
                 </div>
@@ -194,7 +195,28 @@
 <script>
    CKEDITOR.replace( 'editor' );
    CKEDITOR.replace( 'editor1' );
+    function changeCategory(value) {
+        let route = "{{ route('getBlogSubCategories') }}";
+        let token = "{{ csrf_token()}}";
+
+        $.ajax({
+            url: route,
+            type: 'POST',
+            data: {
+                _token:token,
+                val: value
+            },
+            success: function(response) {
+                $('#sub_category').html('');
+                $('#sub_category').html(response);
+            },
+            error: function(xhr) {
+                //Do Something to handle error
+            }
+        });
+    }
 </script>
+
 <style type="text/css">
     .select2-search--inline,
 .select2-search__field:placeholder-shown {

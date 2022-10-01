@@ -79,7 +79,7 @@ class BrandController extends Controller
         foreach ($brand_has_categories as $key => $brand_id) {
             $selected_categories_ids[] = $brand_id->category_id;
         }
-        // dd($selected_categories_ids);
+        dd($selected_categories_ids);
         $categories = Category::whereNull('parent_id')->where('status','active')->get();
 
         return view('admin.brands.edit', compact('brand', 'categories','selected_categories_ids','active'));
