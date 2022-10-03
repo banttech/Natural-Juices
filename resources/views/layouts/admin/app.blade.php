@@ -1,3 +1,10 @@
+@php
+$categories_count = DB::table('categories')->count('id');
+$brands_count = DB::table('brands')->count('id');
+$features_count = DB::table('features')->count('id');
+$products_count = DB::table('products')->count('id');
+
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -95,10 +102,10 @@ input:checked[type="checkbox"]::after {
                         <span class="text">Product</span>
                     </a>
                     <div class="submenu">
-                         <a href="{{ url('viewCategories') }}">Category</a>
-                         <a href="{{ url('viewBrands') }}">Brands</a>
-                         <a href="{{ url('viewFeatures') }}">Features</a>
-                         <a href="{{ url('viewProducts') }}">Products</a>
+                         <a href="{{ url('viewCategories') }}">Category [{{ $categories_count }}]</a>
+                         <a href="{{ url('viewBrands') }}">Brands [{{ $brands_count }}]</a>
+                         <a href="{{ url('viewFeatures') }}">Features [{{ $features_count }}]</a>
+                         <a href="{{ url('viewProducts') }}">Products [{{ $products_count }}]</a>
                     </div>
                     
                 </li>
@@ -110,7 +117,31 @@ input:checked[type="checkbox"]::after {
                     <div class="submenu">
                          <a href="{{ url('offerCategories') }}">Offer Categories</a>
                          <a href="{{ url('offers') }}">Offer</a>
-                         <!-- <a href="{{ url('createHomePageAds') }}">Home Page Ads</a> -->
+                         <a href="{{ url('createHomePageAds') }}">Home Page Ads</a>
+                         <a href="{{ url('viewNewCustomerOffers') }}">Newly Customer Offer</a>
+                         <a href="{{ url('viewShoppingCartOffers') }}">Shopping Cart Offer</a>
+                         <a href="{{ url('viewCouponCodes') }}">Coupon Code</a>
+                    </div>
+                    
+                </li>
+                <li class="menu-item has-submenu @if(isset($active) && $active == 'blogs') active @endif">
+                    <a class="menu-link" href="#">
+                        <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Blog</span>
+                    </a>
+                    <div class="submenu">
+                         <a href="{{ url('viewBlogCategories') }}">Blog Categories</a>
+                         <a href="{{ url('viewBlogPosts') }}">Blog Posts</a>
+                    </div>
+                    
+                </li>
+                <li class="menu-item has-submenu @if(isset($active) && $active == 'customers') active @endif">
+                    <a class="menu-link" href="#">
+                        <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Customer</span>
+                    </a>
+                    <div class="submenu">
+                         <a href="{{ url('viewCustomers') }}">Customer Listing</a>
                     </div>
                     
                 </li>

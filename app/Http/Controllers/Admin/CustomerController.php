@@ -10,6 +10,7 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use DB;
 
 
 class CustomerController extends Controller
@@ -18,9 +19,10 @@ class CustomerController extends Controller
     {
         $active = 'customers';
         $inputValue = "";
-        $customers = User::paginate(10);
+        $searchDate = "";
+        $customers = User::with('orders')->paginate(10);
 
-        return view('admin.customers.view', compact('active', 'customers', 'inputValue'));
+        return view('admin.customers.view', compact('active', 'customers', 'inputValue', 'searchDate'));
     }
 
 
@@ -36,20 +38,20 @@ class CustomerController extends Controller
     {
         $active = 'customers';
         $inputValue = $request->input_value ?? "";
+        $searchDate = $request->search_by_date ?? "";
+        $customers = User::with('orders');
 
-        $customers = User::query();
         if($inputValue !== ''){
             $customers->where('name', 'LIKE', '%' . $inputValue . '%')->orWhere('email','LIKE','%'.  $inputValue .'%');
         }
 
-        // if(!is_null($request->search_by_date)){
-        //     $customers->whereDate('created_at', $request->search_by_date);
-        // }
-
+        if($searchDate !== ''){
+            $customers->whereDate('created_at', '=', $request->search_by_date);
+        }
 
         $customers = $customers->paginate(10);
 
 
-        return view('admin.customers.view', compact('active', 'customers', 'inputValue'));
+        return view('admin.customers.view', compact('active', 'customers', 'inputValue', 'searchDate'));
     }
 }

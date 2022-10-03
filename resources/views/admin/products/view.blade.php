@@ -29,6 +29,7 @@
     </div>
 
     <div class="card mb-4">
+        @include('layouts.partials.messages')
         <!-- card-header end -->
         <div class="card-body">
             <div class="table-responsive">

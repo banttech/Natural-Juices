@@ -10,6 +10,7 @@
         </div>
     </div>
     <div class="card mb-4 formContainer">
+        @include('layouts.partials.messages')
         <div class="progress-bar">
             <div class="step">
                 <p>General Information</p>

@@ -16,14 +16,14 @@ class BrandController extends Controller
 	public function index()
     {
         $active = 'product';
-        $brands = Brand::with('categories')->paginate(10);
+        $brands = Brand::with('categories')->latest()->paginate(10);
         return view('admin.brands.view', compact('brands', 'active'));
     }
 
     public function add()
     {
         $active = 'product';
-        $categories = Category::get();
+        $categories = Category::latest()->get();
         return view('admin.brands.add',  compact('categories','active'));
     }
 
@@ -79,7 +79,7 @@ class BrandController extends Controller
         foreach ($brand_has_categories as $key => $brand_id) {
             $selected_categories_ids[] = $brand_id->category_id;
         }
-        dd($selected_categories_ids);
+        // dd($selected_categories_ids);
         $categories = Category::whereNull('parent_id')->where('status','active')->get();
 
         return view('admin.brands.edit', compact('brand', 'categories','selected_categories_ids','active'));

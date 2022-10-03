@@ -49,6 +49,7 @@
         </div>
     </div>
     <div class="card mb-4">
+        @include('layouts.partials.messages')
         <form method="POST" action="{{ url('storeFeature') }}" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
@@ -76,7 +77,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Short description</label>
-                    <textarea placeholder="Type here" class="form-control" rows="4" name="short_description"></textarea>
+                    <textarea placeholder="Type here" class="form-control" rows="4" name="short_description" id="editor1"></textarea>
                 </div>
                 <div class="row mb-3">
                     <div class="">
@@ -123,6 +124,7 @@
 </script>
 <script>
    CKEDITOR.replace( 'editor' );
+   CKEDITOR.replace( 'editor1' );
 </script>
 <style type="text/css">
     .select2-search--inline,

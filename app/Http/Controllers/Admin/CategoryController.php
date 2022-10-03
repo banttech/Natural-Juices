@@ -15,8 +15,8 @@ class CategoryController extends Controller
     public function index()
     {
         $active = 'product';
-        $categories = Category::paginate(10);
-        $parentCategories = Category::whereNull('parent_id')->get();
+        $categories = Category::latest()->paginate(10);
+        $parentCategories = Category::whereNull('parent_id')->latest()->get();
         return view('admin.categories.view', compact('categories', 'parentCategories','active'));
     }
 
@@ -24,7 +24,7 @@ class CategoryController extends Controller
     {
         $active = 'product';
 
-        $categories = Category::whereNull('parent_id')->get();
+        $categories = Category::whereNull('parent_id')->latest()->get();
         return view('admin.categories.add',  compact('categories','active'));
     }
 

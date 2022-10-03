@@ -4,10 +4,11 @@
 <section class="content-main">
     <div class="content-header">
         <div>
-            <h3 class="card-title">Blog Category</h3>
+            <h3 class="card-title">Add Category</h3>
         </div>
     </div>
     <div class="card mb-4">
+        @include('layouts.partials.messages')
         <form method="POST" action="{{ url('storeCategory') }}" enctype="multipart/form-data">
             @csrf
             <div class="card-body">

@@ -10,6 +10,7 @@
         </div>
     </div>
     <div class="card mb-4 formContainer">
+        @include('layouts.partials.messages')
         <div class="progress-bar">
             <div class="step">
                 <p>General Information</p>
@@ -248,41 +249,45 @@
 
 
                 <!-- Pack Detial Section Start -->
-                <div class="page">
+                @php
+                $pack_section_count = 0;
+                @endphp
+                <div class="page" >
+                    <div id="pack_div">
                     <div class="row mb-3">
                         <div class="col-md-8">
                             <label for="name" class="form-label">Pack Name</label>
-                            <input type="text" value="{{ old('pack_name') }}" name="pack_name" placeholder="Pack Name" class="form-control" />
+                            <input type="text" value="" name="packs[{{$pack_section_count}}][pack_name]" placeholder="Pack Name" class="form-control" />
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-8">
                             <label for="name" class="form-label">Manual Discount</label>
-                            <input type="text" value="{{ old('pack_manual_discount') }}" name="pack_manual_discount" placeholder="Pack Name" class="form-control" />
+                            <input type="text" value="" name="packs[{{$pack_section_count}}][pack_manual_discount]" placeholder="Manual Discount" class="form-control" />
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-8">
                             <label for="name" class="form-label">Quantity</label>
-                            <input type="number" value="{{ old('pack_quantity') }}" name="pack_quantity" placeholder="Quantity" class="form-control" />
+                            <input type="number" value="" name="packs[{{$pack_section_count}}][pack_quantity]" placeholder="Quantity" class="form-control" />
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-8">
                             <label for="name" class="form-label">Pack Selling Price</label>
-                            <input type="number" value="{{ old('pack_selling_price') }}" name="pack_selling_price" placeholder="Pack Selling Price" class="form-control" />
+                            <input type="number" value="" name="packs[{{$pack_section_count}}][pack_selling_price]" placeholder="Pack Selling Price" class="form-control" />
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-8">
                             <label for="name" class="form-label">Discount</label>
-                            <input type="number" value="{{ old('pack_discount') }}" name="pack_discount" placeholder="Discount" class="form-control" />
+                            <input type="number" value="" name="packs[{{$pack_section_count}}][pack_discount]" placeholder="Discount" class="form-control" />
                         </div>
                     </div>
                     <div class="mb-3">
                         <div class="col-md-8">
                             <label class="form-label">Discount Type</label>
-                            <select class="form-select" name="pack_discount_type" value="{{ old('pack_discount_type') }}">
+                            <select class="form-select" name="packs[{{$pack_section_count}}][pack_discount_type]" value="">
                                 <option value="">Select Discount Type</option>
                                 <option value="p" selected="">Percent(%)</option>
                                 <option value="f">Flat(£)</option>
@@ -292,19 +297,19 @@
                     <div class="row mb-3">
                         <div class="col-md-8">
                             <label for="name" class="form-label">Final Selling price</label>
-                            <input type="number" value="{{ old('pack_final_sel_price') }}" name="pack_final_sel_price" placeholder="Final Selling price" class="form-control" />
+                            <input type="number" value="" name="packs[{{$pack_section_count}}][pack_final_sel_price]" placeholder="Final Selling price" class="form-control" />
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-8">
                             <label for="name" class="form-label">Subscription Discount</label>
-                            <input type="number" value="{{ old('pack_subscription_discount') }}" name="pack_subscription_discount" placeholder="Subscription Discount" class="form-control" />
+                            <input type="number" value="" name="packs[{{$pack_section_count}}][pack_subscription_discount]" placeholder="Subscription Discount" class="form-control" />
                         </div>
                     </div>
                     <div class="mb-3">
                         <div class="col-md-8">
                             <label class="form-label">Subscription Discount Type</label>
-                            <select class="form-select" name="pack_subscription_discount_type" value="{{ old('pack_subscription_discount_type') }}">
+                            <select class="form-select" name="packs[{{$pack_section_count}}][pack_subscription_discount_type]" value="">
                                 <option value="p" selected="">Percent(%)</option>
                                 <option value="f">Flat(£)</option>
                             </select>
@@ -313,18 +318,35 @@
                     <div class="row mb-3">
                         <div class="col-md-8">
                             <label for="name" class="form-label">Subscription Final Selling price</label>
-                            <input type="number" value="{{ old('pack_subscription_fin_sel_price') }}" name="pack_subscription_fin_sel_price" placeholder="Subscription Final Selling price" class="form-control" />
+                            <input type="number" value="{{ old('pack_subscription_fin_sel_price') }}" name="packs[{{$pack_section_count}}][pack_subscription_fin_sel_price]" placeholder="Subscription Final Selling price" class="form-control" />
                         </div>
+                    </div>
+                  
+                    @php
+                    $pack_section_images_count = 0;
+                    @endphp
+                    <div class="col-md-8">
+                        <div class="mb-2">
+                            <label class="form-label">Images<span class="text-danger" style="font-size: 17px;">*</span></label>
+                        </div>
+                        <div id="image_parent_div_{{$pack_section_count}}">
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="radio" name="packs[{{$pack_section_count}}][pack_img_checkbox][{{$pack_section_images_count}}]" value="0" />
+                                <input class="form-control" type="file" name="packs[{{$pack_section_count}}][pack_images][{{$pack_section_images_count}}]">
+                            </div>
+    
+                        </div>
+                        <span class="btn btn-sm font-sm btn-brand mb-3" onclick="add_more_pack_image({{$pack_section_images_count}})">Add More Images</span>  
+                    </div>
                     </div>
                     <div class="col-md-8">
                         <div class="mb-3">
                             <div>
-                                <label class="form-label">Images</label>
-                                <input class="form-control" type="file" name="pack_images" value="{{ old('pack_images') }}">
+                                <span class="btn btn-sm btn-primary" onclick="add_pack_div()">Add More</span>
                             </div>
                         </div>
                     </div>
-                    {{-- <button class="btn btn-sm btn-primary mb-3">Add More</button> --}}
+                    
                     <div class="mb-3">
                         <div class="col-md-8" style="text-align: right;">
                             <button class="btn btn-light prev">Previous</button>
@@ -332,6 +354,8 @@
                         </div>
                     </div>
                 </div>
+
+
                 <!-- Pack Detial Section End -->
 
 
@@ -486,6 +510,50 @@
 </script>
 <script src="{{ url('/admin-assets/assets/js/multiStepForm.js') }}"></script>
 <script type="text/javascript">
+
+    let pack_section_images_count = <?=$pack_section_images_count;?>;
+    let pack_section_count  = <?=$pack_section_count;?>;
+
+    function add_pack_div(){
+        pack_section_count = pack_section_count + 1;
+
+        let html  = "";
+        html = '<div class="row mb-3"><div class="col-md-8"><label for="name" class="form-label">Pack Name</label><input type="text" name="packs['+pack_section_count+'][pack_name]" placeholder="Pack Name" class="form-control" /></div></div>';
+        html += '<div class="row mb-3"><div class="col-md-8"><label for="name" class="form-label">Manual Discount</label><input type="text" name="packs['+pack_section_count+'][pack_manual_discount]" placeholder="Pack Name" class="form-control" /></div></div>';
+
+        html += '<div class="row mb-3"><div class="col-md-8"><label for="name" class="form-label">Quantity</label><input type="number" name="packs['+pack_section_count+'][pack_quantity]" placeholder="Quantity" class="form-control" /></div></div>';
+
+        html += '<div class="row mb-3"><div class="col-md-8"><label for="name" class="form-label">Pack Selling Price</label><input type="number" name="packs['+pack_section_count+'][pack_selling_price]" placeholder="Pack Selling Price" class="form-control" /></div></div>';
+
+        html += '<div class="row mb-3"><div class="col-md-8"><label for="name" class="form-label">Discount</label><input type="number" name="packs['+pack_section_count+'][pack_discount]" placeholder="Discount" class="form-control" /></div></div>';
+
+        html += '<div class="mb-3"><div class="col-md-8"><label class="form-label">Discount Type</label><select class="form-select" name="packs['+pack_section_count+'][pack_discount_type]"><option value="">Select Discount Type</option><option value="p" selected="">Percent(%)</option><option value="f">Flat(£)</option></select></div></div>';
+
+        html += '<div class="row mb-3"><div class="col-md-8"><label for="name" class="form-label">Final Selling price</label><input type="number" name="packs['+pack_section_count+'][pack_final_sel_price]" placeholder="Final Selling price" class="form-control" /></div></div>';
+
+        html += '<div class="row mb-3"><div class="col-md-8"><label for="name" class="form-label">Subscription Discount</label><input type="number" name="packs['+pack_section_count+'][pack_subscription_discount]" placeholder="Subscription Discount" class="form-control" /></div></div>';
+
+        html += '<div class="mb-3"><div class="col-md-8"><label class="form-label">Subscription Discount Type</label><select class="form-select" name="packs['+pack_section_count+'][pack_subscription_discount_type]" ><option value="p" selected="">Percent(%)</option><option value="f">Flat(£)</option></select></div></div>';
+
+        html += ' <div class="col-md-8"><div class="mb-2"><label class="form-label">Images<span class="text-danger" style="font-size: 17px;">*</span></label></div><div id="image_parent_div_'+pack_section_count+'"><div class="form-check mb-3"><input class="form-check-input" type="radio" name="packs['+pack_section_count+'][pack_img_checkbox]['+pack_section_images_count+']" value="0" /><input class="form-control" type="file" name="packs['+pack_section_count+'][pack_images]['+pack_section_images_count+']"></div></div><span class="btn btn-sm font-sm btn-brand mb-3" onclick="add_more_pack_image('+pack_section_count+')">Add More Images</span></div>';
+
+        $('#pack_div').append(html);
+
+    }
+ 
+    function add_more_pack_image(pack_section_count){
+
+        pack_section_images_count = pack_section_images_count + 1;
+
+        // if(pack_section_images_count > 4){
+        //     alert('cannot add more then 5 images');
+        //     return;
+        // }
+        $html = '<div class="form-check mb-3" id="img_div_'+pack_section_count+'"><input class="form-check-input" type="radio" name="packs['+pack_section_count+'][prod_img_checkbox]['+pack_section_images_count+']" value="'+pack_section_images_count+'" /><input class="form-control" type="file" name="packs['+pack_section_count+'][pack_images]['+pack_section_images_count+']"></div>';
+        $('#image_parent_div_'+pack_section_count).append($html);
+    }
+
+
     let count = 0;
     $('#add_more_image_btn_'+count).click(function(){
         count = count + 1;
@@ -501,9 +569,10 @@
     let faqCount = 0;
     $('#add_more_faq_btn_'+faqCount).click(function(){
         faqCount = faqCount + 1;
-        $faq_html = "<div class='col-md-12 faq_section'><input type='text' placeholder='Question' class='form-control' name='faq["+faqCount+"][questions]'/><br><textarea name='faq["+faqCount+"][answers]' id='editor_"+faqCount+"' rows='4' cols='50'></textarea><br></div>";
-        $('#faq_parent_div').append($faq_html);
+        faq_html = "<div class='col-md-12 faq_section'><input type='text' placeholder='Question' class='form-control' name='faq["+faqCount+"][questions]'/><br><textarea name='faq["+faqCount+"][answers]' id='editor_"+faqCount+"' rows='4' cols='50'></textarea><br></div>";
+        $('#faq_parent_div').append(faq_html);
         CKEDITOR.replace( "editor_"+faqCount+"");
     });
+
 </script>
 @endsection

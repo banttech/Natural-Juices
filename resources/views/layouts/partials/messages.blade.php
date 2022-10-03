@@ -18,9 +18,9 @@
 
     <div class="alert alert-danger">
 
-      @foreach($errors->all() as $error)
+      @foreach($errors->all() as $key => $error)
 
-        {{ $error }} <br>
+        {{ ++$key }}. {{ $error }} <br>
 
       @endforeach
 

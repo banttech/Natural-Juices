@@ -31,7 +31,7 @@
                         <input type="search" name="input_value" placeholder="Search..." value="{{ $inputValue }}" class="form-control" />
                     </div>
                     <div class="col-lg-4 col-6 col-md-3">
-                        <input type="date" name="search_by_date" class="form-control" />
+                        <input type="date" name="search_by_date" class="form-control" value="{{ $searchDate }}" />
                     </div>
                     <div class="col-lg-2 col-6 col-md-3">
                         <button type="submit" class="btn btn-primary">Search</button>
@@ -60,7 +60,7 @@
                             <td>{{ $count }}</td>
                             <td>{{ $customer->name }}</td>
                             <td>{{ $customer->email  }}</td>
-                            <td>5</td>
+                            <td>{{ count($customer['orders']) }}</td>
                             <td>{{ $customer->created_at  }}</td>
                             <td>
                                 <a href="{{ url('deleteCustomer/' . $customer->id) }}" class="btn btn-sm font-sm btn-light rounded" onclick="return confirm('Are you sure you want to delete this item?');"> <i class="material-icons md-delete_forever"></i> Delete </a>

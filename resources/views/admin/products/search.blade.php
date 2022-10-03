@@ -26,6 +26,7 @@
     </div>
 
     <div class="card mb-4">
+        @include('layouts.partials.messages')
         <form action="{{ url('searchProduct') }}" method="GET">
             <header class="card-header">
                 <div class="row gx-3">

@@ -49,6 +49,7 @@ input:checked[type="checkbox"]::after {
         </div>
     </div>
     <div class="card mb-4">
+        @include('layouts.partials.messages')
         <form method="POST" method="post" action="{{ url('updateBrand/' . $brand->id) }}" enctype="multipart/form-data">
             @csrf
             <div class="card-body">

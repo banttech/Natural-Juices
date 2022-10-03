@@ -16,14 +16,14 @@ class FeatureController extends Controller
 	public function index()
     {
         $active = 'product';
-        $features = Feature::with('categories')->paginate(10);
+        $features = Feature::with('categories')->latest()->paginate(10);
         return view('admin.features.view', compact('features', 'active'));
     }
 
     public function add()
     {
         $active = 'product';
-        $categories = Category::get();
+        $categories = Category::latest()->get();
         return view('admin.features.add',  compact('categories','active'));
     }
 

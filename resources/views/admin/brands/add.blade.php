@@ -49,6 +49,7 @@
         </div>
     </div>
     <div class="card mb-4">
+        @include('layouts.partials.messages')
         <form method="POST" action="{{ url('storeBrand') }}" enctype="multipart/form-data">
             @csrf
             <div class="card-body">

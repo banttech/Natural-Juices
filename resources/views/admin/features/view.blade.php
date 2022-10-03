@@ -25,7 +25,7 @@
         </div>
     </div>
     <div class="card mb-4">
-        
+        @include('layouts.partials.messages')
         <!-- card-header end// -->
         <div class="card-body">
             <div class="table-responsive">
@@ -35,7 +35,7 @@
                             <th scope="col">Sr. No.</th>
                             <th scope="col">Feature Name</th>
                             <th scope="col">Feature Icon</th>
-                            <th scope="col">Description</th>
+                            <th scope="col" width="20%">Description</th>
                             <th scope="col">Category</th>
                             <th scope="col">Actions</th>
                         </tr>
@@ -48,7 +48,7 @@
                             <td>{{ $feature->name }}</td>
                             <td><img src="images/features/{{ $feature->icon }}" class="img-sm img-thumbnail" alt="Item" style="width: 150px !important;" />
                             </td>
-                            <td>{{ $feature->short_description }}</td>
+                            <td><?=$feature->short_description;?></td>
                             <td>
                                 @foreach($feature->categories as $category)
                                     - {{ $category->name }} <br>
