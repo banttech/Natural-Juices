@@ -185,7 +185,18 @@ class ProductController extends Controller
         $features = Feature::all();
         $product_images = ProductHasImage::where('product_id',$id)->get();
         $product_has_faq = DB::table('product_has_faq')->where('product_id',$id)->get();
-        return view('admin.products.edit', compact('active', 'brands', 'product','categories', 'features', 'selected_features_ids','product_images','product_has_faq'));
+        $product_packs = DB::table('products_packs')->where('product_id',$id)->get();
+
+        return view('admin.products.edit', compact('active', 
+            'brands', 
+            'product',
+            'categories', 
+            'features', 
+            'selected_features_ids',
+            'product_images',
+            'product_has_faq',
+            'product_packs',
+        ));
     }
 
     public function update(EditProductRequest $request, $id)

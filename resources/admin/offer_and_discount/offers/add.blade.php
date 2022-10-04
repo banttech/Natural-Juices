@@ -10,15 +10,19 @@
         <form method="POST" action="{{ url('storeOffer') }}" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
-                <div class="row mb-3">
-                    <div>
-                        <label class="form-label">Offer Image<span class="text-danger" style="font-size: 17px;">*</span></label>
-                        <input class="form-control" type="file" name="offer_img" id="offer_img">
-                    </div>  
-                    @if ($errors->has('offer_img'))
-                    <span class="text-danger text-left">{{ $errors->first('offer_img') }}</span>
-                    @endif
+                <div id="parent_offer_img">
+                    <div class="row mb-3">
+                        <div>
+                            <label class="form-label">Offer Image<span class="text-danger" style="font-size: 17px;">*</span></label>
+                            <input class="form-control" type="file" name="offer_img_name[]" id="offer_img">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Description<span class="text-danger" style="font-size: 17px;">*</span></label>
+                        <textarea placeholder="Type here" class="form-control" rows="4" name="description[]">{{ old('description') }}</textarea>
+                    </div>
                 </div>
+                <span class="btn btn-sm font-sm btn-brand mb-3" id="add_more_offer_sec_btn">Add More</span>
                 <div class="row mb-3">
                     <div class="">
                         <label for="name" class="form-label">Offer Category<span class="text-danger" style="font-size: 17px;">*</span></label>
@@ -56,4 +60,16 @@
         </form>
     </div>
 </section>
+<script type="text/javascript">
+    let count = 0;
+    $('#add_more_offer_sec_btn').click(function(){
+        count = count + 1;
+        if(count > 2){
+            alert('cannot add more then 3 images');
+            return;
+        }
+        $html = '<div class="row mb-3"><div><label class="form-label">Offer Image<span class="text-danger" style="font-size: 17px;">*</span></label><input class="form-control" type="file" name="offer_img_name[]"></div></div><div class="mb-3"><label class="form-label">Description<span class="text-danger" style="font-size: 17px;">*</span></label><textarea placeholder="Type here" class="form-control" rows="4" name="description[]">{{ old('description') }}</textarea></div>';
+        $('#parent_offer_img').append($html);
+    });
+</script>
 @endsection

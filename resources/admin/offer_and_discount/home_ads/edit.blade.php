@@ -2,6 +2,18 @@
 @section('content')
 
 <section class="content-main">
+     @if(Session::has('flash_message_error'))
+            <div class="alert alert-error alert-block" style="margin: 18px;">
+                <button type="button" class="close" data-dismiss="alert">×</button> 
+                <strong>{!! session('flash_message_error') !!}</strong>
+            </div>
+        @endif   
+        @if(Session::has('flash_message_success'))
+        <div class="alert alert-success alert-block" style="margin: 18px;">
+            <button type="button" class="close" data-dismiss="alert">×</button> 
+            <strong>{!! session('flash_message_success') !!}</strong>
+        </div>
+        @endif
     <div class="content-header">
         <div>
             <h3 class="card-title">Edit Home Page Ads</h3>

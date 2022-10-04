@@ -285,85 +285,109 @@
 
                 <!-- Pack Detial Section Start -->
                 <div class="page">
-                    <div class="row mb-3">
+                @php
+                $pack_section_count = 0;
+                @endphp
+                   <div id="pack_div">
+                    @foreach($product_packs as $key => $packs)
+                    <h1>Pack {{ ++$key }}</h1>
+                     <div class="row mb-3">
                         <div class="col-md-8">
                             <label for="name" class="form-label">Pack Name</label>
-                            <input type="text" value="{{ $product->pack_name }}" name="pack_name" placeholder="Pack Name" class="form-control" />
+                            <input type="text" value="{{ $packs->pack_name }}" name="packs[{{$pack_section_count}}][pack_name]" placeholder="Pack Name" class="form-control" />
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-8">
                             <label for="name" class="form-label">Manual Discount</label>
-                            <input type="text" value="{{ $product->pack_manual_discount }}" name="pack_manual_discount" placeholder="Pack Name" class="form-control" />
+                            <input type="text" value="{{ $packs->pack_manual_discount }}" name="packs[{{$pack_section_count}}][pack_manual_discount]" placeholder="Manual Discount" class="form-control" />
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-8">
                             <label for="name" class="form-label">Quantity</label>
-                            <input type="number" value="{{ $product->ack_quantity }}" name="pack_quantity" placeholder="Quantity" class="form-control" />
+                            <input type="number" value="{{ $packs->pack_quantity }}" name="packs[{{$pack_section_count}}][pack_quantity]" placeholder="Quantity" class="form-control" />
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-8">
                             <label for="name" class="form-label">Pack Selling Price</label>
-                            <input type="number" value="{{ $product->pack_selling_price }}" name="pack_selling_price" placeholder="Pack Selling Price" class="form-control" />
+                            <input type="number" value="{{ $packs->pack_selling_price }}" name="packs[{{$pack_section_count}}][pack_selling_price]" placeholder="Pack Selling Price" class="form-control" />
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-8">
                             <label for="name" class="form-label">Discount</label>
-                            <input type="number" value="{{ $product->pack_discount }}" name="pack_discount" placeholder="Discount" class="form-control" />
+                            <input type="number" value="{{ $packs->pack_discount }}" name="packs[{{$pack_section_count}}][pack_discount]" placeholder="Discount" class="form-control" />
                         </div>
                     </div>
                     <div class="mb-3">
                         <div class="col-md-8">
                             <label class="form-label">Discount Type</label>
-                            <select class="form-select" name="pack_discount_type" value="{{ $product->pack_discount_type }}">
+                            <select class="form-select" name="packs[{{$pack_section_count}}][pack_discount_type]" value="">
                                 <option value="">Select Discount Type</option>
-                                <option value="p" @if($product->prod_discount_type == 'p') selected @endif>Percent(%)</option>
-                                <option value="f" @if($product->prod_discount_type == 'f') selected @endif>Flat(£)</option>
+                                <option value="p" selected="">Percent(%)</option>
+                                <option value="f">Flat(£)</option>
                             </select>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-8">
                             <label for="name" class="form-label">Final Selling price</label>
-                            <input type="number" value="{{ $product->pack_final_sel_price }}" name="pack_final_sel_price" placeholder="Final Selling price" class="form-control" />
+                            <input type="number" value="{{ $packs->pack_final_sel_price }}" name="packs[{{$pack_section_count}}][pack_final_sel_price]" placeholder="Final Selling price" class="form-control" />
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-8">
                             <label for="name" class="form-label">Subscription Discount</label>
-                            <input type="number" value="{{ $product->pack_subscription_discount }}" name="pack_subscription_discount" placeholder="Subscription Discount" class="form-control" />
+                            <input type="number" value="{{ $packs->pack_subscription_discount }}" name="packs[{{$pack_section_count}}][pack_subscription_discount]" placeholder="Subscription Discount" class="form-control" />
                         </div>
                     </div>
                     <div class="mb-3">
                         <div class="col-md-8">
                             <label class="form-label">Subscription Discount Type</label>
-                            <select class="form-select" name="pack_subscription_discount_type" value="{{ old('pack_subscription_discount_type') }}">
-                                <option value="p" @if($product->prod_discount_type == 'p') selected @endif>Percent(%)</option>
-                                <option value="f" @if($product->prod_discount_type == 'f') selected @endif>Flat(£)</option>
+                            <select class="form-select" name="packs[{{$pack_section_count}}][pack_subscription_discount_type]" value="">
+                                <option value="p" selected="">Percent(%)</option>
+                                <option value="f">Flat(£)</option>
                             </select>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-8">
                             <label for="name" class="form-label">Subscription Final Selling price</label>
-                            <input type="number" value="{{ $product->pack_subscription_fin_sel_price }}" name="pack_subscription_fin_sel_price" placeholder="Subscription Final Selling price" class="form-control" />
+                            <input type="number" value="{{ $packs->pack_subscription_fin_sel_price }}" name="packs[{{$pack_section_count}}][pack_subscription_fin_sel_price]" placeholder="Subscription Final Selling price" class="form-control" />
                         </div>
                     </div>
+                    @php
+                    $pack_section_images_count = 0;
+                    @endphp
+                    <div class="col-md-8">
+                        <div class="mb-2">
+                            <label class="form-label">Images<span class="text-danger" style="font-size: 17px;">*</span></label>
+                        </div>
+                        <div id="image_parent_div_{{$pack_section_count}}">
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="radio" name="packs[{{$pack_section_count}}][pack_img_checkbox][{{$pack_section_images_count}}]" value="0" />
+                                <input class="form-control" type="file" name="packs[{{$pack_section_count}}][pack_images][{{$pack_section_images_count}}]">
+                            </div>
+    
+                        </div>
+                        <span class="btn btn-sm font-sm btn-brand mb-3" onclick="add_more_pack_image({{$pack_section_images_count}})">Add More Images</span>  
+                    </div>
+                   
+                   
+                    @php
+                    $pack_section_count++;
+                    @endphp
+                    @endforeach
                     <div class="col-md-8">
                         <div class="mb-3">
                             <div>
-                                <label class="form-label">Images</label>
-                                <input class="form-control" type="file" name="pack_images" value="{{ $product->pack_images }}">
+                                <span class="btn btn-sm btn-primary" onclick="add_pack_div()">Add More</span>
                             </div>
-                            <br>
-                             @if(isset($product->pack_images) && $product->pack_images != null)
-                                <img src="{{ url('/images/products/'.$product->pack_images) }}" style="width: 250px !important">
-                            @endif
                         </div>
                     </div>
+                   </div>
                     {{-- <button class="btn btn-sm btn-primary mb-3">Add More</button> --}}
                     <div class="mb-3">
                         <div class="col-md-8" style="text-align: right;">

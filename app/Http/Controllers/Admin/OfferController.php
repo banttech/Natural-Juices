@@ -8,6 +8,7 @@ use App\Http\Requests\AddOfferRequest;
 use App\Http\Requests\UpdateOfferRequest;
 use App\Models\Offer;
 use App\Models\OfferCategory;
+use App\Models\OfferHasImage;
 use Illuminate\Support\Facades\Storage;
 
 class OfferController extends Controller
@@ -15,7 +16,7 @@ class OfferController extends Controller
 	public function index()
     {
         $active = 'offers';
-        $offers = Offer::paginate(10);
+        $offers = Offer::with('offerImages')->paginate(10);
         return view('admin.offer_and_discount.offers.view', compact('offers', 'active'));
     }
 
@@ -26,22 +27,32 @@ class OfferController extends Controller
         return view('admin.offer_and_discount.offers.add',  compact('offerCategories','active'));
     }
 
-    public function store(AddOfferRequest $request)
+    public function store(Request $request)
     {        
         $offer = new Offer();
         $offer->status = $request->status == 'on' ? 'active' : 'inactive';
-        if($request->hasFile('offer_img')){
-            $offer_img = $request->file('offer_img');
-            $offer_img_name = time().'.'.$offer_img->getClientOriginalExtension();
-           
-            $offer_img->move(public_path('/images/offers'),$offer_img_name);
-            $offer->offer_img = $offer_img_name;
-        }
         $offer->offer_category = $request->offer_category;
         $offer->target_url = $request->target_url;
         $offer->save();
 
-        return redirect('offers')->with('flash_message_success','Record Added Successfully');
+        $offer_id = $offer->id;
+
+        if($request->hasFile('offer_img_name')){
+            foreach ($request->offer_img_name as $key => $offer_img) {
+                $data = array();
+                $offerImg = $offer_img;
+                
+                $offerImgNmae = time().$key.'.'.$offerImg->getClientOriginalExtension();
+                $offerImg->move(public_path('/images/offers'),$offerImgNmae);
+                $data[$key]['img_name'] = $offerImgNmae;
+                $data[$key]['offer_id'] = $offer_id;
+                $data[$key]['img_description'] = $request->description[$key];
+                
+                OfferHasImage::insert($data);
+            }
+        }
+
+        return redirect('viewOffers')->with('flash_message_success','Record Added Successfully');
     }
 
     public function edit($id)
@@ -68,13 +79,13 @@ class OfferController extends Controller
         $offer->target_url = $request->target_url;
         $offer->update();
 
-        return redirect('offers')->with('flash_message_success','Record Updated Successfully');
+        return redirect('viewOffers')->with('flash_message_success','Record Updated Successfully');
     }
 
     public function delete($id)
     {
         $offer = Offer::find($id);
         $offer->delete();
-        return redirect('offers')->with('flash_message_success','Record Deleted Successfully');
+        return redirect('viewOffers')->with('flash_message_success','Record Deleted Successfully');
     }
 }

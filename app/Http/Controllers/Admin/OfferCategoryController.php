@@ -31,7 +31,7 @@ class OfferCategoryController extends Controller
         $offerCategory->name = $request->name;
         $offerCategory->save();
 
-        return redirect('offerCategories')->with('flash_message_success','Record Added Successfully');
+        return redirect('viewOfferCategories')->with('flash_message_success','Record Added Successfully');
     }
 
     public function edit($id)
@@ -48,13 +48,13 @@ class OfferCategoryController extends Controller
         $OfferCategory->name = $request->name;
         $OfferCategory->update();
 
-        return redirect('offerCategories')->with('flash_message_success','Record Updated Successfully');
+        return redirect('viewOfferCategories')->with('flash_message_success','Record Updated Successfully');
     }
 
     public function delete($id)
     {
         $offerCategory = OfferCategory::find($id);
         $offerCategory->delete();
-        return redirect('offerCategories')->with('flash_message_success','Record Deleted Successfully');
+        return redirect('viewOfferCategories')->with('flash_message_success','Record Deleted Successfully');
     }
 }

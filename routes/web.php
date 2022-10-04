@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\HomeAdsController;
+use App\Http\Controllers\Admin\HomeOfferController;
 use App\Http\Controllers\Admin\OfferCategoryController;
 use App\Http\Controllers\Admin\OfferController;
 use App\Http\Controllers\Admin\BlogCategoryController;
@@ -141,7 +142,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['auth','permission']], fu
 
 
 // Offer Category
-    Route::get('/offerCategories', [OfferCategoryController::class, 'index'])->name('offerCategories');
+    Route::get('/viewOfferCategories', [OfferCategoryController::class, 'index'])->name('viewOfferCategories');
     Route::get('/createOfferCategory', [OfferCategoryController::class, 'create'])->name('createOfferCategory');
     Route::post('/storeOfferCategory', [OfferCategoryController::class, 'store'])->name('storeOfferCategory');
     Route::get('/deleteOfferCategory/{id}', [OfferCategoryController::class, 'delete'])->name('deleteOfferCategory');
@@ -149,8 +150,8 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['auth','permission']], fu
     Route::post('/updateOfferCategory/{id}', [OfferCategoryController::class, 'update'])->name('updateOfferCategory');
 
 // Offers
-Route::get('/offers', [OfferController::class, 'index'])->name('offers');
-Route::get('/createOffer', [OfferController::class, 'create'])->name('createOffer');
+Route::get('/viewOffers', [OfferController::class, 'index'])->name('viewOffers');
+Route::get('/addOffer', [OfferController::class, 'create'])->name('addOffer');
 Route::post('/storeOffer', [OfferController::class, 'store'])->name('storeOffer');
 Route::get('/deleteOffer/{id}', [OfferController::class, 'delete'])->name('deleteOffer');
 Route::get('/editOffer/{id}', [OfferController::class, 'edit'])->name('editOffer');
@@ -166,6 +167,13 @@ Route::get('/createHomePageAds', [HomeAdsController::class, 'create'])->name('cr
 Route::post('/storeHomePageAds', [HomeAdsController::class, 'store'])->name('storeHomePageAds');
 Route::get('/editHomePageAds', [HomeAdsController::class, 'edit'])->name('editHomePageAds');
 Route::post('/updateHomePageAds', [HomeAdsController::class, 'update'])->name('updateHomePageAds');
+
+
+// Home Page Offer
+Route::get('/createHomePageOffer', [HomeOfferController::class, 'create'])->name('createHomePageOffer');
+Route::post('/storeHomePageOffer', [HomeOfferController::class, 'store'])->name('storeHomePageOffer');
+Route::get('/editHomePageOffer', [HomeOfferController::class, 'edit'])->name('editHomePageOffer');
+Route::post('/updateHomePageOffer', [HomeOfferController::class, 'update'])->name('updateHomePageOffer');
 
 
 

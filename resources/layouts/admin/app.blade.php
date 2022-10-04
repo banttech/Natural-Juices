@@ -115,9 +115,10 @@ input:checked[type="checkbox"]::after {
                         <span class="text">Offers & Discount</span>
                     </a>
                     <div class="submenu">
-                         <a href="{{ url('offerCategories') }}">Offer Categories</a>
-                         <a href="{{ url('offers') }}">Offer</a>
+                         <a href="{{ url('viewOfferCategories') }}">Offer Categories</a>
+                         <a href="{{ url('viewOffers') }}">Offer</a>
                          <a href="{{ url('createHomePageAds') }}">Home Page Ads</a>
+                         <a href="{{ url('createHomePageOffer') }}">Home Page Offer</a>
                          <a href="{{ url('viewNewCustomerOffers') }}">Newly Customer Offer</a>
                          <a href="{{ url('viewShoppingCartOffers') }}">Shopping Cart Offer</a>
                          <a href="{{ url('viewCouponCodes') }}">Coupon Code</a>

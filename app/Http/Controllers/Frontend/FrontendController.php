@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Brand;
+use App\Models\HomePageAds;
+use App\Models\HomePageOffer;
 use Auth;
 
 class FrontendController extends Controller
@@ -13,10 +16,11 @@ class FrontendController extends Controller
     public function index()
     {
         // dd(Auth::id());
-        $categories = Category::all();
         $products = Product::all();
+        $homePageAds = HomePageAds::all();
+        $homePageOffer = HomePageOffer::first();
 
-        return view('frontend.home', compact('categories', 'products'));
+        return view('frontend.home', compact('products', 'homePageAds', 'homePageOffer'));
     }
 
     public function filterByCategory($catId)

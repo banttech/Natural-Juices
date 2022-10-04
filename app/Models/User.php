@@ -82,4 +82,9 @@ class User extends Authenticatable
         return $this->user_role == 1;
     }
 
+    public function orders()
+    {
+        return $this->hasMany('App\Models\Order');
+    }
+
 }
