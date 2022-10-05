@@ -16,10 +16,13 @@
                             <label class="form-label">Offer Image<span class="text-danger" style="font-size: 17px;">*</span></label>
                             <input class="form-control" type="file" name="offer_img_name[]" id="offer_img">
                         </div>
+                        @if ($errors->has('offer_img_name'))
+                        <span class="text-danger text-left">{{ $errors->first('offer_img_name') }}</span>
+                        @endif
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Description<span class="text-danger" style="font-size: 17px;">*</span></label>
-                        <textarea placeholder="Type here" class="form-control" rows="4" name="description[]">{{ old('description') }}</textarea>
+                        <label class="form-label">Description</label>
+                        <textarea placeholder="Type here" class="form-control" rows="4" name="description[]"></textarea>
                     </div>
                 </div>
                 <span class="btn btn-sm font-sm btn-brand mb-3" id="add_more_offer_sec_btn">Add More</span>
@@ -29,7 +32,7 @@
                         <select class="form-control" name="offer_category">
                             <option value="" selected="true" disabled="disabled">Choose Category</option>
                             @foreach($offerCategories as $offerCategory)
-                            <option value="{{ $offerCategory->name }}">{{ $offerCategory->name }}</option>
+                            <option value="{{ $offerCategory->name }}"  @if( old('offer_category') == $offerCategory->name) selected @endif>{{ $offerCategory->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -68,7 +71,7 @@
             alert('cannot add more then 3 images');
             return;
         }
-        $html = '<div class="row mb-3"><div><label class="form-label">Offer Image<span class="text-danger" style="font-size: 17px;">*</span></label><input class="form-control" type="file" name="offer_img_name[]"></div></div><div class="mb-3"><label class="form-label">Description<span class="text-danger" style="font-size: 17px;">*</span></label><textarea placeholder="Type here" class="form-control" rows="4" name="description[]">{{ old('description') }}</textarea></div>';
+        $html = '<div class="row mb-3"><div><label class="form-label">Offer Image<span class="text-danger" style="font-size: 17px;">*</span></label><input class="form-control" type="file" name="offer_img_name[]"></div></div><div class="mb-3"><label class="form-label">Description</label><textarea placeholder="Type here" class="form-control" rows="4" name="description[]"></textarea></div>';
         $('#parent_offer_img').append($html);
     });
 </script>

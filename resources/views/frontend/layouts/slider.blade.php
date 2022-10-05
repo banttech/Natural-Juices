@@ -28,13 +28,43 @@
 <section class="banners mb-25">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-6">
+            <div class="col-md-12">
+                    <div class="tab-content" id="myTabContent-1">
+                        <div class="tab-pane fade show active" id="tab-one-1" role="tabpanel"
+                            aria-labelledby="tab-one-1">
+                            <div class="carausel-4-columns-cover arrow-center position-relative">
+                                <div class="slider-arrow slider-arrow-2 carausel-4-columns-arrow"
+                                    id="carausel-4-columns-arrows"></div>
+                                <div class="carausel-4-columns carausel-arrow-center" id="carausel-4-columns">
+                                    <div class="product-cart-wrap">
+                                        <div class="product-img-action-wrap">
+                                            <div class="product-img product-img-zoom">
+                                                <a href="shop-product-right.html">
+                                                    <img class="default-img"
+                                                        src="{{ asset('imgs/shop/product-1-1.jpg') }}"
+                                                        alt="" />
+                                                    <!-- <img class="hover-img"
+                                                        src="{{ asset('imgs/shop/product-1-2.jpg') }}"
+                                                        alt="" /> -->
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--End product Wrap-->
+                                </div>
+                            </div>
+                        </div>
+                        <!--End tab-pane-->
+                        
+                    </div>
+                    <!--End tab-content-->
+                </div>
+            <!-- <div class="col-lg-4 col-md-6">
                 <div class="banner-img">
                     <img src="{{ asset('imgs/banner/banner-1.png') }}" alt="" />
                     <div class="banner-text">
                         <h4>
-                            Everyday Fresh & <br />Clean with Our<br />
-                            Products
+                            Make your Breakfast <br />Healthy and Easy
                         </h4>
                         <a href="shop-grid-right.html" class="btn btn-xs">Shop Now <i
                                 class="fi-rs-arrow-small-right"></i></a>
@@ -63,7 +93,7 @@
                                 class="fi-rs-arrow-small-right"></i></a>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
