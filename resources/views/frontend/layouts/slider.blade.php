@@ -35,21 +35,23 @@
                             <div class="carausel-4-columns-cover arrow-center position-relative">
                                 <div class="slider-arrow slider-arrow-2 carausel-4-columns-arrow"
                                     id="carausel-4-columns-arrows"></div>
+                                    <h3>Offers</h3>
                                 <div class="carausel-4-columns carausel-arrow-center" id="carausel-4-columns">
-                                    <div class="product-cart-wrap">
-                                        <div class="product-img-action-wrap">
-                                            <div class="product-img product-img-zoom">
-                                                <a href="shop-product-right.html">
-                                                    <img class="default-img"
-                                                        src="{{ asset('imgs/shop/product-1-1.jpg') }}"
-                                                        alt="" />
-                                                    <!-- <img class="hover-img"
-                                                        src="{{ asset('imgs/shop/product-1-2.jpg') }}"
-                                                        alt="" /> -->
-                                                </a>
+                                    @foreach($offers as $key => $offer)
+                                        @foreach($offer->offerImages as $key => $offerImages)
+                                            <div class="product-cart-wrap">
+                                                <div class="product-img-action-wrap">
+                                                    <div class="product-img product-img-zoom">
+                                                        <a href="shop-product-right.html">
+                                                            <img class="default-img"
+                                                                src="images/offers/{{ $offerImages->img_name }}"
+                                                                alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
+                                        @endforeach
+                                    @endforeach
                                     <!--End product Wrap-->
                                 </div>
                             </div>

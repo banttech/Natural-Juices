@@ -25,8 +25,9 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Description</label>
-                            <textarea placeholder="Type here" class="form-control" rows="4" name="description[]">{{ $offerImg->img_description }}</textarea>
+                            <textarea placeholder="Type here" class="form-control" rows="4" name="description[]" id="editor_<?=$key;?>">{{ $offerImg->img_description }}</textarea>
                         </div>
+                       
                         @php $image_count++; @endphp
                     @endforeach
                 </div>
@@ -35,10 +36,10 @@
                 <div class="row mb-3">
                     <div class="">
                         <label for="name" class="form-label">Offer Category<span class="text-danger" style="font-size: 17px;">*</span></label>
-                        <select class="form-control" name="offer_category">
+                        <select class="form-control" name="offer_category" id="js-example-basic-single">
                             <option value="" selected="true" disabled="disabled">Choose Category</option>
                             @foreach($offerCategories as $offerCategory)
-                            <option value="{{ $offerCategory->name }}" @if($offerCategory->offer_category == $offer->name) selected @endif>{{ $offerCategory->name }}</option>
+                            <option value="{{ $offerCategory->id }}" @if($offerCategory->name == $offer->category->name) selected @endif>{{ $offerCategory->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -77,5 +78,21 @@
         $html = '<div class="row mb-3"><div><label class="form-label">Offer Image</label><input class="form-control" type="file" name="offer_img_name[]"></div></div><div class="mb-3"><label class="form-label">Description</label><textarea placeholder="Type here" class="form-control" rows="4" name="description[]"></textarea></div>';
         $('#parent_offer_img').append($html);
     });
+
+    $(document).ready(function() {
+        $('#js-example-basic-single').select2({
+            placeholder: 'Add Tags',
+
+            multiple: true,
+            tags:true,
+            allowClear: true
+        });
+    });
 </script>
+@foreach($offer->offerImages as $key => $offerImg)
+ <script type="text/javascript">
+
+ CKEDITOR.replace( 'editor_<?=$key;?>' );
+</script>
+@endforeach
 @endsection

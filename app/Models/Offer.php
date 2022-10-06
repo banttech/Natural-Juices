@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Offer extends Model
 {
     use HasFactory;
+    
+    public function category()
+    {
+        return $this->hasOne('App\Models\OfferCategory', 'id', 'offer_category_id');
+    }    
 
     public function offerImages()
     {

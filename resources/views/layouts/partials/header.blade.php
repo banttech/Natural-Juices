@@ -174,16 +174,50 @@ $brands = DB::table('brands')->get();
                             </nav>
                         </div>
                     </div>
-                    <div class="hotline d-none d-lg-flex">
+                   <div class="hotline d-none d-lg-flex">
                         <img src="{{ asset('imgs/theme/icons/icon-headphone.svg') }}" alt="hotline" />
-                        <select class="">
-                            <option value="all">24/7 Help</option>
-                            <option value="all">24/7 Help</option>
-
-                            <option value="all">24/7 Help</option>
-                            <option value="all">24/7 Help</option>
-                        </select>
-                        
+                        <nav class="d_d_contain" role="navigation">
+                            <ul>
+                                <li><a href="#" class="service_24">24/7 Help</a>
+                                <ul class="dropdown">
+                                    <div class="main_dropdown">
+                                        <div class="dropdown_left">
+                                            <div class="dropdown_inner_left">
+                                                <div class="dropdown_list">
+                                                    <li style="font-weight: bold;font-size: 16px;"><a style="">Contact Us</a><span class="header__right-arrow">→</span></li>
+                                                    <li><i class="fa fa-commenting" aria-hidden="true"></i><a>Chat</a></li>
+                                                    <li><i class="fa fa-envelope" aria-hidden="true"></i><a> Email </a></li>
+                                                    <li><i class="fa fa-question-circle" aria-hidden="true"></i><a> Expert Advice </a></li>
+                                                    <li><i class="fa fa-thumbs-up" aria-hidden="true"></i><a> Website Feedback </a></li>
+                                                    <li style="font-weight:bold;font-size: 16px;padding-top: 10px;"><a> New Orders </a></li>
+                                                    <li><i class="fa fa-phone" aria-hidden="true"></i><a>  888-635-0474  </a></li>
+                                                </div>
+                                            </div>
+                                            <div class="dropdown_inner_right">
+                                                <div class="dropdown_list">
+                                                    <li style="font-weight: bold;font-size: 16px;"><a>Helpful Links </a></li>
+                                                    <li><a>Track Your Order </a></li>
+                                                    <li><a> FAQs </a></li>
+                                                    <li><a> Shipping Info</a></li>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="dropdown_right">
+                                            <div class="dropdown_inner">
+                                                <div class="dropdwn_tag">EXPERT ADVICE</div>
+                                                <div class="dropdwn_content">
+                                                    <h5>Have a product question?</h5>
+                                                    <h6>Connect with our natural product experts</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </ul>
+                                </li>
+                            </ul>
+                        </nav>
                         <!-- <p><span>24/7 Help</span></p> -->
                     </div>
                     <div class="header-action-icon-2 d-block d-lg-none">

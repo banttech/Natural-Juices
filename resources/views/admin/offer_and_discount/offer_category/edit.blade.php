@@ -13,7 +13,7 @@
                 <div class="row mb-3">
                     <div class="">
                         <label for="name" class="form-label">Category Name<span class="text-danger" style="font-size: 17px;">*</span></label>
-                        <input type="text" value="{{ $offerCategory->name }}" name="name" placeholder="Brand Name" class="form-control" />
+                        <input type="text" value="{{ $offerCategory->name }}" name="name" placeholder="Category Name" class="form-control" />
                         @if ($errors->has('name'))
                         <span class="text-danger text-left">{{ $errors->first('name') }}</span>
                         @endif

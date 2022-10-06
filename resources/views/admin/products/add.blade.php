@@ -43,7 +43,7 @@
         </div>
 
         <div class="form-outer">
-            <form method="POST" action="{{ url('storeProduct') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ url('storeProduct') }}" enctype="multipart/form-data" id="form1">
                 @csrf
 
                 <!-- Product Detail Section Start -->
@@ -436,7 +436,7 @@
                     <div class="mb-3">
                         <div class="col-md-8" style="text-align: right;">
                             <button class="btn btn-light prev">Previous</button>
-                            <button type="submit" class="btn btn-sm btn-primary secondNext">Save</button>
+                            <button type="submit" class="btn btn-sm btn-primary secondNext" onclick="submitForm()">Save</button>
                         </div>
                     </div>
                 </div>
@@ -448,6 +448,9 @@
     </div>
 </section>
 <script type="text/javascript">
+    function submitForm(){
+        $('#form1').submit();
+    }
     $(document).ready(function() {
         $('#js-example-basic-single').select2({
             placeholder: 'Add Tags',
@@ -519,7 +522,7 @@
 
         let html  = "";
         html = '<div class="row mb-3"><div class="col-md-8"><label for="name" class="form-label">Pack Name</label><input type="text" name="packs['+pack_section_count+'][pack_name]" placeholder="Pack Name" class="form-control" /></div></div>';
-        html += '<div class="row mb-3"><div class="col-md-8"><label for="name" class="form-label">Manual Discount</label><input type="text" name="packs['+pack_section_count+'][pack_manual_discount]" placeholder="Pack Name" class="form-control" /></div></div>';
+        html += '<div class="row mb-3"><div class="col-md-8"><label for="name" class="form-label">Manual Discount</label><input type="text" name="packs['+pack_section_count+'][pack_manual_discount]" placeholder="Manual Discount" class="form-control" /></div></div>';
 
         html += '<div class="row mb-3"><div class="col-md-8"><label for="name" class="form-label">Quantity</label><input type="number" name="packs['+pack_section_count+'][pack_quantity]" placeholder="Quantity" class="form-control" /></div></div>';
 

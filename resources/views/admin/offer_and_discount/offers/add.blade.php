@@ -22,17 +22,17 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Description</label>
-                        <textarea placeholder="Type here" class="form-control" rows="4" name="description[]"></textarea>
+                        <textarea placeholder="Type here" class="form-control" rows="4" name="description[]" id="editor_0"></textarea>
                     </div>
                 </div>
                 <span class="btn btn-sm font-sm btn-brand mb-3" id="add_more_offer_sec_btn">Add More</span>
                 <div class="row mb-3">
                     <div class="">
                         <label for="name" class="form-label">Offer Category<span class="text-danger" style="font-size: 17px;">*</span></label>
-                        <select class="form-control" name="offer_category">
+                        <select class="form-control" name="offer_category" id="js-example-basic-single">
                             <option value="" selected="true" disabled="disabled">Choose Category</option>
                             @foreach($offerCategories as $offerCategory)
-                            <option value="{{ $offerCategory->name }}"  @if( old('offer_category') == $offerCategory->name) selected @endif>{{ $offerCategory->name }}</option>
+                            <option value="{{ $offerCategory->id }}"  @if( old('offer_category') == $offerCategory->name) selected @endif>{{ $offerCategory->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -64,6 +64,7 @@
     </div>
 </section>
 <script type="text/javascript">
+    CKEDITOR.replace( 'editor_0' );
     let count = 0;
     $('#add_more_offer_sec_btn').click(function(){
         count = count + 1;
@@ -71,8 +72,20 @@
             alert('cannot add more then 3 images');
             return;
         }
-        $html = '<div class="row mb-3"><div><label class="form-label">Offer Image<span class="text-danger" style="font-size: 17px;">*</span></label><input class="form-control" type="file" name="offer_img_name[]"></div></div><div class="mb-3"><label class="form-label">Description</label><textarea placeholder="Type here" class="form-control" rows="4" name="description[]"></textarea></div>';
+        $html = '<div class="row mb-3"><div><label class="form-label">Offer Image<span class="text-danger" style="font-size: 17px;">*</span></label><input class="form-control" type="file" name="offer_img_name[]"></div></div><div class="mb-3"><label class="form-label">Description</label><textarea placeholder="Type here" class="form-control" rows="4" name="description[]" id="editor"></textarea></div>';
         $('#parent_offer_img').append($html);
+        CKEDITOR.replace( "editor_"+count+"");
     });
+
+    $(document).ready(function() {
+        $('#js-example-basic-single').select2({
+            placeholder: 'Add Tags',
+
+            multiple: true,
+            tags:true,
+            allowClear: true
+        });
+    });
+
 </script>
 @endsection

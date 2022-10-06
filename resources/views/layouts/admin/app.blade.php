@@ -3,6 +3,13 @@ $categories_count = DB::table('categories')->count('id');
 $brands_count = DB::table('brands')->count('id');
 $features_count = DB::table('features')->count('id');
 $products_count = DB::table('products')->count('id');
+$offer_category_count = DB::table('offer_categories')->count('id');
+$offers = DB::table('offers')->count('id');
+$home_page_offers = DB::table('home_page_offers')->count('id');
+$home_page_ads = DB::table('home_page_ads')->count('id');
+$new_customer_offers = DB::table('new_customer_offers')->count('id');
+$shopping_cart_offers = DB::table('shopping_cart_offers')->count('id');
+$coupon_codes = DB::table('coupon_codes')->count('id');
 
 @endphp
 <!DOCTYPE html>
@@ -115,13 +122,13 @@ input:checked[type="checkbox"]::after {
                         <span class="text">Offers & Discount</span>
                     </a>
                     <div class="submenu">
-                         <a href="{{ url('viewOfferCategories') }}">Offer Categories</a>
-                         <a href="{{ url('viewOffers') }}">Offer</a>
-                         <a href="{{ url('createHomePageAds') }}">Home Page Ads</a>
-                         <a href="{{ url('createHomePageOffer') }}">Home Page Offer</a>
-                         <a href="{{ url('viewNewCustomerOffers') }}">Newly Customer Offer</a>
-                         <a href="{{ url('viewShoppingCartOffers') }}">Shopping Cart Offer</a>
-                         <a href="{{ url('viewCouponCodes') }}">Coupon Code</a>
+                         <a href="{{ url('viewOfferCategories') }}">Offer Categories [{{$offer_category_count}}]</a>
+                         <a href="{{ url('viewOffers') }}">Offer [{{$offers}}]</a>
+                         <a href="{{ url('createHomePageAds') }}">Home Page Ads [{{$offer_category_count}}]</a>
+                         <a href="{{ url('createHomePageOffer') }}">Home Page Offer [{{$home_page_ads}}]</a>
+                         <a href="{{ url('viewNewCustomerOffers') }}">Newly Customer Offer [{{ $new_customer_offers }}]</a>
+                         <a href="{{ url('viewShoppingCartOffers') }}">Shopping Cart Offer [{{ $shopping_cart_offers }}]</a>
+                         <a href="{{ url('viewCouponCodes') }}">Coupon Code [{{ $coupon_codes }}]</a>
                     </div>
                     
                 </li>

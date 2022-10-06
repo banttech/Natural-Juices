@@ -43,7 +43,7 @@
         </div>
 
         <div class="form-outer">
-            <form method="POST" action="{{ url('updateProduct/' . $product->id) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ url('updateProduct/' . $product->id) }}" enctype="multipart/form-data" id="form1">
                 @csrf
                 <!-- Product Detail Section Start -->
                 <div class="page slide-page col-md-8">
@@ -326,8 +326,8 @@
                             <label class="form-label">Discount Type</label>
                             <select class="form-select" name="packs[{{$pack_section_count}}][pack_discount_type]" value="">
                                 <option value="">Select Discount Type</option>
-                                <option value="p" selected="">Percent(%)</option>
-                                <option value="f">Flat(£)</option>
+                                <option value="p" @if($packs->pack_discount_type == 'p') selected @endif>Percent(%)</option>
+                                <option value="f" @if($packs->pack_discount_type == 'f') selected @endif>Flat(£)</option>
                             </select>
                         </div>
                     </div>
@@ -347,8 +347,8 @@
                         <div class="col-md-8">
                             <label class="form-label">Subscription Discount Type</label>
                             <select class="form-select" name="packs[{{$pack_section_count}}][pack_subscription_discount_type]" value="">
-                                <option value="p" selected="">Percent(%)</option>
-                                <option value="f">Flat(£)</option>
+                                <option value="p" @if($packs->pack_subscription_discount_type == 'p') selected @endif>Percent(%)</option>
+                                <option value="f" @if($packs->pack_subscription_discount_type == 'f') selected @endif>Flat(£)</option>
                             </select>
                         </div>
                     </div>
@@ -366,13 +366,36 @@
                             <label class="form-label">Images<span class="text-danger" style="font-size: 17px;">*</span></label>
                         </div>
                         <div id="image_parent_div_{{$pack_section_count}}">
+                            @php
+                                $pack_images = DB::table('products_pack_images')->where('pack_id',$packs->id)->get();
+                            @endphp
+                            @foreach($pack_images as $key => $pack_img)
+                            {{-- prin --}}
+                         
                             <div class="form-check mb-3">
-                                <input class="form-check-input" type="radio" name="packs[{{$pack_section_count}}][pack_img_checkbox][{{$pack_section_images_count}}]" value="0" />
+                                <input 
+                                class="form-check-input" 
+                                type="radio" 
+                                value="{{$key}}" 
+                                name="packs[{{$pack_section_count}}][pack_img_checkbox][{{$pack_section_images_count}}]" 
+                                @if($key == $pack_img->is_featured) checked @endif
+                                />
+
                                 <input class="form-control" type="file" name="packs[{{$pack_section_count}}][pack_images][{{$pack_section_images_count}}]">
+
+                                <input type="hidden" name="packs[{{$pack_section_count}}][pack_images][{{$pack_section_images_count}}]" value="{{ $pack_img->image_name }}">
+                                <br>
+                                @if(isset($pack_img->image_name) && $pack_img->image_name != "")
+                                    <img src="{{ url('/images/products/'.$pack_img->image_name) }}" style="width: 250px !important">
+                                @endif
                             </div>
+                            @php
+                                $pack_section_images_count++;
+                            @endphp
+                            @endforeach
     
                         </div>
-                        <span class="btn btn-sm font-sm btn-brand mb-3" onclick="add_more_pack_image({{$pack_section_images_count}})">Add More Images</span>  
+                        <span class="btn btn-sm font-sm btn-brand mb-3" onclick="add_more_pack_image({{$pack_section_count}})">Add More Images</span>  
                     </div>
                    
                    
@@ -481,7 +504,7 @@
                     <div class="mb-3">
                         <div class="col-md-8" style="text-align: right;">
                             <button class="btn btn-light prev">Previous</button>
-                            <button type="submit" class="btn btn-sm btn-primary secondNext">Update</button>
+                            <button type="submit" class="btn btn-sm btn-primary secondNext" onclick="submitForm()">Update</button>
                         </div>
                     </div>
                 </div>
@@ -500,6 +523,9 @@
 @endforeach
 @endif
 <script type="text/javascript">
+     function submitForm(){
+        $('#form1').submit();
+    }
      // For Faq Section
 
     $(document).ready(function() {
@@ -543,6 +569,43 @@
 <script src="{{ url('/admin-assets/assets/js/multiStepForm.js') }}"></script>
 
 <script type="text/javascript">
+
+    let pack_section_images_count = <?=$pack_section_images_count;?>;
+    let pack_section_count  = <?=$pack_section_count;?>;
+
+    function add_pack_div(){
+        pack_section_count = pack_section_count + 1;
+
+        let html  = "";
+        html = '<div class="row mb-3"><div class="col-md-8"><label for="name" class="form-label">Pack Name</label><input type="text" name="packs['+pack_section_count+'][pack_name]" placeholder="Pack Name" class="form-control" /></div></div>';
+        html += '<div class="row mb-3"><div class="col-md-8"><label for="name" class="form-label">Manual Discount</label><input type="text" name="packs['+pack_section_count+'][pack_manual_discount]" placeholder="Manual Discount" class="form-control" /></div></div>';
+
+        html += '<div class="row mb-3"><div class="col-md-8"><label for="name" class="form-label">Quantity</label><input type="number" name="packs['+pack_section_count+'][pack_quantity]" placeholder="Quantity" class="form-control" /></div></div>';
+
+        html += '<div class="row mb-3"><div class="col-md-8"><label for="name" class="form-label">Pack Selling Price</label><input type="number" name="packs['+pack_section_count+'][pack_selling_price]" placeholder="Pack Selling Price" class="form-control" /></div></div>';
+
+        html += '<div class="row mb-3"><div class="col-md-8"><label for="name" class="form-label">Discount</label><input type="number" name="packs['+pack_section_count+'][pack_discount]" placeholder="Discount" class="form-control" /></div></div>';
+
+        html += '<div class="mb-3"><div class="col-md-8"><label class="form-label">Discount Type</label><select class="form-select" name="packs['+pack_section_count+'][pack_discount_type]"><option value="">Select Discount Type</option><option value="p" selected="">Percent(%)</option><option value="f">Flat(£)</option></select></div></div>';
+
+        html += '<div class="row mb-3"><div class="col-md-8"><label for="name" class="form-label">Final Selling price</label><input type="number" name="packs['+pack_section_count+'][pack_final_sel_price]" placeholder="Final Selling price" class="form-control" /></div></div>';
+
+        html += '<div class="row mb-3"><div class="col-md-8"><label for="name" class="form-label">Subscription Discount</label><input type="number" name="packs['+pack_section_count+'][pack_subscription_discount]" placeholder="Subscription Discount" class="form-control" /></div></div>';
+
+        html += '<div class="mb-3"><div class="col-md-8"><label class="form-label">Subscription Discount Type</label><select class="form-select" name="packs['+pack_section_count+'][pack_subscription_discount_type]" ><option value="p" selected="">Percent(%)</option><option value="f">Flat(£)</option></select></div></div>';
+
+        html += ' <div class="col-md-8"><div class="mb-2"><label class="form-label">Images<span class="text-danger" style="font-size: 17px;">*</span></label></div><div id="image_parent_div_'+pack_section_count+'"><div class="form-check mb-3"><input class="form-check-input" type="radio" name="packs['+pack_section_count+'][pack_img_checkbox]['+pack_section_images_count+']" value="0" /><input class="form-control" type="file" name="packs['+pack_section_count+'][pack_images]['+pack_section_images_count+']"></div></div><span class="btn btn-sm font-sm btn-brand mb-3" onclick="add_more_pack_image('+pack_section_count+')">Add More Images</span></div>';
+
+        $('#pack_div').append(html);
+
+    }
+ 
+    function add_more_pack_image(pack_section_count){
+
+        pack_section_images_count = pack_section_images_count + 1;
+        $html = '<div class="form-check mb-3" id="img_div_'+pack_section_count+'"><input class="form-check-input" type="radio" name="packs['+pack_section_count+'][prod_img_checkbox]['+pack_section_images_count+']" value="'+pack_section_images_count+'" /><input class="form-control" type="file" name="packs['+pack_section_count+'][pack_images]['+pack_section_images_count+']"></div>';
+        $('#image_parent_div_'+pack_section_count).append($html);
+    }
     let count = <?=$image_count;?>;
     $('#add_more_image_btn').click(function(){
         count = count + 1;

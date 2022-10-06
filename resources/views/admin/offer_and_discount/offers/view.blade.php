@@ -46,7 +46,11 @@
                         <tr>
                             <td>{{ $count }}</td>
                             <td><img src="images/offers/{{ $offer->offerImages[0]->img_name }}" class="img-sm img-thumbnail" alt="Item" style="width: 150px !important;" /></td>
-                            <td>{{ $offer->offer_category }}</td>
+                            @if(isset($offer->category->name))
+                            <td>{{ $offer->category->name }}</td>
+                            @else
+                            <td>N/A</td>
+                            @endif
                             <td>{{ $offer->target_url }}</td>
                             <td><span class="badge rounded-pill {{ $offer->status === 'active' ? 'alert-success' : 'alert-danger' }}">{{ strtoupper($offer->status) }}</span></td>
                             <td>

@@ -14,9 +14,4 @@ class OfferCategory extends Model
         return $this->hasMany('App\Models\Offer','offer_category','name');
     }
 
-    //  public function images()
-    // {
-    //     return $this->belongsToMany('App\Models\Category','brand_has_categories','brand_id','category_id');
-    // }
-
 }
