@@ -43,6 +43,9 @@ class HomeAdsController extends Controller
     {
         $active = 'offers';
         $homePageAds = HomePageAds::get();
+        if(count($homePageAds) == 0){
+            return redirect('createHomePageAds');      
+        }
 
         return view('admin.offer_and_discount.home_ads.edit', compact('active', 'homePageAds'));
     }
@@ -68,5 +71,13 @@ class HomeAdsController extends Controller
         }
 
         return redirect('editHomePageAds')->with('flash_message_success','Record Updated Successfully');
+    }
+
+    public function delete(Request $request)
+    {
+        $homePageAd = HomePageAds::find($request->id);
+        $homePageAd->delete();
+
+        return 'Deleted Successfully!';
     }
 }

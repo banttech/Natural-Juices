@@ -17,7 +17,7 @@
         <div>
             <h2 class="content-title card-title">Newly SignUp Customer Offer</h2>
             <div class="lead">
-                <a href="{{ route('createNewCustomerOffer') }}" class="btn btn-sm font-sm rounded btn-brand">Add Newly Customer Offer</a>
+                <a href="{{ route('createNewCustomerOffer') }}" class="btn btn-sm font-sm rounded btn-brand">Add Newly SignUp Customer Offer</a>
             </div>
         </div>
         <div>
@@ -35,7 +35,7 @@
                             <th scope="col">Status</th>
                             <th scope="col">DiscountType</th>
                             <th scope="col">Discount</th>
-                            <th scope="col">Valid From - End Date</th>
+                            <th scope="col">Valid From</th>
                             <th scope="col">End Date</th>
                             <th scope="col">Actions</th>
                         </tr>
@@ -49,8 +49,16 @@
                             <td><span class="badge rounded-pill {{ $newCustomerOffer->status === 'active' ? 'alert-success' : 'alert-danger' }}">{{ strtoupper($newCustomerOffer->status) }}</span></td>
                             <td>{{ $newCustomerOffer->discount_type }}</td>
                             <td>{{ $newCustomerOffer->discount }}</td>
-                            <td>{{ $newCustomerOffer->valid_from }}</td>
-                            <td>{{ $newCustomerOffer->end_date }}</td>
+                            <td>
+                                @php
+                                    echo date('Y-m-d',strtotime($newCustomerOffer->valid_from));
+                                @endphp
+                            </td>
+                            <td>
+                                @php
+                                    echo date('Y-m-d',strtotime($newCustomerOffer->end_date));
+                                @endphp
+                            </td>
                             <td>
                                 <a href="{{ url('editNewCustomerOffer/' . $newCustomerOffer->id) }}" class="btn btn-sm font-sm rounded btn-brand"> <i class="material-icons md-edit"></i> Edit </a>
                                 <a href="{{ url('deleteNewCustomerOffer/' . $newCustomerOffer->id) }}" class="btn btn-sm font-sm btn-light rounded" onclick="return confirm('Are you sure you want to delete this item?');"> <i class="material-icons md-delete_forever"></i> Delete </a>

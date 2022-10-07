@@ -14,7 +14,7 @@ class OfferCategoryController extends Controller
 	public function index()
     {
         $active = 'offers';
-        $offerCategories = OfferCategory::paginate(10);
+        $offerCategories = OfferCategory::latest()->paginate(10);
         return view('admin.offer_and_discount.offer_category.view', compact('offerCategories', 'active'));
     }
 

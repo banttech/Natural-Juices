@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Brand;
+use App\Models\Offer;
 use App\Models\HomePageAds;
 use App\Models\HomePageOffer;
 use App\Models\OfferCategory;
@@ -17,21 +18,24 @@ class FrontendController extends Controller
     public function index()
     {
         // dd(Auth::id());
-        $products = Product::all();
+        $products = Product::with('feature_img', 'category')->get();
         $homePageAds = HomePageAds::all();
         $homePageOffer = HomePageOffer::first();
-        // $offerCategories = OfferCategory::with('offers')->get();
+        $offers = Offer::with('offerImages')->where('status', 'active')->get();
+        $categories = Category::all();
 
-        // dd($offerCategories);
+        // dd($products);
 
-        return view('frontend.home', compact('products', 'homePageAds', 'homePageOffer'));
+        return view('frontend.home', compact('products', 'homePageAds', 'homePageOffer', 'offers', 'categories'));
     }
 
-    public function filterByCategory($catId)
+    public function filterByCategory(Request $request)
     {
-        $categories = Category::all();
-        $products = Product::where('category_id', $catId)->get();
-
-        return view('frontend.home', compact('categories', 'products'));
+        if($request->id == 'all'){
+            $products = Product::with('feature_img', 'category')->get();
+        }else{
+            $products = Product::with('feature_img', 'category')->where('prod_category', $request->id)->get();
+        }
+        echo view('frontend.ajax_products', compact('products'));
     }
 }

@@ -16,7 +16,8 @@ class OfferController extends Controller
 	public function index()
     {
         $active = 'offers';
-        $offers = Offer::with('offerImages')->paginate(10);
+        $offers = Offer::with('category', 'offerImages')->latest()->paginate(10);
+
         return view('admin.offer_and_discount.offers.view', compact('offers', 'active'));
     }
 
@@ -31,7 +32,7 @@ class OfferController extends Controller
     {        
         $offer = new Offer();
         $offer->status = $request->status == 'on' ? 'active' : 'inactive';
-        $offer->offer_category = $request->offer_category;
+        $offer->offer_category_id = $request->offer_category;
         $offer->target_url = $request->target_url;
         $offer->save();
 
@@ -58,7 +59,7 @@ class OfferController extends Controller
     public function edit($id)
     {
         $active = 'offers';
-        $offer = Offer::with('offerImages')->where('id', $id)->first();
+        $offer = Offer::with('category', 'offerImages')->where('id', $id)->first();
         $offerCategories = OfferCategory::all();
 
         return view('admin.offer_and_discount.offers.edit', compact('offer','offerCategories','active'));
@@ -68,7 +69,7 @@ class OfferController extends Controller
     {
         $offer = Offer::find($id);
         $offer->status = $request->status == 'on' ? 'active' : 'inactive';
-        $offer->offer_category = $request->offer_category;
+        $offer->offer_category_id = $request->offer_category;
         $offer->target_url = $request->target_url;
         $offer->update();
 

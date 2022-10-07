@@ -24,7 +24,7 @@
                                 @endif
                             </div>
                         </div>
-                        <span class="btn btn-sm font-sm btn-brand mb-3" id="add_more_image_btn_0">Add More</span>  
+                        <span class="btn btn-sm font-sm btn-brand mb-3" disabled id="add_more_image_btn_0">Add More</span>  
                     </div>
                     <div class="mb-3" style="float: right;">
                         <button type="submit" class="btn btn-sm btn-primary">Create</button>

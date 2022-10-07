@@ -45,7 +45,7 @@
 <section class="content-main">
     <div class="content-header">
         <div>
-            <h3 class="card-title">Add Newly Customer Offer</h3>
+            <h3 class="card-title">Add Newly SignUp Customer Offer</h3>
         </div>
     </div>
     <div class="card mb-4">

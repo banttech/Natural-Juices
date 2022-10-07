@@ -167,6 +167,7 @@ Route::get('/createHomePageAds', [HomeAdsController::class, 'create'])->name('cr
 Route::post('/storeHomePageAds', [HomeAdsController::class, 'store'])->name('storeHomePageAds');
 Route::get('/editHomePageAds', [HomeAdsController::class, 'edit'])->name('editHomePageAds');
 Route::post('/updateHomePageAds', [HomeAdsController::class, 'update'])->name('updateHomePageAds');
+Route::post('/deleteHomePageAd', [HomeAdsController::class, 'delete'])->name('deleteHomePageAd');
 
 
 // Home Page Offer
@@ -179,7 +180,7 @@ Route::post('/updateHomePageOffer', [HomeOfferController::class, 'update'])->nam
 
 
 // Newly Signup Customer Offers
-Route::get('/viewNewCustomerOffers', [NewCustomerOfferController::class, 'index'])->name('viewNewCustomerOffers');
+Route::get('/viewNewlySignUpCustomerOffers', [NewCustomerOfferController::class, 'index'])->name('viewNewlySignUpCustomerOffers');
 Route::get('/createNewCustomerOffer', [NewCustomerOfferController::class, 'create'])->name('createNewCustomerOffer');
 Route::post('/storeNewCustomerOffer', [NewCustomerOfferController::class, 'store'])->name('storeNewCustomerOffer');
 Route::get('/deleteNewCustomerOffer/{id}', [NewCustomerOfferController::class, 'delete'])->name('deleteNewCustomerOffer');
@@ -234,4 +235,4 @@ Route::get('/searchCustomer', [CustomerController::class, 'search'])->name('sear
 // Route::get('add.to.cart/{id}', [CartController::class, 'addToCart'])->name('addToCart');
 // Route::patch('update-cart', [CartController::class, 'update'])->name('update.cart');
 // Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove.from.cart');
-// Route::get('category/{catId}', [FrontendController::class, 'filterByCategory'])->name('filterByCategory');
+Route::post('filterByCategory', [FrontendController::class, 'filterByCategory'])->name('filterByCategory');

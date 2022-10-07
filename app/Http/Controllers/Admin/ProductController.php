@@ -177,6 +177,7 @@ class ProductController extends Controller
 
     public function edit($id)
     {
+
         $active = 'product';
         $product = Product::find($id);
         $categories = Category::select('id','name')->get();
@@ -223,17 +224,79 @@ class ProductController extends Controller
         $product->prod_directions = $request->prod_directions;
         $product->prod_suitable_for = $request->prod_suitable_for;
 
-        $product->pack_name = $request->pack_name;
-        $product->pack_manual_discount = $request->pack_manual_discount;
-        $product->pack_quantity = $request->pack_quantity;
-        $product->pack_selling_price = $request->pack_selling_price;
-        $product->pack_discount = $request->pack_discount;
-        $product->pack_discount_type = $request->pack_discount_type;
-        $product->pack_final_sel_price = $request->pack_final_sel_price;
-        $product->pack_subscription_discount = $request->pack_subscription_discount;
-        $product->pack_subscription_discount_type = $request->pack_subscription_discount_type;
-        $product->pack_subscription_fin_sel_price = $request->pack_subscription_fin_sel_price;
+        // $product->pack_name = $request->pack_name;
+        // $product->pack_manual_discount = $request->pack_manual_discount;
+        // $product->pack_quantity = $request->pack_quantity;
+        // $product->pack_selling_price = $request->pack_selling_price;
+        // $product->pack_discount = $request->pack_discount;
+        // $product->pack_discount_type = $request->pack_discount_type;
+        // $product->pack_final_sel_price = $request->pack_final_sel_price;
+        // $product->pack_subscription_discount = $request->pack_subscription_discount;
+        // $product->pack_subscription_discount_type = $request->pack_subscription_discount_type;
+        // $product->pack_subscription_fin_sel_price = $request->pack_subscription_fin_sel_price;
 
+        // dd($request->packs);
+
+        if(isset($request->packs) && count($request->packs) > 0 ){
+
+            $old_products_packs = DB::table('products_packs')->where('product_id',$id)->get();
+            foreach ($old_products_packs as $opk => $op) {
+                DB::table('products_packs')->where('id',$op->id)->delete();
+                DB::table('products_pack_images')->where('pack_id',$op->id)->delete();
+            }
+            
+            $packs = $request->packs;
+            foreach ($packs as $key => $pack) {
+                $data = array();
+                // dd($pack);
+                $insertData = $pack;
+                if(isset($insertData['pack_img_checkbox'])){
+                    unset($insertData['pack_img_checkbox']);
+                }
+                unset($insertData['pack_images']);
+
+                $insertData['product_id'] = $id;
+                $products_packs_id = DB::table('products_packs')->insertGetId($insertData);
+
+                if(isset($pack['pack_images']) && count($pack['pack_images']) > 0){
+
+                  foreach ($pack['pack_images'] as $key => $pack_images) {
+
+                    if(is_file($pack_images)){
+                        $data = array();
+                        $pack_images = $pack_images;
+                        $pack_images_name = time().$key.'.'.$pack_images->getClientOriginalExtension();
+                        $pack_images->move(public_path('/images/products'),$pack_images_name);
+                        $data['pack_id'] = $products_packs_id;
+                        $data['image_name'] = $pack_images_name;
+                        if(isset($insertData['pack_img_checkbox'])){
+                            if($key == $pack['pack_img_checkbox']){
+                                $data['is_featured'] = 1;
+                            }else{
+                                $data['is_featured'] = 0;
+                            }
+                        }else{
+                            $data['is_featured'] = 0;
+                        }
+                    }else{
+
+                        $data['pack_id'] = $products_packs_id;
+                        $data['image_name'] = $pack_images;
+                        if(isset($insertData['pack_img_checkbox'])){
+                            if($key == $pack['pack_img_checkbox']){
+                                $data['is_featured'] = 1;
+                            }else{
+                                $data['is_featured'] = 0;
+                            }
+                        }else{
+                            $data['is_featured'] = 0;
+                        }
+                    }
+                    DB::table('products_pack_images')->insert($data);
+                  }  
+                }
+            }
+        }
         // Update Product Images and Feature Image
         ProductHasImage::where('product_id',$id)->delete();
         foreach ($request->prod_images as $key => $prod_img) {
