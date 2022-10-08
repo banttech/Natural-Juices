@@ -157,69 +157,50 @@
         <section class="featured section-padding">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-1-5 col-md-4 col-12 col-sm-6 mb-md-4 mb-xl-0">
+                    <div class="col-lg-1-3 col-md-3 col-12 col-sm-6 mb-md-4 mb-xl-0">
                         <div class="banner-left-icon d-flex align-items-center wow fadeIn animated">
                             <div class="banner-icon">
-                                <img src="{{ asset('imgs/theme/icons/icon-1.svg') }}" alt="" />
+                                <img src="{{ url('frontend/assets/imgs/theme/car.png') }}" alt="" />
                             </div>
                             <div class="banner-text">
-                                <h3 class="icon-box-title">Best prices & offers</h3>
-                                <p>Orders $50 or more</p>
+                                <h3 class="icon-box-title">Free UK Delivery</h3>
+                                <p style="font-size: 12px;"><span style="font-weight: bold; color: black;">FREE</span> UK Shipping On All</p>
+                                <p style="font-size: 12px;"><span style="font-weight: bold; color: black;">Orders.</span> No Minimum Cart Value</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
+                    <div class="col-lg-1-3 col-md-3 col-12 col-sm-6">
                         <div class="banner-left-icon d-flex align-items-center wow fadeIn animated">
                             <div class="banner-icon">
-                                <img src="{{ asset('imgs/theme/icons/icon-2.svg') }}" alt="" />
+                                <img src="{{ url('frontend/assets/imgs/theme/cart.png') }}" alt="" />
                             </div>
                             <div class="banner-text">
-                                <h3 class="icon-box-title">Free delivery</h3>
-                                <p>24/7 amazing services</p>
+                                <h3 class="icon-box-title">Repeat Same Order</h3>
+                                <p style="font-size: 12px;">Skip the Search & <span style="font-weight: bold; color: black;">Repeat Same</span></p>
+                                <p style="font-size: 12px;"><span style="font-weight: bold; color: black;">Order</span> From Your User Dashboard.</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
+                    <div class="col-lg-1-3 col-md-3 col-12 col-sm-6">
                         <div class="banner-left-icon d-flex align-items-center wow fadeIn animated">
                             <div class="banner-icon">
-                                <img src="{{ asset('imgs/theme/icons/icon-3.svg') }}" alt="" />
+                                <img src="{{ url('frontend/assets/imgs/theme/next_day_car.png') }}" alt="" />
                             </div>
                             <div class="banner-text">
-                                <h3 class="icon-box-title">Great daily deal</h3>
-                                <p>When you sign up</p>
+                                <h3 class="icon-box-title">Same Day Free Delivery in UK</h3>
+                                <p style="font-size: 12px;">Order Before 2 PM For <span style="font-weight: bold; color: black;">Same</span></p>
+                                <p style="font-size: 12px;"><span style="font-weight: bold; color: black;">Day/Next Day Shipping</span> For in Stock Items.</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
+                    <div class="col-lg-1-3 col-md-3 col-12 col-sm-6">
                         <div class="banner-left-icon d-flex align-items-center wow fadeIn animated">
                             <div class="banner-icon">
-                                <img src="{{ asset('imgs/theme/icons/icon-4.svg') }}" alt="" />
+                                <img src="{{ url('frontend/assets/imgs/theme/bottles.png') }}" alt="" />
                             </div>
                             <div class="banner-text">
-                                <h3 class="icon-box-title">Wide assortment</h3>
-                                <p>Mega Discounts</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                        <div class="banner-left-icon d-flex align-items-center wow fadeIn animated">
-                            <div class="banner-icon">
-                                <img src="{{ asset('imgs/theme/icons/icon-5.svg') }}" alt="" />
-                            </div>
-                            <div class="banner-text">
-                                <h3 class="icon-box-title">Easy returns</h3>
-                                <p>Within 30 days</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-1-5 col-md-4 col-12 col-sm-6 d-xl-none">
-                        <div class="banner-left-icon d-flex align-items-center wow fadeIn animated">
-                            <div class="banner-icon">
-                                <img src="{{ asset('imgs/theme/icons/icon-6.svg') }}" alt="" />
-                            </div>
-                            <div class="banner-text">
-                                <h3 class="icon-box-title">Safe delivery</h3>
-                                <p>Within 30 days</p>
+                                <h3 class="icon-box-title">Save Big With Multiple Packs</h3>
+                                <p style="font-size: 12px;">Save Upto <span style="font-weight: bold; color: black;">50% OFF</span> By Choosing Different <span style="font-weight: bold; color: black;">Packs</span> Available on Product Page</p>
                             </div>
                         </div>
                     </div>

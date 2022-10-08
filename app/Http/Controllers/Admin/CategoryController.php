@@ -37,6 +37,13 @@ class CategoryController extends Controller
         $category = new Category;
         $category->name = $request->name;
         $category->parent_id = $request->parent_id;
+        if(!is_null($request->parent_id)){
+            $selectedCategory = Category::where('id', $category->parent_id)->first();
+            $category->category_level = $selectedCategory->category_level + 1;
+        }else{
+            $category->category_level = 1;
+        }
+
 
         if(isset($request->status) && $request->status == 'on'){
             $category->status = 'active';

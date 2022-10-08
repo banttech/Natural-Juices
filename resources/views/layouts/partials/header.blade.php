@@ -2,7 +2,7 @@
 $categories = DB::table('categories')->where('parent_id', null)->get();
 $brands = DB::table('brands')->get();
 @endphp
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <header class="header-area header-style-1 header-height-2">
         <div class="mobile-promotion">
             <span>Grand opening, <strong>up to 15%</strong> off all items. Only <strong>3 days</strong> left</span>

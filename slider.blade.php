@@ -27,7 +27,6 @@
 <!--End hero slider-->
 <section class="banners mb-25">
     <div class="container">
-    <h3>Offers</h3>
         <div class="row">
             @foreach($offers as $key => $offer)
             @foreach($offer->offerImages as $key => $offerImages)

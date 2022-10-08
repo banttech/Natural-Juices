@@ -18,7 +18,7 @@ class FrontendController extends Controller
     public function index()
     {
         // dd(Auth::id());
-        $products = Product::with('feature_img', 'category')->get();
+        $products = Product::with('feature_img', 'category')->orderBy('id', 'desc')->get();
         $homePageAds = HomePageAds::all();
         $homePageOffer = HomePageOffer::first();
         $offers = Offer::with('offerImages')->where('status', 'active')->get();
