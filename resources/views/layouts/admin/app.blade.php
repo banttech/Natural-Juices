@@ -149,7 +149,7 @@ input:checked[type="checkbox"]::after {
                         <span class="text">Customer</span>
                     </a>
                     <div class="submenu">
-                         <a href="{{ url('viewCustomers') }}">Customer Listing</a>
+                         <a href="{{ url('viewCustomers') }}">Customer</a>
                     </div>
                     
                 </li>

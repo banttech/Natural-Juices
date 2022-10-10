@@ -61,7 +61,7 @@
                 </div>
                 <div class="row mb-3">
                     <div class="">
-                        <label for="countries" class="form-label">Country Included</label>
+                        <label for="countries" class="form-label">Select Country</label>
                         <select class="form-control" id="choose-multiple-countries" name="countries[]" multiple="multiple">
                             @foreach($countries as $country)
                             <option value="{{ $country->id }}">{{ $country->name }}</option>
@@ -75,7 +75,7 @@
                 <div class="row mb-3">
                     <div class="">
                         <label for="shipping_charges" class="form-label">Shipping Charge (£)<span class="text-danger" style="font-size: 17px;">*</span></label>
-                        <input type="number" value="{{ old('shipping_charges') }}" name="shipping_charges" placeholder="Shipping Charge (£)" class="form-control" />
+                        <input type="number" value="{{ old('shipping_charges') }}" name="shipping_charges" placeholder="Shipping Charge (£)" class="form-control" value="0.00" />
                         @if ($errors->has('shipping_charges'))
                             <span class="text-danger text-left">{{ $errors->first('shipping_charges') }}</span>
                         @endif

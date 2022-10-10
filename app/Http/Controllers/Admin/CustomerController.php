@@ -46,7 +46,7 @@ class CustomerController extends Controller
         }
 
         if($searchDate !== ''){
-            $customers->whereDate('created_at', '=', $request->search_by_date);
+            $customers->whereDate('created_at', '>=', $request->search_by_date);
         }
 
         $customers = $customers->paginate(10);

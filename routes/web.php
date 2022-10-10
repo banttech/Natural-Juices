@@ -215,7 +215,7 @@ Route::post('/updateBlogCategory/{id}', [BlogCategoryController::class, 'update'
 
 // Blog Categories
 Route::get('/viewBlogPosts', [BlogPostController::class, 'index'])->name('viewBlogPosts');
-Route::get('/createBlogPost', [BlogPostController::class, 'create'])->name('createBlogPost');
+Route::get('/addBlogPost', [BlogPostController::class, 'create'])->name('addBlogPost');
 Route::post('/storeBlogPost', [BlogPostController::class, 'store'])->name('storeBlogPost');
 Route::get('/deleteBlogPost/{id}', [BlogPostController::class, 'delete'])->name('deleteBlogPost');
 Route::get('/editBlogPost/{id}', [BlogPostController::class, 'edit'])->name('editBlogPost');

@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Brand;
 use App\Models\Offer;
+use App\Models\BlogPost;
 use App\Models\HomePageAds;
 use App\Models\HomePageOffer;
 use App\Models\OfferCategory;
@@ -22,11 +23,12 @@ class FrontendController extends Controller
         $homePageAds = HomePageAds::all();
         $homePageOffer = HomePageOffer::first();
         $offers = Offer::with('offerImages')->where('status', 'active')->get();
+        $blogs = BlogPost::with('blog_category')->get();
         $categories = Category::all();
 
         // dd($products);
 
-        return view('frontend.home', compact('products', 'homePageAds', 'homePageOffer', 'offers', 'categories'));
+        return view('frontend.home', compact('products', 'homePageAds', 'homePageOffer', 'offers', 'categories', 'blogs'));
     }
 
     public function filterByCategory(Request $request)

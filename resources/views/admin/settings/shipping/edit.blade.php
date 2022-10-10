@@ -63,7 +63,7 @@ input:checked[type="checkbox"]::after {
                 </div>
                  <div class="row mb-3">
                     <div class="">
-                        <label for="name" class="form-label">Country Included</label>
+                        <label for="name" class="form-label">Select Country</label>
                         <select class="form-control" id="choose-multiple-countries" name="countries[]" multiple="multiple">
                             @foreach ($countries as $country)
                                 <option value="{{ $country->id }}" @if(in_array($country->id, $selected_shippingcategories_ids)) selected @endif>{{ $country->name }}</option>

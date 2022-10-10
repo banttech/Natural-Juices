@@ -17,7 +17,7 @@
         <div>
             <h2 class="content-title card-title">Blog Posts</h2>
             <div class="lead">
-                <a href="{{ route('createBlogPost') }}" class="btn btn-sm font-sm rounded btn-brand">Create Blog Post</a>
+                <a href="{{ route('addBlogPost') }}" class="btn btn-sm font-sm rounded btn-brand">Add Blog Post</a>
             </div>
         </div>
         <div>
@@ -47,7 +47,7 @@
                             <td>{{ $count }}</td>
                             <td><img src="images/blogPosts/{{ $blogPost->feature_image }}" class="img-sm img-thumbnail" alt="Item" style="width: 150px !important;" /></td>
                             <td>{{ $blogPost->title }}</td>
-                            <td>{{ $blogPost->description }}</td>
+                            <td><?=$blogPost->description;?></td>
                             <td><span class="badge rounded-pill {{ $blogPost->status === 'active' ? 'alert-success' : 'alert-danger' }}">{{ strtoupper($blogPost->status) }}</span></td>
 
                             <td>

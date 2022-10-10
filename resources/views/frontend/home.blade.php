@@ -676,183 +676,9 @@
                 </div>
                 <!--End Col-lg-9-->
             </div>
-        </div>
+        </div>  
     </section>
     <!--End Best Sales-->
-    <section class="section-padding pb-5">
-        <div class="container">
-            <div class="section-title">
-                <h3 class="">Deals Of The Day</h3>
-                <a class="show-all" href="shop-grid-right.html">
-                    All Deals
-                    <i class="fi-rs-angle-right"></i>
-                </a>
-            </div>
-            <div class="row">
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="product-cart-wrap style-2">
-                        <div class="product-img-action-wrap">
-                            <div class="product-img">
-                                <a href="shop-product-right.html">
-                                    <img src="{{ asset('imgs/banner/banner-5.png') }}" alt="" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="product-content-wrap">
-                            <div class="deals-countdown-wrap">
-                                <div class="deals-countdown" data-countdown="2025/03/25 00:00:00"></div>
-                            </div>
-                            <div class="deals-content">
-                                <h2><a href="shop-product-right.html">Seeds of Change Organic Quinoa, Brown, & Red
-                                        Rice</a></h2>
-                                <div class="product-rate-cover">
-                                    <div class="product-rate d-inline-block">
-                                        <div class="product-rating" style="width: 90%"></div>
-                                    </div>
-                                    <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                </div>
-                                <div>
-                                    <span class="font-small text-muted">By <a
-                                            href="vendor-details-1.html">NestFood</a></span>
-                                </div>
-                                <div class="product-card-bottom">
-                                    <div class="product-price">
-                                        <span>$32.85</span>
-                                        <span class="old-price">$33.8</span>
-                                    </div>
-                                    <div class="add-cart">
-                                        <a class="add" href="shop-cart.html"><i
-                                                class="fi-rs-shopping-cart mr-5"></i>Add </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="product-cart-wrap style-2">
-                        <div class="product-img-action-wrap">
-                            <div class="product-img">
-                                <a href="shop-product-right.html">
-                                    <img src="{{ asset('imgs/banner/banner-6.png') }}" alt="" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="product-content-wrap">
-                            <div class="deals-countdown-wrap">
-                                <div class="deals-countdown" data-countdown="2026/04/25 00:00:00"></div>
-                            </div>
-                            <div class="deals-content">
-                                <h2><a href="shop-product-right.html">Perdue Simply Smart Organics Gluten Free</a>
-                                </h2>
-                                <div class="product-rate-cover">
-                                    <div class="product-rate d-inline-block">
-                                        <div class="product-rating" style="width: 90%"></div>
-                                    </div>
-                                    <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                </div>
-                                <div>
-                                    <span class="font-small text-muted">By <a href="vendor-details-1.html">Old
-                                            El Paso</a></span>
-                                </div>
-                                <div class="product-card-bottom">
-                                    <div class="product-price">
-                                        <span>$24.85</span>
-                                        <span class="old-price">$26.8</span>
-                                    </div>
-                                    <div class="add-cart">
-                                        <a class="add" href="shop-cart.html"><i
-                                                class="fi-rs-shopping-cart mr-5"></i>Add </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 d-none d-lg-block">
-                    <div class="product-cart-wrap style-2">
-                        <div class="product-img-action-wrap">
-                            <div class="product-img">
-                                <a href="shop-product-right.html">
-                                    <img src="{{ asset('imgs/banner/banner-7.png') }}" alt="" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="product-content-wrap">
-                            <div class="deals-countdown-wrap">
-                                <div class="deals-countdown" data-countdown="2027/03/25 00:00:00"></div>
-                            </div>
-                            <div class="deals-content">
-                                <h2><a href="shop-product-right.html">Signature Wood-Fired Mushroom and
-                                        Caramelized</a></h2>
-                                <div class="product-rate-cover">
-                                    <div class="product-rate d-inline-block">
-                                        <div class="product-rating" style="width: 80%"></div>
-                                    </div>
-                                    <span class="font-small ml-5 text-muted"> (3.0)</span>
-                                </div>
-                                <div>
-                                    <span class="font-small text-muted">By <a
-                                            href="vendor-details-1.html">Progresso</a></span>
-                                </div>
-                                <div class="product-card-bottom">
-                                    <div class="product-price">
-                                        <span>$12.85</span>
-                                        <span class="old-price">$13.8</span>
-                                    </div>
-                                    <div class="add-cart">
-                                        <a class="add" href="shop-cart.html"><i
-                                                class="fi-rs-shopping-cart mr-5"></i>Add </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 d-none d-xl-block">
-                    <div class="product-cart-wrap style-2">
-                        <div class="product-img-action-wrap">
-                            <div class="product-img">
-                                <a href="shop-product-right.html">
-                                    <img src="{{ asset('imgs/banner/banner-8.png') }}" alt="" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="product-content-wrap">
-                            <div class="deals-countdown-wrap">
-                                <div class="deals-countdown" data-countdown="2025/02/25 00:00:00"></div>
-                            </div>
-                            <div class="deals-content">
-                                <h2><a href="shop-product-right.html">Simply Lemonade with Raspberry Juice</a>
-                                </h2>
-                                <div class="product-rate-cover">
-                                    <div class="product-rate d-inline-block">
-                                        <div class="product-rating" style="width: 80%"></div>
-                                    </div>
-                                    <span class="font-small ml-5 text-muted"> (3.0)</span>
-                                </div>
-                                <div>
-                                    <span class="font-small text-muted">By <a
-                                            href="vendor-details-1.html">Yoplait</a></span>
-                                </div>
-                                <div class="product-card-bottom">
-                                    <div class="product-price">
-                                        <span>$15.85</span>
-                                        <span class="old-price">$16.8</span>
-                                    </div>
-                                    <div class="add-cart">
-                                        <a class="add" href="shop-cart.html"><i
-                                                class="fi-rs-shopping-cart mr-5"></i>Add </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--End Deals-->
     <section class="section-padding mb-30">
         <div class="container">
             <div class="row">
@@ -1006,6 +832,125 @@
         </div>
     </section>
     <!--End category slider-->
+    <section class="newsletter mb-15">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="position-relative newsletter-inner">
+                            <div class="newsletter-content">
+                                <h2 class="mb-20">
+                                    Stay home & get your daily <br />
+                                    needs from our shop
+                                </h2>
+                                <p class="mb-45">Start You'r Daily Shopping with <span class="text-brand">Nest
+                                        Mart</span></p>
+                                <form class="form-subcriber d-flex">
+                                    <input type="email" placeholder="Your emaill address" />
+                                    <button class="btn" type="submit">Subscribe</button>
+                                </form>
+                            </div>
+                            <img src="{{ asset('imgs/banner/banner-9.png') }}" alt="newsletter" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <section class="featured section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-1-3 col-md-3 col-12 col-sm-6 mb-md-4 mb-xl-0">
+                        <div class="banner-left-icon d-flex align-items-center wow fadeIn animated">
+                            <div class="banner-icon">
+                                <img src="{{ url('frontend/assets/imgs/theme/car.png') }}" alt="" />
+                            </div>
+                            <div class="banner-text">
+                                <h3 class="icon-box-title">Free UK Delivery</h3>
+                                <p style="font-size: 12px;"><span style="font-weight: bold; color: black;">FREE</span> UK Shipping On All</p>
+                                <p style="font-size: 12px;"><span style="font-weight: bold; color: black;">Orders.</span> No Minimum Cart Value</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-1-3 col-md-3 col-12 col-sm-6">
+                        <div class="banner-left-icon d-flex align-items-center wow fadeIn animated">
+                            <div class="banner-icon">
+                                <img src="{{ url('frontend/assets/imgs/theme/cart.png') }}" alt="" />
+                            </div>
+                            <div class="banner-text">
+                                <h3 class="icon-box-title">Repeat Same Order</h3>
+                                <p style="font-size: 12px;">Skip the Search & <span style="font-weight: bold; color: black;">Repeat Same</span></p>
+                                <p style="font-size: 12px;"><span style="font-weight: bold; color: black;">Order</span> From Your User Dashboard.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-1-3 col-md-3 col-12 col-sm-6">
+                        <div class="banner-left-icon d-flex align-items-center wow fadeIn animated">
+                            <div class="banner-icon">
+                                <img src="{{ url('frontend/assets/imgs/theme/next_day_car.png') }}" alt="" />
+                            </div>
+                            <div class="banner-text">
+                                <h3 class="icon-box-title">Same Day Free Delivery in UK</h3>
+                                <p style="font-size: 12px;">Order Before 2 PM For <span style="font-weight: bold; color: black;">Same</span></p>
+                                <p style="font-size: 12px;"><span style="font-weight: bold; color: black;">Day/Next Day Shipping</span> For in Stock Items.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-1-3 col-md-3 col-12 col-sm-6">
+                        <div class="banner-left-icon d-flex align-items-center wow fadeIn animated">
+                            <div class="banner-icon">
+                                <img src="{{ url('frontend/assets/imgs/theme/bottles.png') }}" alt="" />
+                            </div>
+                            <div class="banner-text">
+                                <h3 class="icon-box-title">Save Big With Multiple Packs</h3>
+                                <p style="font-size: 12px;">Save Upto <span style="font-weight: bold; color: black;">50% OFF</span> By Choosing Different <span style="font-weight: bold; color: black;">Packs</span> Available on Product Page</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <!-- End Free Delivery UK Section -->
+    <section class="section-padding pb-5">
+        <div class="container">
+            <div class="section-title">
+                <h3 class="">Blogs</h3>
+                <!-- <a class="show-all" href="shop-grid-right.html">
+                    All Deals
+                    <i class="fi-rs-angle-right"></i>
+                </a> -->
+            </div>
+            <div class="row">
+                @foreach($blogs as $key => $blog)
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="product-cart-wrap style-2">
+                        <div class="product-img-action-wrap">
+                            <div class="product-img">
+                                <a href="shop-product-right.html">
+                                    <img src="images/blogPosts/{{ $blog->feature_image }}" alt="" />                                 
+                                </a>
+                            </div>
+                        </div>
+                        <div class="product-content-wrap">
+                            <div class="deals-content">
+                                <h2><a href="shop-product-right.html">{{$blog->title}}</a></h2>
+                                <div>
+                                    <span class="font-small text-muted">{{$blog->blog_category->cat_name }}</span>
+                                </div>
+                                <div class="product-card-bottom">
+                                    <div>
+                                        <span class="font-small text-muted">By <a
+                                                href="vendor-details-1.html">NestFood</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    <!--End Deals-->
+
 
 
     <script type="text/javascript">

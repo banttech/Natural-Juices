@@ -131,166 +131,58 @@
         @yield('content')
     </main>
     <footer class="main">
-        <section class="newsletter mb-15">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="position-relative newsletter-inner">
-                            <div class="newsletter-content">
-                                <h2 class="mb-20">
-                                    Stay home & get your daily <br />
-                                    needs from our shop
-                                </h2>
-                                <p class="mb-45">Start You'r Daily Shopping with <span class="text-brand">Nest
-                                        Mart</span></p>
-                                <form class="form-subcriber d-flex">
-                                    <input type="email" placeholder="Your emaill address" />
-                                    <button class="btn" type="submit">Subscribe</button>
-                                </form>
-                            </div>
-                            <img src="{{ asset('imgs/banner/banner-9.png') }}" alt="newsletter" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="featured section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-1-3 col-md-3 col-12 col-sm-6 mb-md-4 mb-xl-0">
-                        <div class="banner-left-icon d-flex align-items-center wow fadeIn animated">
-                            <div class="banner-icon">
-                                <img src="{{ url('frontend/assets/imgs/theme/car.png') }}" alt="" />
-                            </div>
-                            <div class="banner-text">
-                                <h3 class="icon-box-title">Free UK Delivery</h3>
-                                <p style="font-size: 12px;"><span style="font-weight: bold; color: black;">FREE</span> UK Shipping On All</p>
-                                <p style="font-size: 12px;"><span style="font-weight: bold; color: black;">Orders.</span> No Minimum Cart Value</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-1-3 col-md-3 col-12 col-sm-6">
-                        <div class="banner-left-icon d-flex align-items-center wow fadeIn animated">
-                            <div class="banner-icon">
-                                <img src="{{ url('frontend/assets/imgs/theme/cart.png') }}" alt="" />
-                            </div>
-                            <div class="banner-text">
-                                <h3 class="icon-box-title">Repeat Same Order</h3>
-                                <p style="font-size: 12px;">Skip the Search & <span style="font-weight: bold; color: black;">Repeat Same</span></p>
-                                <p style="font-size: 12px;"><span style="font-weight: bold; color: black;">Order</span> From Your User Dashboard.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-1-3 col-md-3 col-12 col-sm-6">
-                        <div class="banner-left-icon d-flex align-items-center wow fadeIn animated">
-                            <div class="banner-icon">
-                                <img src="{{ url('frontend/assets/imgs/theme/next_day_car.png') }}" alt="" />
-                            </div>
-                            <div class="banner-text">
-                                <h3 class="icon-box-title">Same Day Free Delivery in UK</h3>
-                                <p style="font-size: 12px;">Order Before 2 PM For <span style="font-weight: bold; color: black;">Same</span></p>
-                                <p style="font-size: 12px;"><span style="font-weight: bold; color: black;">Day/Next Day Shipping</span> For in Stock Items.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-1-3 col-md-3 col-12 col-sm-6">
-                        <div class="banner-left-icon d-flex align-items-center wow fadeIn animated">
-                            <div class="banner-icon">
-                                <img src="{{ url('frontend/assets/imgs/theme/bottles.png') }}" alt="" />
-                            </div>
-                            <div class="banner-text">
-                                <h3 class="icon-box-title">Save Big With Multiple Packs</h3>
-                                <p style="font-size: 12px;">Save Upto <span style="font-weight: bold; color: black;">50% OFF</span> By Choosing Different <span style="font-weight: bold; color: black;">Packs</span> Available on Product Page</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
         <section class="section-padding footer-mid">
             <div class="container pt-15 pb-20">
                 <div class="row">
                     <div class="col">
                         <div class="widget-about font-md mb-md-3 mb-lg-3 mb-xl-0">
                             <div class="logo mb-30">
-                                <a href="index.html" class="mb-15"><img src="{{ asset('imgs/theme/logo.svg') }}"
-                                        alt="logo" /></a>
+                                <a href="index.html" class="mb-15"><img src="{{ asset('imgs/theme/logo.png') }}" alt="logo" /></a>
                                 <p class="font-lg text-heading">Awesome grocery store website template</p>
                             </div>
                             <ul class="contact-infor">
                                 <li><img src="{{ asset('imgs/theme/icons/icon-location.svg') }}"
-                                        alt="" /><strong>Address: </strong> <span>5171 W Campbell Ave
-                                        undefined Kent, Utah 53127 United States</span></li>
+                                        alt="" /><strong>Address: </strong> <span>NATURAL JUICES & VITAMINS LTD. BRAEMAR HOUSE 30 KINGS AVE SUNBURY ON THAMES MIDDLESEX TW16 7QE</span></li>
                                 <li><img src="{{ asset('imgs/theme/icons/icon-contact.svg') }}"
                                         alt="" /><strong>Call
-                                        Us:</strong><span>(+91) - 540-025-124553</span>
+                                        Us:</strong><span>0207 205 2477</span>
                                 </li>
                                 <li><img src="{{ asset('imgs/theme/icons/icon-email-2.svg') }}"
-                                        alt="" /><strong>Email:</strong><span>sale@Nest.com</span></li>
+                                        alt="" /><strong>Email:</strong><span>contact@naturaljuices.co.uk</span></li>
                                 <li><img src="{{ asset('imgs/theme/icons/icon-clock.svg') }}"
-                                        alt="" /><strong>Hours:</strong><span>10:00 - 18:00, Mon - Sat</span>
+                                        alt="" /><strong>Hours:</strong><span>9am - 8pm, Mon - Sat</span>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="footer-link-widget col">
-                        <h4 class="widget-title">Company</h4>
+                        <h4 class="widget-title">COMPANY INFO</h4>
                         <ul class="footer-list mb-sm-5 mb-md-0">
                             <li><a href="#">About Us</a></li>
-                            <li><a href="#">Delivery Information</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms &amp; Conditions</a></li>
+                            <li><a href="#">Wellness Blog</a></li>
+                            <li><a href="#">Terms of Use</a></li>
+                            <li><a href="#">Testimonials</a></li>
+                            <li><a href="#">Cookie Policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-link-widget col">
+                        <h4 class="widget-title">ACCOUNT</h4>
+                        <ul class="footer-list mb-sm-5 mb-md-0">
+                            <li><a href="#">Customer Register</a></li>
+                            <li><a href="#">Customer Login</a></li>
+                            <li><a href="#">Forgot Password</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-link-widget col">
+                        <h4 class="widget-title">NEED HELP ?</h4>
+                        <ul class="footer-list mb-sm-5 mb-md-0">
+                            <li><a href="#">Track Order</a></li>
+                            <li><a href="#">FAQ</a></li>
                             <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Support Center</a></li>
-                            <li><a href="#">Careers</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-link-widget col">
-                        <h4 class="widget-title">Account</h4>
-                        <ul class="footer-list mb-sm-5 mb-md-0">
-                            <li><a href="#">Sign In</a></li>
-                            <li><a href="#">View Cart</a></li>
-                            <li><a href="#">My Wishlist</a></li>
-                            <li><a href="#">Track My Order</a></li>
-                            <li><a href="#">Help Ticket</a></li>
-                            <li><a href="#">Shipping Details</a></li>
-                            <li><a href="#">Compare products</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-link-widget col">
-                        <h4 class="widget-title">Corporate</h4>
-                        <ul class="footer-list mb-sm-5 mb-md-0">
-                            <li><a href="#">Become a Vendor</a></li>
-                            <li><a href="#">Affiliate Program</a></li>
-                            <li><a href="#">Farm Business</a></li>
-                            <li><a href="#">Farm Careers</a></li>
-                            <li><a href="#">Our Suppliers</a></li>
-                            <li><a href="#">Accessibility</a></li>
-                            <li><a href="#">Promotions</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-link-widget col">
-                        <h4 class="widget-title">Popular</h4>
-                        <ul class="footer-list mb-sm-5 mb-md-0">
-                            <li><a href="#">Milk & Flavoured Milk</a></li>
-                            <li><a href="#">Butter and Margarine</a></li>
-                            <li><a href="#">Eggs Substitutes</a></li>
-                            <li><a href="#">Marmalades</a></li>
-                            <li><a href="#">Sour Cream and Dips</a></li>
-                            <li><a href="#">Tea & Kombucha</a></li>
-                            <li><a href="#">Cheese</a></li>
                         </ul>
                     </div>
                     <div class="footer-link-widget widget-install-app col">
-                        <h4 class="widget-title">Install App</h4>
-                        <p class="wow fadeIn animated">From App Store or Google Play</p>
-                        <div class="download-app">
-                            <a href="#" class="hover-up mb-sm-2 mb-lg-0"><img class="active"
-                                    src="{{ asset('imgs/theme/app-store.jpg') }}" alt="" /></a>
-                            <a href="#" class="hover-up mb-sm-2"><img
-                                    src="{{ asset('imgs/theme/google-play.jpg') }}" alt="" /></a>
-                        </div>
-                        <p class="mb-20">Secured Payment Gateways</p>
+                        <h4 class="mb-20 mt-4">Secured Payment Gateways</h4>
                         <img class="wow fadeIn animated" src="{{ asset('imgs/theme/payment-method.png') }}"
                             alt="" />
                     </div>

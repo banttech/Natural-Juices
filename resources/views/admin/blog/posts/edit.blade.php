@@ -129,7 +129,7 @@
                 </div>
                  <div class="row mb-3">
                     <div class="">
-                        <label for="name" class="form-label">Insert Respective Product</label>
+                        <label for="name" class="form-label">Products listing dropdown</label>
                         <select class="form-control" id="respective-products" name="respective_products[]" multiple="multiple">
                             <option value=""></option>
                              @foreach($products as $product)
@@ -177,10 +177,9 @@
         });
         $('#respective-products').select2({
             multiple: true,
-            tags:true,
             placeholder: {
               id: -1,
-              text: "Add Tags"
+              text: "Add Products"
            },
         });
         $('#choose-multiple-categories').select2({

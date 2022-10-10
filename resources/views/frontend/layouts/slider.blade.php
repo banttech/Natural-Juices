@@ -15,7 +15,7 @@
         </div>
         <div class="col-lg-4 d-none d-xl-block">
             <div class="banner-img style-3 animated animated">
-                <div class="banner-text mt-50">
+                <div class="banner-text">
                     <img src="{{ url('images/home-offer/' . $homePageOffer->image_name) }}" alt="" />
 
                 </div>
@@ -32,7 +32,7 @@
             @foreach($offers as $key => $offer)
             @foreach($offer->offerImages as $key => $offerImages)
             <div class="col-lg-4 col-md-6">
-                <div class="banner-img wow animate__animated animate__fadeInUp" data-wow-delay="0">
+                <div class="banner-img wow animate__animated animate__fadeInUp syrup_box" data-wow-delay="0">
                     <img class="default-img" src="images/offers/{{ $offerImages->img_name }}" alt="" />
                     <div class="banner-text">
                         <a href="shop-grid-right.html" class="btn btn-xs">Shop Now <i class="fi-rs-arrow-small-right"></i></a>

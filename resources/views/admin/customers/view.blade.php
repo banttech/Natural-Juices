@@ -17,7 +17,7 @@
     @endif
     <div class="content-header">
         <div>
-            <h2 class="content-title card-title">Users List</h2>
+            <h2 class="content-title card-title">Customers List</h2>
         </div>
         <div>
             <h5 class="content-title card-title">Total Customers: {{ count($customers) }}</h5>
@@ -55,6 +55,11 @@
                     </thead>
                     <tbody>
                         <?php $count = 1 ?>
+                        @if(isset($customers) && count($customers) == 0)
+                            <tr>
+                                <td style="text-align: center;color: red" colspan="6">No Records Found</td>
+                            </tr>
+                        @endif
                          @foreach ($customers as $customer)
                         <tr>
                             <td>{{ $count }}</td>
