@@ -35,8 +35,7 @@
                                             </a>
                                         </div>
                                         <div class="product-action-1">
-                                            <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
-                                                data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
+                                            <a class="action-btn" href="{{ url('product/' . $product->id) }}"><i class="fi-rs-eye"></i></a>
                                         </div>
                                         <div class="product-badges product-badges-position product-badges-mrg">
                                             <span class="sale">${{$product->reg_sel_price - $product->final_sel_price}} OFF</span>
@@ -116,9 +115,8 @@
                                                         </a>
                                                     </div>
                                                     <div class="product-action-1">
-                                                        <a aria-label="Quick view" class="action-btn small hover-up"
-                                                            data-bs-toggle="modal" data-bs-target="#quickViewModal"> <i
-                                                                class="fi-rs-eye"></i></a>
+                                                        <a aria-label="Quick view" class="action-btn small hover-up" href="{{ url('product/' . $product->id) }}"> <i class="fi-rs-eye"></i></a>
+
                                                     </div>
                                                     <div class="product-badges product-badges-position product-badges-mrg">
                                                         <span class="hot">${{$product->reg_sel_price - $product->final_sel_price}} OFF</span>
@@ -689,7 +687,7 @@
                         @foreach($products as $key => $product)
                             <article class="row align-items-center hover-up">
                                 <figure class="col-md-4 mb-0">
-                                    <a href="shop-product-right.html"><img src="images/products/{{ $product->feature_img[0]->image_name }}"
+                                    <a href="{{ url('product/' . $product->id) }}"><img src="images/products/{{ $product->feature_img[0]->image_name }}"
                                             alt="" /></a>
                                 </figure>
                                 <div class="col-md-8 mb-0">
@@ -718,7 +716,7 @@
                         @foreach($products as $key => $product)
                             <article class="row align-items-center hover-up">
                                 <figure class="col-md-4 mb-0">
-                                    <a href="shop-product-right.html"><img src="images/products/{{ $product->feature_img[0]->image_name }}"
+                                    <a href="{{ url('product/' . $product->id) }}"><img src="images/products/{{ $product->feature_img[0]->image_name }}"
                                             alt="" /></a>
                                 </figure>
                                 <div class="col-md-8 mb-0">
@@ -746,7 +744,7 @@
                          @foreach($products as $key => $product)
                             <article class="row align-items-center hover-up">
                                 <figure class="col-md-4 mb-0">
-                                    <a href="shop-product-right.html"><img src="images/products/{{ $product->feature_img[0]->image_name }}"
+                                    <a href="{{ url('product/' . $product->id) }}"><img src="images/products/{{ $product->feature_img[0]->image_name }}"
                                             alt="" /></a>
                                 </figure>
                                 <div class="col-md-8 mb-0">
@@ -774,7 +772,7 @@
                          @foreach($products as $key => $product)
                             <article class="row align-items-center hover-up">
                                 <figure class="col-md-4 mb-0">
-                                    <a href="shop-product-right.html"><img src="images/products/{{ $product->feature_img[0]->image_name }}"
+                                    <a href="{{ url('product/' . $product->id) }}"><img src="images/products/{{ $product->feature_img[0]->image_name }}"
                                             alt="" /></a>
                                 </figure>
                                 <div class="col-md-8 mb-0">
@@ -950,6 +948,7 @@
         </div>
     </section>
     <!--End Deals-->
+
 
 
 

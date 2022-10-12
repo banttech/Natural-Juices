@@ -31,6 +31,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RolesController;
 
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\ProductDetailController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckOutController;
 
@@ -236,3 +237,7 @@ Route::get('/searchCustomer', [CustomerController::class, 'search'])->name('sear
 // Route::patch('update-cart', [CartController::class, 'update'])->name('update.cart');
 // Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove.from.cart');
 Route::post('filterByCategory', [FrontendController::class, 'filterByCategory'])->name('filterByCategory');
+
+
+// Product Detail
+Route::get('product/{id}', [ProductDetailController::class, 'productDetail'])->name('productDetail');
