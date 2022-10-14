@@ -241,3 +241,4 @@ Route::post('filterByCategory', [FrontendController::class, 'filterByCategory'])
 
 // Product Detail
 Route::get('product/{id}', [ProductDetailController::class, 'productDetail'])->name('productDetail');
+Route::get('allProducts', [ProductDetailController::class, 'allProducts'])->name('allProducts');

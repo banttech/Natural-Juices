@@ -18,6 +18,75 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6349247b54f06e12d89a23cb/1gfard0p5';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+<style>
+.cookie-container {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: #dedede;
+    color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    bottom: 0;
+    font-size: 1rem;
+    gap: 2rem;
+    opacity: 1;
+    visibility: visible;
+    flex-wrap: wrap;
+    z-index: 999;
+}
+
+.cookie-container.hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+
+
+.cookie-container .cookie-text {
+    flex: 8 768px;
+}
+
+.cookie-container .agree {
+    flex: 1 350px;
+    text-align: center;
+    display: flex;
+}
+
+.agree button {
+    width: 150px;
+    height: 40px;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid 2px #3BB77E;
+    border-radius: 50px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.2s;
+    background-color: #3BB77E;
+}
+
+.agree button:hover {
+    background: #fff;
+        color: #3BB77E;
+}
+</style>
 
 <body>
     <!-- Quick view -->
@@ -389,6 +458,17 @@
         A world of nutrients and a healthy lifestyle is waiting for you. Get clicking!
     
     </div>
+
+<div class="cookie-container hide">
+    <p class="cookie-text">
+        We use cookies and similar technologies that are necessary to operate the website. Additional cookies are used to perform analysis of website usage. By continuing to use our website, consent to our use of cookies. For more information, please read our <a href="#"> Privacy Policy.</a>
+    </p>
+    <div class="agree">
+    <button>Accept Cookies</button>
+    <button>Deny Cookies</button>
+        </div>
+</div>
+
     <!-- Preloader Start -->
     <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
@@ -424,6 +504,20 @@
     <script src="{{ url('frontend/assets/js/main.js?v=5.5') }}"></script>
     <script src="{{ url('frontend/assets/js/shop.js?v=5.5') }}"></script>
 
+<script >
+const cookieContainer = document.querySelector(".cookie-container");
+const agreeBtn = document.querySelector(".agree");
+
+setTimeout(() => {
+  cookieContainer.classList.remove("hide");
+}, 1000);
+
+agreeBtn.addEventListener("click", () => {
+  cookieContainer.classList.add("hide");
+});
+
+
+</script>
     @if(Session::has('register_success'))
 
         <script type="text/javascript">

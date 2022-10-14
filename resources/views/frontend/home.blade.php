@@ -29,9 +29,8 @@
                                     <div class="product-img-action-wrap">
                                         <div class="product-img product-img-zoom">
                                             <a href="shop-product-right.html">
-                                                <img src="images/products/{{ $product->feature_img[0]->image_name }}" class="img-sm img-thumbnail" alt=""  />
-                                                <!-- <img class="hover-img" src="{{ asset('imgs/shop/product-2-2.jpg') }}"
-                                                    alt="" /> -->
+                                                <img class="default-img" src="{{url('/')}}/images/products/{{$product->feature_img[0]->image_name}}" alt="" />
+                                                <img class="hover-img" src="{{url('/')}}/images/products/{{$product->feature_img[1]->image_name}}" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-action-1">
@@ -109,9 +108,8 @@
                                                 <div class="product-img-action-wrap">
                                                     <div class="product-img product-img-zoom">
                                                         <a href="shop-product-right.html">
-                                                            <img class="default-img"
-                                                                src="images/products/{{ $product->feature_img[0]->image_name }}"
-                                                                alt="" />
+                                                            <img class="default-img" src="{{url('/')}}/images/products/{{$product->feature_img[0]->image_name}}" alt="" />
+                                                            <img class="hover-img" src="{{url('/')}}/images/products/{{$product->feature_img[1]->image_name}}" alt="" />
                                                         </a>
                                                     </div>
                                                     <div class="product-action-1">
@@ -716,8 +714,10 @@
                         @foreach($products as $key => $product)
                             <article class="row align-items-center hover-up">
                                 <figure class="col-md-4 mb-0">
-                                    <a href="{{ url('product/' . $product->id) }}"><img src="images/products/{{ $product->feature_img[0]->image_name }}"
-                                            alt="" /></a>
+                                    <a href="{{ url('product/' . $product->id) }}">
+                                        <img class="default-img" src="{{url('/')}}/images/products/{{$product->feature_img[0]->image_name}}" alt="" />
+                                        <img class="hover-img" src="{{url('/')}}/images/products/{{$product->feature_img[1]->image_name}}" alt="" />
+                                    </a>
                                 </figure>
                                 <div class="col-md-8 mb-0">
                                     <h6>

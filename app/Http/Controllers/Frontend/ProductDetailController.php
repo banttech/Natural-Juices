@@ -19,10 +19,17 @@ class ProductDetailController extends Controller
     public function productDetail($id)
     {
         $product = Product::with('feature_img', 'category')->where('id', $id)->first();
-        $relatedProducts = Product::with('feature_img')->where('prod_category', $product->category[0]->id)->whereNotIn('id', [$product->id])->get();
-        $categories = Category::with('products')->get();
+        $relatedProducts = Product::with('feature_img')->where('prod_category', $product->category[0]->id)->whereNotIn('id', [$product->id])->skip(0)->take(3)->get();
+        // $categories = Category::with('products')->get();
 
-        return view('frontend.product_detail', compact('product', 'categories', 'relatedProducts'));
+        return view('frontend.product_detail', compact('product', 'relatedProducts'));
+    }
+
+    public function allProducts()
+    {
+        $products = Product::with('feature_img', 'category')->get();
+
+        return view('frontend.product_list', compact('products'));
     }
 
 }
