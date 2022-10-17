@@ -7,27 +7,29 @@ $brands = DB::table('brands')->get();
         <div class="mobile-promotion">
             <span>Grand opening, <strong>up to 15%</strong> off all items. Only <strong>3 days</strong> left</span>
         </div>
-        <div class="header-top header-top-ptb-1 d-none d-lg-block">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-12">
-                        <div class="text-center">
-                            <div id="news-flash" class="d-inline-block">
-                                <ul>
-                                    <li>Welcome to Natural Juices</li>
-                                    <li>Register & Get 10% OFF</li>
-                                </ul>
+        @if (!Auth::check())
+            <div class="header-top header-top-ptb-1 d-none d-lg-block">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <div class="text-center">
+                                <div id="news-flash" class="d-inline-block">
+                                    <ul>
+                                        <li>Welcome to Natural Juices</li>
+                                        <li>Register & Get 10% OFF</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endif
         <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
             <div class="container">
                 <div class="header-wrap">
                     <div class="logo logo-width-1">
-                        <a href="index.html"><img src="{{ asset('imgs/theme/logo.png') }}" alt="logo" /></a>
+                        <a href="{{ url('/') }}"><img src="{{ asset('imgs/theme/logo.png') }}" alt="logo" /></a>
                     </div>
                     <div class="header-right">
                         <div class="search-style-2">
@@ -44,11 +46,11 @@ $brands = DB::table('brands')->get();
                         <div class="header-action-right">
                             <div class="header-action-2">
                                 <div class="header-action-icon-2">
-                                    <a class="mini-cart-icon" href="shop-cart.html">
+                                    <a class="mini-cart-icon" href="{{ url('/viewCart') }}">
                                         <img alt="Nest" src="{{ asset('imgs/theme/icons/icon-cart.svg') }}" />
                                         <span class="pro-count blue">2</span>
                                     </a>
-                                    <a href="shop-cart.html"><span class="lable">Cart</span></a>
+                                    <a href="{{ url('/viewCart') }}"><span class="lable">Cart</span></a>
                                     <div class="cart-dropdown-wrap cart-dropdown-hm2">
                                         <ul>
                                             <li>
@@ -94,25 +96,39 @@ $brands = DB::table('brands')->get();
                                         <img class="svgInject" alt="Nest"
                                             src="{{ asset('imgs/theme/icons/icon-user.svg') }}" />
                                     </a>
-                                    <a href="#"><span class="lable ml-0">Account</span></a>
+                                    <a href="#">
+                                        @if (Auth::check())
+                                            <span class="lable ml-0">Hi, <?php echo(Auth::user()->name); ?></span>
+                                            @else
+                                                <span class="lable ml-0">Account</span>
+                                        @endif
+                                    </a>
                                     <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
                                         <ul>
                                             
                                             @if (Auth::check())
-
-                                                <li><a href="{{ route('logout') }}"><i class="fi fi-rs-sign-out mr-10"></i>Sign
-                                                    out</a></li>
-
-                                                <li><a href="page-account.html"><i class="fi fi-rs-user mr-10"></i>My
-                                                    Account</a></li>
-                                                <li><a href="page-account.html"><i
-                                                            class="fi fi-rs-location-alt mr-10"></i>Order Tracking</a></li>
-                                                <li><a href="page-account.html"><i class="fi fi-rs-label mr-10"></i>My
-                                                        Voucher</a></li>
-                                                <li><a href="shop-wishlist.html"><i class="fi fi-rs-heart mr-10"></i>My
-                                                        Wishlist</a></li>
-                                                <li><a href="page-account.html"><i
-                                                            class="fi fi-rs-settings-sliders mr-10"></i>Setting</a></li>
+                                                <li>
+                                                    <a href="{{ route('myDashboard') }}"><i class="fi fi-rs-dashboard mr-10"></i>My Dashboard</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="fi fi-rs-location-alt mr-10"></i>My Orders</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="fi fi-rs-eye mr-10"></i>My Reviews</a>
+                                                </li>
+                                                <!-- <i class="fi fi-eye"></i> -->
+                                                <li>
+                                                    <a href="#"><i class="fi fi-rs-user mr-10"></i>My Profile</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="fi fi-rs-lock mr-10"></i>Change Password</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="fi fi-rs-home mr-10"></i>Manage Address</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ route('logout') }}"><i class="fi fi-rs-sign-out mr-10"></i>Logout</a>
+                                                </li>
                                             @else
                                                 <li><a href="{{ route('register') }}"><i class="fi fi-rs-sign-out mr-10"></i>Sign
                                                     up</a></li>
@@ -157,7 +173,7 @@ $brands = DB::table('brands')->get();
                             <nav>
                                 <ul>
                                     <li class="hot-deals"><img src="{{ asset('imgs/theme/icons/icon-hot.svg') }}"
-                                            alt="hot deals" /><a href="shop-grid-right.html">Deals</a></li>
+                                            alt="hot deals" /><a href="#">Deals</a></li>
                                     <li>
                                         <a class="active" href="#">LIQUID SUPPLEMENTS</a>
                                     </li>

@@ -34,6 +34,7 @@ use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\ProductDetailController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckOutController;
+use App\Http\Controllers\Frontend\UserDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -231,14 +232,26 @@ Route::get('/searchCustomer', [CustomerController::class, 'search'])->name('sear
 
 
 // Frontend Routes 
-
-// Route::get('/cart', [CartController::class, 'index'])->name('cart');
-// Route::get('add.to.cart/{id}', [CartController::class, 'addToCart'])->name('addToCart');
-// Route::patch('update-cart', [CartController::class, 'update'])->name('update.cart');
-// Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove.from.cart');
 Route::post('filterByCategory', [FrontendController::class, 'filterByCategory'])->name('filterByCategory');
+
+
+
+// Add to cart
+Route::get('viewCart', [CartController::class, 'index'])->name('viewCart');
+Route::get('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add.to.cart');
+Route::patch('update-cart', [CartController::class, 'update'])->name('update.cart');
+Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove.from.cart');
+
+
 
 
 // Product Detail
 Route::get('product/{id}', [ProductDetailController::class, 'productDetail'])->name('productDetail');
 Route::get('allProducts', [ProductDetailController::class, 'allProducts'])->name('allProducts');
+
+
+// User Dashboard
+Route::get('myDashboard', [UserDashboardController::class, 'index'])->name('myDashboard');
+Route::get('myProfile', [UserDashboardController::class, 'myProfile'])->name('myProfile');
+Route::get('changePassword', [UserDashboardController::class, 'changePassword'])->name('changePassword');
+Route::get('manageAddress', [UserDashboardController::class, 'manageAddress'])->name('manageAddress');

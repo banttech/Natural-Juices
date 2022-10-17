@@ -11,34 +11,30 @@ class CartController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
-        return view('frontend.cart', compact('categories'));
+        return view('frontend.cart');
     }
 
     public function addToCart($id)
     {
-        $product = Product::findOrFail($id);
-
+        $product = Product::with('feature_img')->findOrFail($id);
+          
         $cart = session()->get('cart', []);
-
+  
         if(isset($cart[$id])) {
             $cart[$id]['quantity']++;
         } else {
             $cart[$id] = [
-                "name" => $product->name,
-                "image" => $product->image,
+                "name" => $product->prod_name,
                 "quantity" => 1,
-                "price" => $product->price,
-                "color" => $product->color,
-                "size" => $product->size,
-                "product_id" => $product->id,
+                "price" => $product->final_sel_price,
+                "image" => $product->feature_img[0]->image_name,
             ];
         }
-
+          
         session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Place Order Successfully!');
+        return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
-
+  
     public function update(Request $request)
     {
         if($request->id && $request->quantity){
