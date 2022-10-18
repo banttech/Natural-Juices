@@ -8,17 +8,17 @@ $brands = DB::table('brands')->get();
             <span>Grand opening, <strong>up to 15%</strong> off all items. Only <strong>3 days</strong> left</span>
         </div>
         @if (!Auth::check())
-            <div class="header-top header-top-ptb-1 d-none d-lg-block">
+            <div class="header-top header-top-ptb-1 d-none d-lg-block" style="background: #3BB77E; color: #fff;">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-12">
                             <div class="text-center">
-                                <div id="news-flash" class="d-inline-block">
-                                    <ul>
+                                <!-- <div id="news-flash" class="d-inline-block"> -->
+                                    <ul style="display: flex; justify-content: space-around; align-items: center;">
                                         <li>Welcome to Natural Juices</li>
-                                        <li>Register & Get 10% OFF</li>
+                                        <li><a href="{{ route('register') }}" style="color: #fff;">Register & Get 10% OFF</a></li>
                                     </ul>
-                                </div>
+                                <!-- </div> -->
                             </div>
                         </div>
                     </div>
@@ -48,47 +48,48 @@ $brands = DB::table('brands')->get();
                                 <div class="header-action-icon-2">
                                     <a class="mini-cart-icon" href="{{ url('/viewCart') }}">
                                         <img alt="Nest" src="{{ asset('imgs/theme/icons/icon-cart.svg') }}" />
-                                        <span class="pro-count blue">2</span>
+                                        <span class="pro-count blue">
+                                            @if(session('cart'))
+                                                {{ count(session('cart')) }}
+                                                @else
+                                                    0
+                                            @endif
+                                        </span>
                                     </a>
                                     <a href="{{ url('/viewCart') }}"><span class="lable">Cart</span></a>
                                     <div class="cart-dropdown-wrap cart-dropdown-hm2">
-                                        <ul>
-                                            <li>
-                                                <div class="shopping-cart-img">
-                                                    <a href="shop-product-right.html"><img alt="Nest"
-                                                            src="{{ asset('imgs/shop/thumbnail-3.jpg') }}" /></a>
-                                                </div>
-                                                <div class="shopping-cart-title">
-                                                    <h4><a href="shop-product-right.html">Daisy Casual Bag</a></h4>
-                                                    <h4><span>1 × </span>$800.00</h4>
-                                                </div>
-                                                <div class="shopping-cart-delete">
-                                                    <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="shopping-cart-img">
-                                                    <a href="shop-product-right.html"><img alt="Nest"
-                                                            src="{{ asset('imgs/shop/thumbnail-2.jpg') }}" /></a>
-                                                </div>
-                                                <div class="shopping-cart-title">
-                                                    <h4><a href="shop-product-right.html">Corduroy Shirts</a></h4>
-                                                    <h4><span>1 × </span>$3200.00</h4>
-                                                </div>
-                                                <div class="shopping-cart-delete">
-                                                    <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                                </div>
-                                            </li>
+                                        <ul id="parent_head_cart">
+                                             @if(session('cart'))
+                                                @foreach(session('cart') as $id => $details)
+                                                    <li>
+                                                        <div class="shopping-cart-img">
+                                                            <a href="shop-product-right.html"><img alt="Nest"
+                                                                    src="{{ url('/') }}/images/products/{{$details['image']}}" /></a>
+                                                        </div>
+                                                        <div class="shopping-cart-title">
+                                                            <h4><a href="#">{{ $details['name'] }}</a></h4>
+                                                            <h4><span>{{$details['quantity']}} × </span>$800.00</h4>
+                                                        </div>
+                                                        <div class="shopping-cart-delete">
+                                                            <a href="#"><i class="fi-rs-cross-small"></i></a>
+                                                        </div>
+                                                    </li>
+                                                @endforeach
+                                                @else
+                                                    <li><div>Nothing in the cart</div></li>
+                                            @endif
                                         </ul>
-                                        <div class="shopping-cart-footer">
-                                            <div class="shopping-cart-total">
-                                                <h4>Total <span>$4000.00</span></h4>
+                                        @if(session('cart'))
+                                            <div class="shopping-cart-footer">
+                                                <div class="shopping-cart-total">
+                                                    <!-- <h4>Total <span>$4000.00</span></h4> -->
+                                                </div>
+                                                <div class="shopping-cart-button">
+                                                    <a href="shop-cart.html" class="outline">View cart</a>
+                                                    <a href="shop-checkout.html">Checkout</a>
+                                                </div>
                                             </div>
-                                            <div class="shopping-cart-button">
-                                                <a href="shop-cart.html" class="outline">View cart</a>
-                                                <a href="shop-checkout.html">Checkout</a>
-                                            </div>
-                                        </div>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="header-action-icon-2">
@@ -118,13 +119,13 @@ $brands = DB::table('brands')->get();
                                                 </li>
                                                 <!-- <i class="fi fi-eye"></i> -->
                                                 <li>
-                                                    <a href="#"><i class="fi fi-rs-user mr-10"></i>My Profile</a>
+                                                    <a href="{{ url('/myProfile') }}"><i class="fi fi-rs-user mr-10"></i>My Profile</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#"><i class="fi fi-rs-lock mr-10"></i>Change Password</a>
+                                                    <a href="{{ url('changePassword') }}"><i class="fi fi-rs-lock mr-10"></i>Change Password</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#"><i class="fi fi-rs-home mr-10"></i>Manage Address</a>
+                                                    <a href="{{ url('/manageAddress') }}"><i class="fi fi-rs-home mr-10"></i>Manage Address</a>
                                                 </li>
                                                 <li>
                                                     <a href="{{ route('logout') }}"><i class="fi fi-rs-sign-out mr-10"></i>Logout</a>
@@ -157,7 +158,7 @@ $brands = DB::table('brands')->get();
                             </a>
                             <div class="categories-dropdown-wrap categories-dropdown-active-large font-heading">
                                 <div class="d-flex categori-dropdown-inner">
-                                    <ul>
+                                    <ul style="display: flex; justify-content: center; align-items: center; width: 100%;">
                                         @foreach($brands as $key => $brand)
                                             <li>
                                                 <a href="#"> 

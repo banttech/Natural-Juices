@@ -1,11 +1,6 @@
-@extends('frontend.layouts.dashboard')
-@section('content')
+@extends('frontend.dashboard.index')
+@section('myDashboardContent')
 	<section class="content-main">
-    <div class="content-header">
-        <div>
-            <h3 class="card-title">Change Password</h3>
-        </div>
-    </div>
     <div class="card mb-4">
         @include('layouts.partials.messages')
         <form method="POST" action="#" enctype="multipart/form-data">
@@ -23,7 +18,7 @@
                 <div class="row mb-3">
                     <div class="">
                         <label for="new_pass" class="form-label">New Password<span class="text-danger" style="font-size: 17px;">*</span></label>
-                        <input type="password" value="{{ old('new_pass') }}" name="name" placeholder="Old Password" class="form-control" />
+                        <input type="password" value="{{ old('new_pass') }}" name="name" placeholder="New Password" class="form-control" />
                         @if ($errors->has('new_pass'))
                         <span class="text-danger text-left">{{ $errors->first('new_pass') }}</span>
                         @endif
@@ -32,7 +27,7 @@
                 <div class="row mb-3">
                     <div class="">
                         <label for="confirm_pass" class="form-label">Confirm Password<span class="text-danger" style="font-size: 17px;">*</span></label>
-                        <input type="password" value="{{ old('confirm_pass') }}" name="name" placeholder="Old Password" class="form-control" />
+                        <input type="password" value="{{ old('confirm_pass') }}" name="name" placeholder="Confirm Password" class="form-control" />
                         @if ($errors->has('confirm_pass'))
                         <span class="text-danger text-left">{{ $errors->first('confirm_pass') }}</span>
                         @endif

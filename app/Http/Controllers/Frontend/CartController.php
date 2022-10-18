@@ -14,16 +14,16 @@ class CartController extends Controller
         return view('frontend.cart');
     }
 
-    public function addToCart($id)
+    public function addToCart(Request $request)
     {
-        $product = Product::with('feature_img')->findOrFail($id);
+        $product = Product::with('feature_img')->findOrFail($request->id);
           
         $cart = session()->get('cart', []);
   
-        if(isset($cart[$id])) {
-            $cart[$id]['quantity']++;
+        if(isset($cart[$request->id])) {
+            $cart[$request->id]['quantity']++;
         } else {
-            $cart[$id] = [
+            $cart[$request->id] = [
                 "name" => $product->prod_name,
                 "quantity" => 1,
                 "price" => $product->final_sel_price,
@@ -32,7 +32,19 @@ class CartController extends Controller
         }
           
         session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Product added to cart successfully!');
+
+        $html = "";
+        if(isset($cart) && count($cart) > 0){
+            foreach($cart as $details){
+               $html .= '<li><div class="shopping-cart-img"><a href="#"><img alt="Nest" src="http://banttechenergies.com/images/products/'.$details['image'].'" /></a></div><div class="shopping-cart-title"><h4><a href="#">'.$details['name'].'</a></h4><h4><span>'.$details['quantity'].' × </span>'.$details['price'].'</h4></div><div class="shopping-cart-delete"><a href="#"><i class="fi-rs-cross-small"></i></a></div></li>';
+            }
+        }else{
+            $html .= '<li>Cart is Empty!</li>';
+        }
+        
+        echo json_encode(array($html, count($cart)));
+
+        // return ($html, count($cart));
     }
   
     public function update(Request $request)

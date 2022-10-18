@@ -238,7 +238,7 @@ Route::post('filterByCategory', [FrontendController::class, 'filterByCategory'])
 
 // Add to cart
 Route::get('viewCart', [CartController::class, 'index'])->name('viewCart');
-Route::get('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add.to.cart');
+Route::get('add-to-cart', [CartController::class, 'addToCart'])->name('add.to.cart');
 Route::patch('update-cart', [CartController::class, 'update'])->name('update.cart');
 Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove.from.cart');
 

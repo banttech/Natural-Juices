@@ -1,11 +1,6 @@
-@extends('frontend.layouts.dashboard')
-@section('content')
-	<section class="content-main">
-    <div class="content-header">
-        <div>
-            <h3 class="card-title">Profile</h3>
-        </div>
-    </div>
+@extends('frontend.dashboard.index')
+@section('myDashboardContent')
+<section class="content-main">
     <div class="card mb-4">
         @include('layouts.partials.messages')
         <form method="POST" action="#" enctype="multipart/form-data">
@@ -48,24 +43,24 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                	<div class="col-6">
-	                    <div>
-	                        <label for="dob" class="form-label">Date of Birth<span class="text-danger" style="font-size: 17px;">*</span></label>
-	                        <input type="date" name="dob" class="form-control" />
-	                        @if ($errors->has('dob'))
-	                        <span class="text-danger text-left">{{ $errors->first('dob') }}</span>
-	                        @endif
-	                    </div>
-	                </div>
-	                <div class="col-6">
-	                    <label for="gender" class="form-label">Gender<span class="text-danger" style="font-size: 17px;">*</span></label>
-	                    <div class="mt-2">
-		                    <input type="radio" id="male" name="gender" value="Male">
-		                    <label for="male">Male</label>
-		                    <input type="radio" id="female" name="gender" value="Male" style="margin-left: 30px;">
-		                    <label for="female">Female</label>
-		                </div>
-	                </div>
+                    <div class="col-6">
+                        <div>
+                            <label for="dob" class="form-label">Date of Birth<span class="text-danger" style="font-size: 17px;">*</span></label>
+                            <input type="date" name="dob" class="form-control" />
+                            @if ($errors->has('dob'))
+                            <span class="text-danger text-left">{{ $errors->first('dob') }}</span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <label for="gender" class="form-label">Gender<span class="text-danger" style="font-size: 17px;">*</span></label>
+                        <div class="mt-2">
+                            <input type="radio" name="gender" value="Male" style="height: 12px; width: 7%;">
+                            <label for="male">Male</label>
+                            <input type="radio" name="gender" value="Male" style="margin-left: 30px; height: 12px; width: 7%;">
+                            <label for="female">Female</label>
+                        </div>
+                    </div>
                 </div>
                 <div class="row mb-2">
                     <div>

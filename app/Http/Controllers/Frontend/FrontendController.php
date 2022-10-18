@@ -18,25 +18,26 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        // dd(Auth::id());
-        $products = Product::with('feature_img', 'category')->orderBy('id', 'desc')->get();
+        $products = Product::with('feature_img', 'category', 'user_details')->orderBy('id', 'desc')->get();
         $homePageAds = HomePageAds::all();
         $homePageOffer = HomePageOffer::first();
-        $offers = Offer::with('offerImages')->where('status', 'active')->get();
+        $offerCategories = OfferCategory::with('offers', 'offers.offerImages')->get();
+
         $blogs = BlogPost::with('blog_category')->get();
         $categories = Category::all();
 
-        // dd($products);
-
-        return view('frontend.home', compact('products', 'homePageAds', 'homePageOffer', 'offers', 'categories', 'blogs'));
+        return view('frontend.home', compact('products', 'homePageAds', 'homePageOffer', 'offerCategories', 'categories', 'blogs'));
     }
 
     public function filterByCategory(Request $request)
     {
         if($request->id == 'all'){
-            $products = Product::with('feature_img', 'category')->get();
+            $products = Product::with('feature_img', 'category', 'user_details')->orderBy('id', 'desc')->get();
         }else{
-            $products = Product::with('feature_img', 'category')->where('prod_category', $request->id)->get();
+            $products = Product::with('feature_img', 'category', 'user_details')->where('prod_category', $request->id)->orderBy('id', 'desc')->get();
+        }
+        if(count($products) === 0){
+            return false;
         }
         echo view('frontend.ajax_products', compact('products'));
     }

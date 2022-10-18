@@ -45,7 +45,7 @@
                                                 <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1" value="">
                                                 <label class="form-check-label" for="exampleCheckbox1"></label>
                                             </td>
-                                            <td class="image product-thumbnail pt-40"><img src="assets/imgs/shop/product-1-1.jpg" alt="#"></td>
+                                            <td class="image product-thumbnail pt-40"><img src="{{ url('/') }}/images/products/{{$details['image']}}" alt="#"></td>
                                             <td class="product-des product-name">
                                                 <h6 class="mb-5"><a class="product-name mb-10 text-heading" href="shop-product-right.html">{{ $details['name'] }}</a></h6>
                                                 <div class="product-rate-cover">
@@ -422,8 +422,8 @@
   
         function update_cart() {
              var quantity  = $('#qty-value').val();
-             quantity++;
-             $('#qty-value').val(quantity);
+             
+             // $('#qty-value').val(quantity);
             console.log('quantity',quantity);
       
             // var ele = $(this);

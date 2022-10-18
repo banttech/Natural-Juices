@@ -1,7 +1,6 @@
 @extends('layouts.frontend.app')
 @section('content')
     @include('frontend.layouts.slider')
-
     <section class="product-tabs section-padding position-relative">
         <div class="container">
             <div class="section-title style-2">
@@ -22,60 +21,57 @@
             <!--End nav-tabs-->
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
-                        <div class="row product-grid-4" id="product_parent">
-                            @foreach($products as $key => $product)
-                            <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                                <div class="product-cart-wrap mb-30">
-                                    <div class="product-img-action-wrap">
-                                        <div class="product-img product-img-zoom">
-                                            <a href="shop-product-right.html">
-                                                <img class="default-img" src="{{url('/')}}/images/products/{{$product->feature_img[0]->image_name}}" alt="" />
-                                                <img class="hover-img" src="{{url('/')}}/images/products/{{$product->feature_img[1]->image_name}}" alt="" />
-                                            </a>
-                                        </div>
-                                        <div class="product-action-1">
-                                            <a class="action-btn" href="{{ url('product/' . $product->id) }}"><i class="fi-rs-eye"></i></a>
-                                        </div>
-                                        <div class="product-badges product-badges-position product-badges-mrg">
-                                            <span class="sale">${{$product->reg_sel_price - $product->final_sel_price}} OFF</span>
-                                        </div>
+                    <div class="row product-grid-4" id="product_parent">
+                        @foreach($products as $key => $product)
+                        <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
+                            <div class="product-cart-wrap mb-30">
+                                <div class="product-img-action-wrap">
+                                    <div class="product-img product-img-zoom">
+                                        <a href="shop-product-right.html">
+                                            <img class="default-img" src="{{url('/')}}/images/products/{{$product->feature_img[0]->image_name}}" alt="" />
+                                            <img class="hover-img" src="{{url('/')}}/images/products/{{$product->feature_img[1]->image_name}}" alt="" />
+                                        </a>
                                     </div>
-                                    <div class="product-content-wrap">
-                                        <div class="product-category">
-                                            <a href="shop-grid-right.html">{{$product->category[0]->name}}</a>
+                                    <div class="product-action-1">
+                                        <a class="action-btn" href="{{ url('product/' . $product->id) }}"><i class="fi-rs-eye"></i></a>
+                                    </div>
+                                    <div class="product-badges product-badges-position product-badges-mrg">
+                                        <span class="sale">${{$product->reg_sel_price - $product->final_sel_price}} OFF</span>
+                                    </div>
+                                </div>
+                                <div class="product-content-wrap">
+                                    <div class="product-category">
+                                        <a href="shop-grid-right.html">{{$product->category[0]->name}}</a>
+                                    </div>
+                                    <h2><a href="shop-product-right.html">{{ $product->prod_name }}</a></h2>
+                                    <div class="product-rate-cover">
+                                        <div class="product-rate d-inline-block">
+                                            <div class="product-rating" style="width: 80%"></div>
                                         </div>
-                                        <h2><a href="shop-product-right.html">{{ $product->prod_name }}</a></h2>
-                                        <div class="product-rate-cover">
-                                            <div class="product-rate d-inline-block">
-                                                <div class="product-rating" style="width: 80%"></div>
-                                            </div>
-                                            <span class="font-small ml-5 text-muted"> (3.5)</span>
+                                        <span class="font-small ml-5 text-muted"> (3.5)</span>
+                                    </div>
+                                    <div>
+                                        <span class="font-small text-muted">By <a
+                                                href="#">{{$product->user_details->name}}</a></span>
+                                    </div>
+                                    <div class="product-card-bottom">
+                                        <div class="product-price">
+                                            <span>${{ $product->final_sel_price }}</span>
+                                            <span class="old-price">${{$product->reg_sel_price}}<span>
                                         </div>
-                                        <div>
-                                            <span class="font-small text-muted">By <a
-                                                    href="vendor-details-1.html">Stouffer</a></span>
+                                        <div class="add-cart" onclick="addToCart({{$product->id}})">
+                                            <a class="add"><i
+                                                    class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                         </div>
-                                        <div class="product-card-bottom">
-                                            <div class="product-price">
-                                                <span>${{ $product->final_sel_price }}</span>
-                                                <span class="old-price">${{$product->reg_sel_price}}<span>
-                                            </div>
-                                            <div class="add-cart">
-                                                <a class="add" href="{{ route('add.to.cart', $product->id) }}"><i
-                                                        class="fi-rs-shopping-cart mr-5"></i>Add </a>
-                                            </div>
-                                        </div>
+                                        <!-- href="{{ route('add.to.cart', $product->id) }}" -->
                                     </div>
                                 </div>
                             </div>
-                            @endforeach
-                            <!--end product card-->
                         </div>
-                    <!--End product-grid-4-->
+                        @endforeach
+                    </div>
                 </div>
-                <!--En tab one-->
             </div>
-            <!--End tab-content-->
         </div>
     </section>
     <!--Products Tabs-->
@@ -139,12 +135,11 @@
                                                         </div>
                                                         <span class="font-xs text-heading"> Sold: {{ $product->prod_stock_unit }}/{{ $product->prod_stock_unit }}</span>
                                                     </div>
-                                                    <a href="shop-cart.html" class="btn w-100 hover-up"><i
+                                                    <a onclick="addToCart({{$product->id}})" class="btn w-100 hover-up"><i
                                                             class="fi-rs-shopping-cart mr-5"></i>Add To Cart</a>
                                                 </div>
                                             </div>      
                                         @endif
-                                        
                                     @endforeach
                                     <!--End product Wrap-->
                                 </div>
@@ -716,7 +711,6 @@
                                 <figure class="col-md-4 mb-0">
                                     <a href="{{ url('product/' . $product->id) }}">
                                         <img class="default-img" src="{{url('/')}}/images/products/{{$product->feature_img[0]->image_name}}" alt="" />
-                                        <img class="hover-img" src="{{url('/')}}/images/products/{{$product->feature_img[1]->image_name}}" alt="" />
                                     </a>
                                 </figure>
                                 <div class="col-md-8 mb-0">
@@ -950,8 +944,6 @@
     <!--End Deals-->
 
 
-
-
     <script type="text/javascript">
         function filterByCat(id) {
             let route = "{{ route('filterByCategory') }}";
@@ -965,12 +957,40 @@
                     id: id
                 },
                 success: function(response) {
-                    $('#product_parent').html('');
-                    $('#product_parent').html(response);
+                    if(response == false){
+                        swal("No Record Found!", "", "info");
+                    }else{
+                        $('#product_parent').html('');
+                        $('#product_parent').html(response);
+                    }
                     
                 },
                 error: function(xhr) {
                     //Do Something to handle error
+                }
+            });
+        }
+
+        function addToCart(id) {
+            let route = "{{ route('add.to.cart') }}";
+            let token = "{{ csrf_token()}}";
+
+            $.ajax({
+                url: route,
+                type: 'GET',
+                data: {
+                    id: id
+                },
+                success: function(response) {
+                    let res = $.parseJSON(response);
+                    swal("Added To Cart!", "", "success");
+                    $('#parent_head_cart').html('');
+                    $('#parent_head_cart').html(res[0]);
+                    $('#cart_count').hmtl('');
+                    $('#cart_count').hmtl(res[1]);
+                },
+                error: function(xhr) {
+                    console.log('error');
                 }
             });
         }

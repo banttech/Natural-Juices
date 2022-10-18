@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\Feature;
 use App\Models\Brand;
 use App\Models\ProductHasImage;
+use Auth;
 use DB;
 
 
@@ -38,9 +39,9 @@ class ProductController extends Controller
 
     public function store(AddProductRequest $request)
     {
-
-        // dd("here");
+        $userId = Auth::id();
         $product = new Product;
+        $product->user_id = $userId;
         $product->prod_name = $request->prod_name;
         $product->prod_status = $request->prod_status == 'on' ? 'active' : 'inactive';
 

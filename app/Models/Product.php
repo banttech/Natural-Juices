@@ -18,4 +18,9 @@ class Product extends Model
     {
         return $this->hasMany('App\Models\Category', 'id', 'prod_category');
     }
+
+    public function user_details()
+    {
+        return $this->hasOne('App\Models\User', 'id', 'user_id');
+    }
 }

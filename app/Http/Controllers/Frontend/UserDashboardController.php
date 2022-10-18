@@ -10,23 +10,27 @@ class UserDashboardController extends Controller
 {
     public function index()
     {
-        return view('frontend.dashboard.index');
+        $active = 'dashboard';
+        return view('frontend.dashboard.index', compact('active'));
     }
 
     public function myProfile()
     {
-        return view('frontend.dashboard.profile');
+        $active = 'profile';
+        return view('frontend.dashboard.profile', compact('active'));
     }
 
     public function changePassword()
     {
-        return view('frontend.dashboard.changePassword');
+        $active = 'change_pass';
+        return view('frontend.dashboard.changePassword', compact('active'));
     }
 
     public function manageAddress()
     {
+        $active = 'manage_address';
         $countries = Country::all();
-        return view('frontend.dashboard.manageAddress', compact('countries'));
+        return view('frontend.dashboard.manageAddress', compact('countries', 'active'));
     }
 
 }

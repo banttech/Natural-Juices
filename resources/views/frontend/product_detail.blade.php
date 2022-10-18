@@ -78,7 +78,7 @@
                                                     <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
                                                 </div>
                                                 <div class="product-extra-link2">
-                                                    <button type="submit" class="button button-add-to-cart"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
+                                                    <button type="submit" class="button button-add-to-cart" onclick="addToCart({{$product->id}})"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
                                                     <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
                                                     <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
                                                 </div>
@@ -461,4 +461,27 @@
             </div>
         </div>
     </main>
+
+    <script type="text/javascript">
+        function addToCart(id) {
+            let route = "{{ route('add.to.cart') }}";
+            let token = "{{ csrf_token()}}";
+
+            $.ajax({
+                url: route,
+                type: 'GET',
+                data: {
+                    id: id
+                },
+                success: function(response) {
+                    swal("Added To Cart!", "", "success");
+                    $('#parent_head_cart').html('');
+                    $('#parent_head_cart').html(response);
+                },
+                error: function(xhr) {
+                    console.log('error');
+                }
+            });
+        }
+    </script>
 @endsection

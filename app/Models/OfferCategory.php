@@ -11,7 +11,12 @@ class OfferCategory extends Model
 
     public function offers()
     {
-        return $this->hasMany('App\Models\Offer','offer_category','name');
+        return $this->hasMany('App\Models\Offer','offer_category_id','id');
+    }
+
+    public function offerImages()
+    {
+        return $this->hasMany('App\Models\OfferHasImage','offer_category_id','id');
     }
 
 }

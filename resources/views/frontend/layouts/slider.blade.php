@@ -27,59 +27,21 @@
 <!--End hero slider-->
 <section class="banners mb-25">
     <div class="container">
-    <h3>Offers</h3>
+    <h3>Weekly Offers</h3>
         <div class="row">
-            @foreach($offers as $key => $offer)
-            @foreach($offer->offerImages as $key => $offerImages)
-            <div class="col-lg-4 col-md-6">
-                <div class="banner-img wow animate__animated animate__fadeInUp syrup_box" data-wow-delay="0">
-                    <img class="default-img" src="images/offers/{{ $offerImages->img_name }}" alt="" />
-                    <div class="banner-text">
-                        <a href="shop-grid-right.html" class="btn btn-xs">Shop Now <i class="fi-rs-arrow-small-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            @endforeach
+            @foreach($offerCategories as $key => $offerCategory)
+                <h5>{{$offerCategory->name}}</h5>
+                @foreach($offerCategory->offers as $key => $offer)
+                        <div class="col-lg-4 col-md-6">
+                            <div class="banner-img wow animate__animated animate__fadeInUp syrup_box" data-wow-delay="0">
+                                <img class="default-img" src="images/offers/{{ $offer->offerImages[0]->img_name }}" alt="" />
+                                <div class="banner-text">
+                                    <a href="shop-grid-right.html" class="btn btn-xs">Shop Now <i class="fi-rs-arrow-small-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                @endforeach
             @endforeach
         </div>
     </section>
     <!--End banners-->
-
-
-
-<!-- <section class="banners mb-25">
-<div class="container">
-<div class="row">
-<div class="col-md-12">
-<div class="tab-content" id="myTabContent-1">
-<div class="tab-pane fade show active" id="tab-one-1" role="tabpanel"
-aria-labelledby="tab-one-1">
-<div class="carausel-4-columns-cover arrow-center position-relative">
-<div class="slider-arrow slider-arrow-2 carausel-4-columns-arrow"
-id="carausel-4-columns-arrows"></div>
-<h3>Offers</h3>
-<div class="carausel-4-columns carausel-arrow-center" id="carausel-4-columns">
-@foreach($offers as $key => $offer)
-@foreach($offer->offerImages as $key => $offerImages)
-<div class="product-cart-wrap">
-<div class="product-img-action-wrap">
-<div class="product-img product-img-zoom">
-<a href="shop-product-right.html">
-<img class="default-img"
-src="images/offers/{{ $offerImages->img_name }}"
-alt="" />
-</a>
-</div>
-</div>
-</div>
-@endforeach
-@endforeach
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section> -->
-<!--End banners-->

@@ -16,6 +16,6 @@ class Offer extends Model
 
     public function offerImages()
     {
-        return $this->hasMany('App\Models\OfferHasImage');
+        return $this->hasMany('App\Models\OfferHasImage', 'offer_id', 'id');
     }
 }

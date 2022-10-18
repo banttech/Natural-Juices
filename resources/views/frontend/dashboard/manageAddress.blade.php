@@ -1,11 +1,6 @@
-@extends('frontend.layouts.dashboard')
-@section('content')
+@extends('frontend.dashboard.index')
+@section('myDashboardContent')
 	<section class="content-main">
-    <div class="content-header">
-        <div>
-            <h3 class="card-title">Manage Address</h3>
-        </div>
-    </div>
     <div class="card mb-4">
         @include('layouts.partials.messages')
         <form method="POST" action="#" enctype="multipart/form-data">
@@ -15,6 +10,7 @@
                     <div class="">
                         <label for="country" class="form-label">Country</label>
                         <select class="form-control" name="countries">
+                            <option value="" selected disabled>Select Country</option>
                             @foreach ($countries as $country)
                                 <option value="{{ $country->id }}">{{ $country->name }}</option>
                             @endforeach
