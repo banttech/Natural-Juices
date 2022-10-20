@@ -11,6 +11,7 @@ use App\Models\BlogCategory;
 use App\Models\Product;
 use App\Models\BlogHasProduct;
 use Illuminate\Support\Facades\Storage;
+use Auth;
 
 
 class BlogPostController extends Controller
@@ -32,12 +33,14 @@ class BlogPostController extends Controller
 
     public function store(AddBlogPostRequest $request)
     {        
+        $userId = Auth::id();
         $tags = '';
         if(!is_null($request->tags)){
             $tags = implode(',', $request->tags);
         }
 
         $blogPost = new BlogPost();
+        $blogPost->user_id = $userId;
         $blogPost->status = $request->status == 'on' ? 'active' : 'inactive';
         $blogPost->title = $request->title;
         $blogPost->sub_title = $request->sub_title;

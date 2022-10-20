@@ -15,7 +15,7 @@
         </div>
         <div class="col-lg-4 d-none d-xl-block">
             <div class="banner-img style-3 animated animated">
-                <div class="banner-text">
+                <div class="banner-text mt-0">
                     <img src="{{ url('images/home-offer/' . $homePageOffer->image_name) }}" alt="" />
 
                 </div>
@@ -25,23 +25,38 @@
 </div>
 </section>
 <!--End hero slider-->
-<section class="banners mb-25">
+
+ <section class="banners mb-25">
     <div class="container">
-    <h3>Weekly Offers</h3>
-        <div class="row">
-            @foreach($offerCategories as $key => $offerCategory)
-                <h5>{{$offerCategory->name}}</h5>
-                @foreach($offerCategory->offers as $key => $offer)
-                        <div class="col-lg-4 col-md-6">
-                            <div class="banner-img wow animate__animated animate__fadeInUp syrup_box" data-wow-delay="0">
-                                <img class="default-img" src="images/offers/{{ $offer->offerImages[0]->img_name }}" alt="" />
-                                <div class="banner-text">
-                                    <a href="shop-grid-right.html" class="btn btn-xs">Shop Now <i class="fi-rs-arrow-small-right"></i></a>
-                                </div>
+    <h3 class="text-center">Weekly Offers</h3>
+    <div class="row">
+        @foreach($offerCategories as $key => $offerCategory)
+            <h5 style="margin: 20px 0 12px 0px; padding-left: 28px; text-decoration: underline;">{{$offerCategory->name}}</h5>
+            <div class="container">
+                <div class="main_banner" style="width: 100%;">
+                    @foreach($offerCategory->offers as $key => $offer)
+                        @if($key == 0)
+                            <div style="width: 60%;float: left;height: 500px;" >
+                                <img class="default-img_banner" src="images/offers/{{ $offer->offerImages[0]->img_name }}" alt="" width="" style="object-fit: fill;">
                             </div>
+                        @endif
+                        <div style="width: 40%;float: left;">
+                            @if($key == 1)
+                                <div style="width: 100%;height: 250px;">
+                                 <img class="default-img_banner" src="images/offers/{{ $offer->offerImages[0]->img_name }}" alt="" width="100%" style="object-fit: fill;">
+                                </div>
+                            @endif
+                            @if($key == 2)
+                                <div style="width: 100%;height: 250px;">
+                                 <img class="default-img_banner" src="images/offers/{{ $offer->offerImages[0]->img_name }}" alt="" width="100%" style="object-fit: fill;">
+                                </div>
+                            @endif       
                         </div>
-                @endforeach
-            @endforeach
-        </div>
-    </section>
+                    @endforeach
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+        @endforeach
+   
+       </section>
     <!--End banners-->

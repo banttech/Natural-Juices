@@ -15,6 +15,10 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ url('admin-assets/assets/imgs/theme/favicon.svg') }}" />
     <!-- Template CSS -->
     <link href="{{ url('admin-assets/assets/css/main.css?v=5.5') }}" rel="stylesheet" type="text/css" />
+    
+
+    
+    
 </head>
 
 <body>
@@ -41,6 +45,7 @@
     <script src="{{ url('admin-assets/assets/js/vendors/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ url('admin-assets/assets/js/vendors/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ url('admin-assets/assets/js/vendors/jquery.fullscreen.min.js') }}"></script>
+    
     <!-- Main Script -->
     <script src="{{ url('admin-assets/assets/js/main.js?v=1.1') }}" type="text/javascript"></script>
 </body>

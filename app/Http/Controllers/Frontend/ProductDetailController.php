@@ -16,11 +16,13 @@ use Auth;
 
 class ProductDetailController extends Controller
 {
-    public function productDetail($id)
+    public function productDetail($slug)
     {
-        $product = Product::with('feature_img', 'category')->where('id', $id)->first();
+        $product = Product::with('feature_img', 'category')->where('url_slug', $slug)->first();
         $relatedProducts = Product::with('feature_img')->where('prod_category', $product->category[0]->id)->whereNotIn('id', [$product->id])->skip(0)->take(3)->get();
         // $categories = Category::with('products')->get();
+
+        // dd($product);
 
         return view('frontend.product_detail', compact('product', 'relatedProducts'));
     }

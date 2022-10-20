@@ -15,7 +15,14 @@
                 <div class="col-lg-8 mb-40">
                     <h1 class="heading-2 mb-10">Your Cart</h1>
                     <div class="d-flex justify-content-between">
-                        <h6 class="text-body">There are <span class="text-brand">3</span> products in your cart</h6>
+                        <h6 class="text-body">There are <span class="text-brand" id="cart_count_cart_page">
+                            @if(session('cart'))
+                                {{count(session('cart'))}}
+                                @else
+                                    0
+                            @endif
+                            </span> products in your cart
+                        </h6>
                         <h6 class="text-body"><a href="#" class="text-muted"><i class="fi-rs-trash mr-5"></i>Clear Cart</a></h6>
                     </div>
                 </div>
@@ -37,7 +44,7 @@
                                     <th scope="col" class="end">Remove</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="cart_items_in_cart_page">
                                 @if(session('cart'))
                                     @foreach(session('cart') as $id => $details)
                                         <tr class="pt-30">
@@ -47,7 +54,7 @@
                                             </td>
                                             <td class="image product-thumbnail pt-40"><img src="{{ url('/') }}/images/products/{{$details['image']}}" alt="#"></td>
                                             <td class="product-des product-name">
-                                                <h6 class="mb-5"><a class="product-name mb-10 text-heading" href="shop-product-right.html">{{ $details['name'] }}</a></h6>
+                                                <h6 class="mb-5"><a class="product-name mb-10 text-heading" href="#">{{ $details['name'] }}</a></h6>
                                                 <div class="product-rate-cover">
                                                     <div class="product-rate d-inline-block">
                                                         <div class="product-rating" style="width:90%">
@@ -62,16 +69,16 @@
                                             <td class="text-center detail-info" data-title="Stock">
                                                 <div class="detail-extralink mr-15">
                                                     <div class="detail-qty border radius">
-                                                        <a href="#" class="qty-down" onclick="update_cart()"><i class="fi-rs-angle-small-down"></i></a>
-                                                        <input type="text" name="quantity" id="qty-value" class="qty-val" value="{{ $details['quantity'] }}">
-                                                        <a href="#" class="qty-up" onclick="update_cart()"><i class="fi-rs-angle-small-up"></i></a>
+                                                        <a class="qty-down"><i class="fi-rs-angle-small-down" onclick="increaseCartValue({{$details['id']}})"></i></a>
+                                                        <input type="text" name="quantity" id="qty-value-{{$details['id']}}" class="qty-val" value="{{ $details['quantity'] }}">
+                                                        <a class="qty-up"><i class="fi-rs-angle-small-up" onclick="increaseCartValue({{$details['id']}})"></i></a>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="price" data-title="Price">
                                                 <h4 class="text-brand">${{ $details['price'] * $details['quantity'] }} </h4>
                                             </td>
-                                            <td class="action text-center" data-title="Remove"><a href="#" class="text-body"><i class="fi-rs-trash"></i></a></td>
+                                            <td class="action text-center" data-title="Remove"><a class="text-body" onclick="deleteItem({{ $details['id'] }})"><i class="fi-rs-trash"></i></a></td>
                                         </tr>
                                     @endforeach
                                 @endif
@@ -419,27 +426,68 @@
     </main>
 
     <script type="text/javascript">
-  
-        function update_cart() {
-             var quantity  = $('#qty-value').val();
-             
-             // $('#qty-value').val(quantity);
-            console.log('quantity',quantity);
-      
-            // var ele = $(this);
-      
-            // $.ajax({
-            //     url: '{{ route('update.cart') }}',
-            //     method: "patch",
-            //     data: {
-            //         _token: '{{ csrf_token() }}', 
-            //         id: ele.parents("tr").attr("data-id"), 
-            //         quantity: ele.parents("tr").find(".quantity").val()
-            //     },
-            //     success: function (response) {
-            //        window.location.reload();
-            //     }
-            // });
+
+        function increaseCartValue(id) {
+            var count = $('#qty-value-'+id).val();
+            let route = "{{ route('update.cart') }}";
+            let token = "{{ csrf_token()}}";
+
+            console.log(parseInt(count));
+
+
+            $.ajax({
+                url: route,
+                type: 'patch',
+                data: {
+                    _token: token,
+                    id: id,
+                    quantity: parseInt(count) + 1
+                },
+                success: function(response) {
+                    let res = $.parseJSON(response);
+                    $('#cart_items_in_cart_page').html('');
+                    $('#cart_items_in_cart_page').html(res[0]);
+                },
+                error: function(xhr) {
+                    console.log('error');
+                }
+            });
+        }
+
+        function deleteItem(id) {
+            swal({
+                  title: "Are you sure?",
+                  icon: "warning",
+                  buttons: true,
+                  dangerMode: true,
+                })
+                .then((willDelete) => {
+                  if (willDelete) {
+                    let route = "{{ route('remove.from.cart') }}";
+                    let token = "{{ csrf_token()}}";
+                    $.ajax({
+                        url: route,
+                        type: 'POST',
+                        data: {
+                            _token: token,
+                            id: id
+                        },
+                        success: function(response) {
+                            let res = $.parseJSON(response);
+                            $('#parent_head_cart').html('');
+                            $('#parent_head_cart').html(res[0]);
+                            $('#cart_head_count').text('');
+                            $('#cart_head_count').text(res[1]);
+                            $('#cart_count_cart_page').text('');
+                            $('#cart_count_cart_page').text(res[1]);
+                            window.location.reload();
+                        },
+                        error: function(xhr) {
+                            console.log('error');
+                        }
+                    });
+                  }
+            });
         }
 
 

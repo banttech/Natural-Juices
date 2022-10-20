@@ -1,5 +1,8 @@
 @extends('layouts.frontend.app')
 @section('content')
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<main class="main">
         <div class="page-header breadcrumb-wrap">
             <div class="container">
@@ -257,6 +260,10 @@
                                             <div class="tab-pane fade" id="Reviews">
                                                 <!--Comments-->
                                                 <div class="comments-area">
+                                                    <div class="review_btn">
+                                                    <div class="text_review">Review</div>
+                                                    <div class="btn_review"><button  type="button" data-bs-toggle="modal" data-bs-target="#myModal">write a review</button></div>
+                                                    </div>
                                                     <div class="row">
                                                         <div class="col-lg-8">
                                                             <h4 class="mb-30">Customer questions & answers</h4>
@@ -405,24 +412,24 @@
     	                                                    <div class="product-img-action-wrap">
     	                                                        <div class="product-img product-img-zoom">
     	                                                            <a href="shop-product-right.html" tabindex="0">
-    	                                                                <img class="default-img" src="{{url('/')}}/images/products/{{$product->feature_img[0]->image_name}}" alt="" />
+    	                                                                <img class="default-img" src="{{url('/')}}/images/products/{{$relatedProduct->feature_img[0]->image_name}}" alt="" />
     	                                                            </a>
     	                                                        </div>
     	                                                        <div class="product-action-1">
-    	                                                            <a aria-label="Quick view" class="action-btn small hover-up" href="{{ url('product/' . $product->id) }}"> <i class="fi-rs-eye"></i></a>
+    	                                                            <a aria-label="Quick view" class="action-btn small hover-up" href="{{ url('product/' . $relatedProduct->url_slug) }}"> <i class="fi-rs-eye"></i></a>
     	                                                        </div>
     	                                                        <div class="product-badges product-badges-position product-badges-mrg">
-    	                                                            <span class="hot"> ${{$product->reg_sel_price - $product->final_sel_price}} OFF</span>
+    	                                                            <span class="hot"> ${{$relatedProduct->reg_sel_price - $relatedProduct->final_sel_price}} OFF</span>
     	                                                        </div>
     	                                                    </div>
     	                                                    <div class="product-content-wrap">
-    	                                                        <h2><a href="shop-product-right.html" tabindex="0">{{ $product->prod_name }}</a></h2>
+    	                                                        <h2><a href="shop-product-right.html" tabindex="0">{{ $relatedProduct->prod_name }}</a></h2>
     	                                                        <div class="rating-result" title="90%">
     	                                                            <span> </span>
     	                                                        </div>
     	                                                        <div class="product-price">
-    	                                                            <span>${{$product->reg_sel_price}} </span>
-    	                                                            <span class="old-price">${{$product->final_sel_price}}</span>
+    	                                                            <span>${{$relatedProduct->reg_sel_price}} </span>
+    	                                                            <span class="old-price">${{$relatedProduct->final_sel_price}}</span>
     	                                                        </div>
     	                                                    </div>
     	                                                </div>
@@ -462,6 +469,161 @@
         </div>
     </main>
 
+
+     <div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+     <!--  <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div> -->
+    <div class="container">
+        <div class="main_display">
+                   <div class="product_img" style="width: 30%;margin: 10px;">
+                <img src="http://banttechenergies.com/images/products/16650531740.jpg">
+                <h6 style="font-size: 18px;text-align: center;padding-top: 8px;">Naturaljuices LoveNoni Organic Certified 100% Pure Noni Juice</h6>
+              </div> 
+            <div class="product_detail" style="width: 70%;margin: 10px;border: 2px solid #3BB77E;padding: 10px;">
+                <div class="main_heading" style="display:flex;">
+                <h6 style="color:#3BB77E ;font-size: 18px;">My Review for Naturaljuices LoveNoni Organic Certified 100% Pure Noni Juice</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <section class='rating-widget'>
+                    <!-- Rating Stars Box -->
+                    <div class='rating-stars'>
+                      <ul id='stars'>
+                        <li class='star' title='Poor' data-value='1'>
+                          <i class='fa fa-star fa-fw'></i>
+                        </li>
+                        <li class='star' title='Fair' data-value='2'>
+                          <i class='fa fa-star fa-fw'></i>
+                        </li>
+                        <li class='star' title='Good' data-value='3'>
+                          <i class='fa fa-star fa-fw'></i>
+                        </li>
+                        <li class='star' title='Excellent' data-value='4'>
+                          <i class='fa fa-star fa-fw'></i>
+                        </li>
+                        <li class='star' title='WOW!!!' data-value='5'>
+                          <i class='fa fa-star fa-fw'></i>
+                        </li>
+                      </ul>
+                    </div>
+                    <h6 style="padding-top: 8px;">(Auto selected based on following rating)</h6>
+                    </section>
+
+                <h6 style="padding-top: 30px;font-size: 18px;color:#3BB77E ;">Review Title*</h6>
+                <div class="card title_box">
+                    <p>Give a title to your review</p> 
+                </div>
+                 <h6 style="padding-top: 30px;font-size: 18px;color:#3BB77E ;">Review Description*</h6>
+                <div class="card title_box" style="height: 100px;">
+                    <p>Give a title to your review</p> 
+                </div>
+                 <div class="card title_box" style="height: 100px;background:#3BB77E ;">
+                    <div style="display: flex;padding-top: 32px;">
+                          <div class="product_detail" style="width:20%">
+                            <p style="color: #fff;">Product</p> 
+                          </div>
+                           <div class="product_rating" style="width:80%;padding-left: 100px;">
+                                <!-- Rating Stars Box -->
+                                <div class='rating-stars'>
+                                  <ul id='stars'>
+                                    <li class='star' title='Poor' data-value='1'>
+                                      <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='Fair' data-value='2'>
+                                      <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='Good' data-value='3'>
+                                      <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='Excellent' data-value='4'>
+                                      <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='WOW!!!' data-value='5'>
+                                      <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                  </ul>
+                                </div> 
+                           </div>
+                    </div>
+                 </div>
+                 <div class="card title_box" style="height: 100px;background:#3BB77E ;">
+                         <div style="display: flex;padding-top: 32px;">
+                          <div class="product_detail" style="width:20%">
+                            <p style="color: #fff;">Quality</p> 
+                          </div>
+                           <div class="product_rating" style="width:80%;padding-left: 100px;">
+                                <!-- Rating Stars Box -->
+                                <div class='rating-stars'>
+                                  <ul id='stars'>
+                                    <li class='star' title='Poor' data-value='1'>
+                                      <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='Fair' data-value='2'>
+                                      <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='Good' data-value='3'>
+                                      <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='Excellent' data-value='4'>
+                                      <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='WOW!!!' data-value='5'>
+                                      <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                  </ul>
+                                </div> 
+                           </div>
+                    </div> 
+                </div>
+                 <div class="card title_box" style="height: 100px;background:#3BB77E ;">
+                         <div style="display: flex;padding-top: 32px;">
+                          <div class="product_detail" style="width:20%">
+                            <p style="color: #fff;">Value</p> 
+                          </div>
+                           <div class="product_rating" style="width:80%;padding-left: 100px;">
+                                <!-- Rating Stars Box -->
+                                <div class='rating-stars'>
+                                  <ul id='stars'>
+                                    <li class='star' title='Poor' data-value='1'>
+                                      <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='Fair' data-value='2'>
+                                      <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='Good' data-value='3'>
+                                      <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='Excellent' data-value='4'>
+                                      <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='WOW!!!' data-value='5'>
+                                      <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                  </ul>
+                                </div> 
+                           </div>
+                    </div>
+                </div>
+                <div style="display:flex;justify-content: space-between;">
+                    <div class="review_submit">
+                     <button>Submit Review</button>
+                    </div>
+                    <div class="review_close">
+                     <button>Close</button>
+                    </div>
+                </div>
+              </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <script type="text/javascript">
         function addToCart(id) {
             let route = "{{ route('add.to.cart') }}";
@@ -474,14 +636,69 @@
                     id: id
                 },
                 success: function(response) {
+                    let res = $.parseJSON(response);
+                    console.log('res', res);
                     swal("Added To Cart!", "", "success");
                     $('#parent_head_cart').html('');
-                    $('#parent_head_cart').html(response);
+                    $('#parent_head_cart').html(res[0]);
+                    $('#cart_head_count').text('');
+                    $('#cart_head_count').text(res[1]);
                 },
                 error: function(xhr) {
                     console.log('error');
                 }
             });
         }
+
+         $(document).ready(function(){
+  
+  /* 1. Visualizing things on Hover - See next part for action on click */
+  $('#stars li').on('mouseover', function(){
+    var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
+   
+    // Now highlight all the stars that's not after the current hovered star
+    $(this).parent().children('li.star').each(function(e){
+      if (e < onStar) {
+        $(this).addClass('hover');
+      }
+      else {
+        $(this).removeClass('hover');
+      }
+    });
+    
+  }).on('mouseout', function(){
+    $(this).parent().children('li.star').each(function(e){
+      $(this).removeClass('hover');
+    });
+  });
+  
+  
+  /* 2. Action to perform on click */
+  $('#stars li').on('click', function(){
+    var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+    var stars = $(this).parent().children('li.star');
+    
+    for (i = 0; i < stars.length; i++) {
+      $(stars[i]).removeClass('selected');
+    }
+    
+    for (i = 0; i < onStar; i++) {
+      $(stars[i]).addClass('selected');
+    }
+    
+    // JUST RESPONSE (Not needed)
+    var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+    var msg = "";
+    if (ratingValue > 1) {
+        msg = "Thanks! You rated this " + ratingValue + " stars.";
+    }
+    else {
+        msg = "We will improve ourselves. You rated this " + ratingValue + " stars.";
+    }
+    responseMessage(msg);
+    
+  });
+});
+
     </script>
 @endsection

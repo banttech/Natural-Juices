@@ -23,7 +23,7 @@ class FrontendController extends Controller
         $homePageOffer = HomePageOffer::first();
         $offerCategories = OfferCategory::with('offers', 'offers.offerImages')->get();
 
-        $blogs = BlogPost::with('blog_category')->get();
+        $blogs = BlogPost::with('blog_category', 'user_details')->get();
         $categories = Category::all();
 
         return view('frontend.home', compact('products', 'homePageAds', 'homePageOffer', 'offerCategories', 'categories', 'blogs'));

@@ -2,6 +2,91 @@
 $categories = DB::table('categories')->where('parent_id', null)->get();
 $brands = DB::table('brands')->get();
 @endphp
+
+<style>
+
+</style>
+<!-- <style>
+.dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  top: 50px;
+  min-width: 100%;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+.dropdown-content a img{width:60px;margin-right:5px}
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+</style>
+<script>
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script> -->
+<!-- <style>
+ .container{
+width: 60px;
+margin: 30px auto;
+}
+#singlebox{
+
+width: 100%;
+}
+
+</style>
+
+<script src="fm,selectator.jquery.js"></script>
+<script>
+$('#singlebox').selectator();
+$('#multibox').selectator();
+</script> -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <header class="header-area header-style-1 header-height-2">
         <div class="mobile-promotion">
@@ -14,7 +99,7 @@ $brands = DB::table('brands')->get();
                         <div class="col-12">
                             <div class="text-center">
                                 <!-- <div id="news-flash" class="d-inline-block"> -->
-                                    <ul style="display: flex; justify-content: space-around; align-items: center;">
+                                    <ul style="display: flex; justify-content: space-around; align-items: center; font-weight: bold;">
                                         <li>Welcome to Natural Juices</li>
                                         <li><a href="{{ route('register') }}" style="color: #fff;">Register & Get 10% OFF</a></li>
                                     </ul>
@@ -40,7 +125,28 @@ $brands = DB::table('brands')->get();
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
                                 </select>
-                                <input type="text" placeholder="Search products here..." />
+                                <select id="id_select2_example" style="width:100%;">
+                                    <option value=""></option> 
+                                    <option value="1" data-img_src="http://banttechenergies.com/images/products/16661633751.jpg" data-price="Rs 5600">Python programming</option> 
+                                    <option value="2" data-img_src="http://banttechenergies.com/images/products/16650531741.jpg" data-price="Rs 5600">Java programming</option>
+                                    <option value="3" data-img_src="http://banttechenergies.com/images/products/16661635641.jpg" data-price="Rs 5600">C programming</option>  
+                                </select>
+
+                               <!--  <select name="membership" id="membership" style="width: 100%;border: none;">
+                                  <option value="free" selected>Search products here...</option>
+                                  <option value="bronze"  style="background-image:url('http://banttechenergies.com/images/products/16661083920.jpg');">Product image</option>
+                                  <option value="silver" >Product title </option>
+                                  <option value="Gold">Product price</option>
+                                </select>  -->
+                                <!-- <div class="dropdown">
+                                    <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+                                    <div id="myDropdown" class="dropdown-content">
+                                        <a href="#home"><img src="http://banttechenergies.com/images/offers/16661624520.jpg">Home<span>rs 4000</span></a>
+                                        <a href="#about">About</a>
+                                        <a href="#contact">Contact</a>
+                                    </div>
+                                    </div> -->
+                                 <!-- <input type="text" placeholder="Search products here..." />  -->
                             </form>
                         </div>
                         <div class="header-action-right">
@@ -48,11 +154,11 @@ $brands = DB::table('brands')->get();
                                 <div class="header-action-icon-2">
                                     <a class="mini-cart-icon" href="{{ url('/viewCart') }}">
                                         <img alt="Nest" src="{{ asset('imgs/theme/icons/icon-cart.svg') }}" />
-                                        <span class="pro-count blue">
+                                        <span class="pro-count blue" id="cart_head_count">
                                             @if(session('cart'))
                                                 {{ count(session('cart')) }}
                                                 @else
-                                                    0
+                                                    {{0}}
                                             @endif
                                         </span>
                                     </a>
@@ -176,7 +282,7 @@ $brands = DB::table('brands')->get();
                                     <li class="hot-deals"><img src="{{ asset('imgs/theme/icons/icon-hot.svg') }}"
                                             alt="hot deals" /><a href="#">Deals</a></li>
                                     <li>
-                                        <a class="active" href="#">LIQUID SUPPLEMENTS</a>
+                                        <a href="#">LIQUID SUPPLEMENTS</a>
                                     </li>
                                     <li>
                                         <a href="#">CAPSULES</a>
@@ -196,18 +302,17 @@ $brands = DB::table('brands')->get();
                         <nav class="d_d_contain" role="navigation">
                             <ul>
                                 <li><a href="#" class="service_24">24/7 Help</a>
-                                <ul class="dropdown">
+                                <ul class="dropdown" style="width: 46% !important;">
                                     <div class="main_dropdown">
-                                        <div class="dropdown_left">
+                                        <div class="dropdown_left" style="width: 60%;">
                                             <div class="dropdown_inner_left">
                                                 <div class="dropdown_list">
                                                     <li style="font-weight: bold;font-size: 16px;"><a style="">Contact Us</a><span class="header__right-arrow">→</span></li>
                                                     <li><i class="fa fa-commenting" aria-hidden="true"></i><a>Chat</a></li>
                                                     <li><i class="fa fa-envelope" aria-hidden="true"></i><a> Email </a></li>
-                                                    <li><i class="fa fa-question-circle" aria-hidden="true"></i><a> Expert Advice </a></li>
                                                     <li><i class="fa fa-thumbs-up" aria-hidden="true"></i><a> Website Feedback </a></li>
                                                     <li style="font-weight:bold;font-size: 16px;padding-top: 10px;"><a> New Orders </a></li>
-                                                    <li><i class="fa fa-phone" aria-hidden="true"></i><a>  888-635-0474  </a></li>
+                                                    <li><i class="fa fa-phone" aria-hidden="true"></i><a>  0207-205-2477  </a></li>
                                                 </div>
                                             </div>
                                             <div class="dropdown_inner_right">
@@ -215,12 +320,11 @@ $brands = DB::table('brands')->get();
                                                     <li style="font-weight: bold;font-size: 16px;"><a>Helpful Links </a></li>
                                                     <li><a>Track Your Order </a></li>
                                                     <li><a> FAQs </a></li>
-                                                    <li><a> Shipping Info</a></li>
                                                 </div>
                                             </div>
                                             <div class="clearfix"></div>
                                         </div>
-                                        <div class="dropdown_right">
+                                        <div class="dropdown_right" style="width: 40%;">
                                             <div class="dropdown_inner">
                                                 <div class="dropdwn_tag">EXPERT ADVICE</div>
                                                 <div class="dropdwn_content">

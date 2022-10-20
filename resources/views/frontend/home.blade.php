@@ -11,10 +11,12 @@
                             type="button" role="tab" aria-controls="tab-one" aria-selected="true" onclick="filterByCat('all')">All</button>
                     </li>
                     @foreach($categories as $key => $category)
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="nav-tab-one" data-bs-toggle="tab" data-bs-target="#tab-one"
-                                type="button" role="tab" aria-controls="tab-one" aria-selected="true" onclick="filterByCat({{$category->id}})">{{ $category->name }}</button>
-                        </li>
+                        @if($category->category_level == 2)
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="nav-tab-one" data-bs-toggle="tab" data-bs-target="#tab-one"
+                                    type="button" role="tab" aria-controls="tab-one" aria-selected="true" onclick="filterByCat({{$category->id}})">{{ $category->name }}</button>
+                            </li>
+                        @endif
                     @endforeach
                 </ul>
             </div>
@@ -33,7 +35,7 @@
                                         </a>
                                     </div>
                                     <div class="product-action-1">
-                                        <a class="action-btn" href="{{ url('product/' . $product->id) }}"><i class="fi-rs-eye"></i></a>
+                                        <a aria-label="Quick view" class="action-btn" href="{{ url('product/' . $product->url_slug) }}"><i class="fi-rs-eye"></i></a>
                                     </div>
                                     <div class="product-badges product-badges-position product-badges-mrg">
                                         <span class="sale">${{$product->reg_sel_price - $product->final_sel_price}} OFF</span>
@@ -43,7 +45,7 @@
                                     <div class="product-category">
                                         <a href="shop-grid-right.html">{{$product->category[0]->name}}</a>
                                     </div>
-                                    <h2><a href="shop-product-right.html">{{ $product->prod_name }}</a></h2>
+                                    <h2 style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical;"><a href="shop-product-right.html">{{ $product->prod_name }}</a></h2>
                                     <div class="product-rate-cover">
                                         <div class="product-rate d-inline-block">
                                             <div class="product-rating" style="width: 80%"></div>
@@ -51,8 +53,8 @@
                                         <span class="font-small ml-5 text-muted"> (3.5)</span>
                                     </div>
                                     <div>
-                                        <span class="font-small text-muted">By <a
-                                                href="#">{{$product->user_details->name}}</a></span>
+                                        <span class="font-small text-muted"><a
+                                                href="#" style="font-weight: bold;">Manual Discount: ${{$product->prod_manual_discount}}</a></span>
                                     </div>
                                     <div class="product-card-bottom">
                                         <div class="product-price">
@@ -83,7 +85,7 @@
             <div class="row">
                 <div class="col-lg-3 d-none d-lg-flex">
                     <div class="banner-img style-2">
-                        <div class="banner-text">
+                        <div class="banner-text" style="position: absolute; padding: 0 50px;">
                             <h2 class="mb-100">Bring nature into your home</h2>
                             <a href="shop-grid-right.html" class="btn btn-xs">Shop Now <i
                                     class="fi-rs-arrow-small-right"></i></a>
@@ -109,8 +111,7 @@
                                                         </a>
                                                     </div>
                                                     <div class="product-action-1">
-                                                        <a aria-label="Quick view" class="action-btn small hover-up" href="{{ url('product/' . $product->id) }}"> <i class="fi-rs-eye"></i></a>
-
+                                                        <a aria-label="Quick view" class="action-btn" href="{{ url('product/' . $product->url_slug) }}"> <i class="fi-rs-eye"></i></a>
                                                     </div>
                                                     <div class="product-badges product-badges-position product-badges-mrg">
                                                         <span class="hot">${{$product->reg_sel_price - $product->final_sel_price}} OFF</span>
@@ -120,7 +121,7 @@
                                                     <div class="product-category">
                                                         <a href="shop-grid-right.html">{{$product->category[0]->name}}</a>
                                                     </div>
-                                                    <h2><a href="shop-product-right.html">{{ $product->prod_name }}</a></h2>
+                                                    <h2 style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical;"><a href="shop-product-right.html">{{ $product->prod_name }}</a></h2>
                                                     <div class="product-rate d-inline-block">
                                                         <div class="product-rating" style="width: 80%"></div>
                                                     </div>
@@ -676,30 +677,30 @@
                 <div class="col-xl-3 col-lg-4 col-md-6 mb-sm-5 mb-md-0">
                     <h4 class="section-title style-1 mb-30 animated animated">Top Selling</h4>
                     <div class="product-list-small animated animated">
-                        @php $top_sell_count = 0; @endphp
                         @foreach($products as $key => $product)
-                            <article class="row align-items-center hover-up">
-                                <figure class="col-md-4 mb-0">
-                                    <a href="{{ url('product/' . $product->id) }}"><img src="images/products/{{ $product->feature_img[0]->image_name }}"
-                                            alt="" /></a>
-                                </figure>
-                                <div class="col-md-8 mb-0">
-                                    <h6>
-                                        <a href="shop-product-right.html">{{ $product->prod_name }}</a>
-                                    </h6>
-                                    <div class="product-rate-cover">
-                                        <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width: 90%"></div>
+                            @if($key < 3)
+                                <article class="row align-items-center hover-up">
+                                    <figure class="col-md-4 mb-0">
+                                        <a href="{{ url('product/' . $product->url_slug) }}"><img src="images/products/{{ $product->feature_img[0]->image_name }}"
+                                                alt="" /></a>
+                                    </figure>
+                                    <div class="col-md-8 mb-0">
+                                        <h6>
+                                            <a href="shop-product-right.html">{{ $product->prod_name }}</a>
+                                        </h6>
+                                        <div class="product-rate-cover">
+                                            <div class="product-rate d-inline-block">
+                                                <div class="product-rating" style="width: 90%"></div>
+                                            </div>
+                                            <span class="font-small ml-5 text-muted"> (4.0)</span>
                                         </div>
-                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                        <div class="product-price">
+                                            <span>${{ $product->final_sel_price }}</span>
+                                            <span class="old-price">${{$product->reg_sel_price}}</span>
+                                        </div>
                                     </div>
-                                    <div class="product-price">
-                                        <span>${{ $product->final_sel_price }}</span>
-                                        <span class="old-price">${{$product->reg_sel_price}}</span>
-                                    </div>
-                                </div>
-                            </article>
-                            @php $top_sell_count++; @endphp
+                                </article>
+                            @endif
                         @endforeach
                     </div>
                 </div>
@@ -707,56 +708,60 @@
                     <h4 class="section-title style-1 mb-30 animated animated">Popular Products</h4>
                     <div class="product-list-small animated animated">
                         @foreach($products as $key => $product)
-                            <article class="row align-items-center hover-up">
-                                <figure class="col-md-4 mb-0">
-                                    <a href="{{ url('product/' . $product->id) }}">
-                                        <img class="default-img" src="{{url('/')}}/images/products/{{$product->feature_img[0]->image_name}}" alt="" />
-                                    </a>
-                                </figure>
-                                <div class="col-md-8 mb-0">
-                                    <h6>
-                                        <a href="shop-product-right.html">{{ $product->prod_name }}</a>
-                                    </h6>
-                                    <div class="product-rate-cover">
-                                        <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width: 90%"></div>
+                            @if($key < 3)
+                                <article class="row align-items-center hover-up">
+                                    <figure class="col-md-4 mb-0">
+                                        <a href="{{ url('product/' . $product->url_slug) }}">
+                                            <img class="default-img" src="{{url('/')}}/images/products/{{$product->feature_img[0]->image_name}}" alt="" />
+                                        </a>
+                                    </figure>
+                                    <div class="col-md-8 mb-0">
+                                        <h6>
+                                            <a href="shop-product-right.html">{{ $product->prod_name }}</a>
+                                        </h6>
+                                        <div class="product-rate-cover">
+                                            <div class="product-rate d-inline-block">
+                                                <div class="product-rating" style="width: 90%"></div>
+                                            </div>
+                                            <span class="font-small ml-5 text-muted"> (4.0)</span>
                                         </div>
-                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                        <div class="product-price">
+                                            <span>${{ $product->final_sel_price }}</span>
+                                            <span class="old-price">${{$product->reg_sel_price}}</span>
+                                        </div>
                                     </div>
-                                    <div class="product-price">
-                                        <span>${{ $product->final_sel_price }}</span>
-                                        <span class="old-price">${{$product->reg_sel_price}}</span>
-                                    </div>
-                                </div>
-                            </article>
+                                </article>
+                            @endif
                         @endforeach
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-4 col-md-6 mb-sm-5 mb-md-0 d-none d-lg-block">
-                    <h4 class="section-title style-1 mb-30 animated animated">Recently added</h4>
+                    <h4 class="section-title style-1 mb-30 animated animated">Recently Added</h4>
                     <div class="product-list-small animated animated">
                          @foreach($products as $key => $product)
-                            <article class="row align-items-center hover-up">
-                                <figure class="col-md-4 mb-0">
-                                    <a href="{{ url('product/' . $product->id) }}"><img src="images/products/{{ $product->feature_img[0]->image_name }}"
-                                            alt="" /></a>
-                                </figure>
-                                <div class="col-md-8 mb-0">
-                                    <h6>
-                                        <a href="shop-product-right.html">{{ $product->prod_name }}</a>
-                                    </h6>
-                                    <div class="product-rate-cover">
-                                        <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width: 90%"></div>
+                            @if($key < 3)
+                                <article class="row align-items-center hover-up">
+                                    <figure class="col-md-4 mb-0">
+                                        <a href="{{ url('product/' . $product->url_slug) }}"><img src="images/products/{{ $product->feature_img[0]->image_name }}"
+                                                alt="" /></a>
+                                    </figure>
+                                    <div class="col-md-8 mb-0">
+                                        <h6>
+                                            <a href="shop-product-right.html">{{ $product->prod_name }}</a>
+                                        </h6>
+                                        <div class="product-rate-cover">
+                                            <div class="product-rate d-inline-block">
+                                                <div class="product-rating" style="width: 90%"></div>
+                                            </div>
+                                            <span class="font-small ml-5 text-muted"> (4.0)</span>
                                         </div>
-                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                        <div class="product-price">
+                                            <span>${{ $product->final_sel_price }}</span>
+                                            <span class="old-price">${{$product->reg_sel_price}}</span>
+                                        </div>
                                     </div>
-                                    <div class="product-price">
-                                        <span>${{ $product->final_sel_price }}</span>
-                                        <span class="old-price">${{$product->reg_sel_price}}</span>
-                                    </div>
-                                </div>
-                            </article>
+                                </article>
+                            @endif
                         @endforeach
                     </div>
                 </div>
@@ -764,27 +769,29 @@
                     <h4 class="section-title style-1 mb-30 animated animated">Top Rated</h4>
                     <div class="product-list-small animated animated">
                          @foreach($products as $key => $product)
-                            <article class="row align-items-center hover-up">
-                                <figure class="col-md-4 mb-0">
-                                    <a href="{{ url('product/' . $product->id) }}"><img src="images/products/{{ $product->feature_img[0]->image_name }}"
-                                            alt="" /></a>
-                                </figure>
-                                <div class="col-md-8 mb-0">
-                                    <h6>
-                                        <a href="shop-product-right.html">{{ $product->prod_name }}</a>
-                                    </h6>
-                                    <div class="product-rate-cover">
-                                        <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width: 90%"></div>
+                            @if($key < 3)
+                                <article class="row align-items-center hover-up">
+                                    <figure class="col-md-4 mb-0">
+                                        <a href="{{ url('product/' . $product->url_slug) }}"><img src="images/products/{{ $product->feature_img[0]->image_name }}"
+                                                alt="" /></a>
+                                    </figure>
+                                    <div class="col-md-8 mb-0">
+                                        <h6>
+                                            <a href="shop-product-right.html">{{ $product->prod_name }}</a>
+                                        </h6>
+                                        <div class="product-rate-cover">
+                                            <div class="product-rate d-inline-block">
+                                                <div class="product-rating" style="width: 90%"></div>
+                                            </div>
+                                            <span class="font-small ml-5 text-muted"> (4.0)</span>
                                         </div>
-                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                        <div class="product-price">
+                                            <span>${{ $product->final_sel_price }}</span>
+                                            <span class="old-price">${{$product->reg_sel_price}}</span>
+                                        </div>
                                     </div>
-                                    <div class="product-price">
-                                        <span>${{ $product->final_sel_price }}</span>
-                                        <span class="old-price">${{$product->reg_sel_price}}</span>
-                                    </div>
-                                </div>
-                            </article>
+                                </article>
+                            @endif
                         @endforeach
                     </div>
                 </div>
@@ -797,7 +804,7 @@
             <div class="section-title">
                 <div class="title">
                     <h3>Shop by Categories</h3>
-                    <a class="show-all" href="shop-grid-right.html">
+                    <a class="show-all" href="#">
                         All Categories
                         <i class="fi-rs-angle-right"></i>
                     </a>
@@ -809,8 +816,8 @@
                 <div class="carausel-8-columns" id="carausel-8-columns">
                     @foreach($categories as $key => $category)
                         <div class="card-1">
-                            <figure class="img-hover-scale overflow-hidden">
-                                <a href="shop-grid-right.html"><img src="images/categories/{{ $category->home_banner_img }}"
+                            <figure class="img-hover-scale overflow-hidden" style="border-radius: 50%;">
+                                <a href="#"><img src="images/categories/{{ $category->home_banner_img }}"
                                         alt="" /></a>
                             </figure>
                             <h6>
@@ -916,7 +923,7 @@
                     <div class="product-cart-wrap style-2">
                         <div class="product-img-action-wrap">
                             <div class="product-img">
-                                <a href="shop-product-right.html">
+                                <a href="#">
                                     <img src="images/blogPosts/{{ $blog->feature_image }}" alt="" />                                 
                                 </a>
                             </div>
@@ -930,7 +937,7 @@
                                 <div class="product-card-bottom">
                                     <div>
                                         <span class="font-small text-muted">By <a
-                                                href="vendor-details-1.html">NestFood</a></span>
+                                                href="vendor-details-1.html">{{$blog->user_details->name}}</a></span>
                                     </div>
                                 </div>
                             </div>
@@ -986,8 +993,8 @@
                     swal("Added To Cart!", "", "success");
                     $('#parent_head_cart').html('');
                     $('#parent_head_cart').html(res[0]);
-                    $('#cart_count').hmtl('');
-                    $('#cart_count').hmtl(res[1]);
+                    $('#cart_head_count').text('');
+                    $('#cart_head_count').text(res[1]);
                 },
                 error: function(xhr) {
                     console.log('error');
