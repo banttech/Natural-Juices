@@ -41,4 +41,19 @@ class FrontendController extends Controller
         }
         echo view('frontend.ajax_products', compact('products'));
     }
+
+    public function organicFoodFederation()
+    {
+        return view('frontend.organic-food-federation');
+    }
+
+    public function usdaOrganic()
+    {
+        return view('frontend.usda-organic');
+    }
+
+    public function soilAssociationOrganic()
+    {
+        return view('frontend.soil-association-organic');
+    }
 }

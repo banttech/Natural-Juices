@@ -24,7 +24,7 @@ class CategoryController extends Controller
     {
         $active = 'product';
 
-        $categories = Category::whereNull('parent_id')->latest()->get();
+        $categories = Category::all();
         return view('admin.categories.add',  compact('categories','active'));
     }
 
@@ -85,7 +85,7 @@ class CategoryController extends Controller
     {
         $active = 'product';
         $category = Category::find($id);
-        $categories = Category::whereNull('parent_id')->where('status','active')->get();
+        $categories = Category::all();
         return view('admin.categories.edit', compact('category', 'categories','active'));
     }
 

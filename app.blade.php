@@ -255,29 +255,42 @@ s0.parentNode.insertBefore(s1,s0);
                     </div>
                     <div class="footer-link-widget widget-install-app col" style="display: flex; justify-content: space-between;">
                         <div class="left">
-                            <h4 class="mb-15 mt-4">Secured Payment Gateways</h4>
-                            <div class="pay-men" style="margin-top: 10px; display: flex; justify-content: space-evenly; align-items: center; width: 84%;"> 
-                                <img src="{{ asset('imgs/theme/paypal.png') }}" alt="pay1" style="width: 50px;height: 36px;">
-                                <img src="{{ asset('imgs/theme/visa.jpg') }}" alt="pay2">
-                                <img src="{{ asset('imgs/theme/pay4.jpg') }}" alt="pay4"> 
-                                <img src="{{ asset('imgs/theme/mastercard-logo.png') }}" alt="pay5" style="width: 50px;height: 58px;"> 
-                                <img src="{{ asset('imgs/theme/visa-debit-logo.png') }}" alt="pay6" style="width: 50px;height: 31px;">
-                            </div>
+                            <h4 class="mb-20 mt-4">Secured Payment Gateways</h4>
+                            <div class="pay-men"> 
+    <img src="{{ asset('imgs/theme/paypal.png') }}" alt="pay1" style="width: 50px;height: 36px;">
+    <img src="{{ asset('imgs/theme/visa.jpg') }}" alt="pay2">
+    <!-- <a href="#"><img src="https://www.naturaljuices.co.uk/imgs/pay3.jpg" alt="pay3"></a>  -->
+    <img src="{{ asset('imgs/theme/pay4.jpg') }}" alt="pay4"> 
+    <img src="{{ asset('imgs/theme/mastercard-logo.png') }}" alt="pay5" style="width: 50px;height: 58px;"> 
+    <img src="{{ asset('imgs/theme/visa-debit-logo.png') }}" alt="pay6" style="width: 50px;height: 31px;">
+    </div>
+                            <!-- <div>
+                                <img class="wow fadeIn animated" src="{{ asset('imgs/theme/paypal.png') }}"
+                                alt="" style="width: 50px; height: 36px;" />
+                                <img class="wow fadeIn animated" src="{{ asset('imgs/theme/visa.jpg') }}"
+                                alt="" />
+                                <img class="wow fadeIn animated" src="{{ asset('imgs/theme/pay4.jpg') }}"
+                                alt="" />
+                                <img class="wow fadeIn animated" src="{{ asset('imgs/theme/mastercard-logo.png') }}"
+                                alt="" style="width: 50px; height: 58px;" style="margin-top: 10px;" />
+                                <img class="wow fadeIn animated" src="{{ asset('imgs/theme/visa-debit-logo.png') }}"
+                                alt="" style="width: 50px; height: 31px;" />
+                            </div> -->
                         </div>
 
                         <div class="right">
                             <div class="d-flex" style="margin-top: 20px;">
-                                <a href="{{ url('the-organic-food-federation') }}">
+                                <a href="#">
                                     <img class="wow fadeIn animated" src="{{ asset('imgs/theme/organic-food-federation.png') }}"
                                     alt="" style="width: 85px; height: auto;" />
                                     <p>GB-ORG-04</p>
                                 </a>
-                                <a href="{{ url('usda-organic') }}" style="margin-left: 15px;">
+                                <a href="#" style="margin-left: 15px;">
                                     <img class="wow fadeIn animated" src="{{ asset('imgs/theme/usda-organic-logo-min.png') }}"
                                     alt="" style="width: 85px; height: auto;" />
                                     <p>GB-ORG-04</p>
                                 </a>
-                                <a href="{{ url('soil-association-organic') }}" style="margin-left: 15px;">
+                                <a href="#" style="margin-left: 15px;">
                                     <img class="wow fadeIn animated" src="{{ asset('imgs/theme/soil-association-organic-symbol-min.png') }}"
                                     alt="" style="width: 85px; height: auto;" />
                                     <p>GB-ORG-04</p>
@@ -294,19 +307,18 @@ s0.parentNode.insertBefore(s1,s0);
                     <div class="footer-bottom"></div>
                 </div>
                 <div class="col-xl-4 col-lg-6 col-md-6">
-                    <p class="font-sm mb-0">Copyright © 2019 <strong class="text-brand">Natural Juices & Vitamins Ltd.</strong><br /> 
-                        Company Reg. No.<strong class="text-brand"> 07539535 VAT No. 151772511</strong><br /> All Rights Reserved.
+                    <p class="font-sm mb-0">Copyright © 2019 <strong class="text-brand">Natural Juices & Vitamins Ltd, Company Reg. No. 07539535 VAT No. 151772511</strong> All Rights Reserved.
                         <br /></p>
                         <strong style="font-size: 12px;">"We use cookies to give you the best possible experience on our site. By continuing to use the site you agree to our use of cookies. <a href="#">Find out more."</a></strong>
                 </div>
                 <div class="col-xl-4 col-lg-6 text-center d-none d-xl-block">
                     <div class="hotline d-lg-inline-flex mr-30">
                         <img src="{{ asset('imgs/theme/icons/phone-call.svg') }}" alt="hotline" />
-                        <p style="font-size: 21px;">02072 - 052477<span>Working: 9am - 8pm, Mon-Sat</span></p>
+                        <p style="font-size: 21px;">02072 - 052477<span>Working 8:00 - 22:00</span></p>
                     </div>
                     <div class="hotline d-lg-inline-flex">
                         <img src="{{ asset('imgs/theme/icons/phone-call.svg') }}" alt="hotline" />
-                        <p style="font-size: 21px;">02088 - 941315</p>
+                        <p style="font-size: 21px;">02088 - 941315<span>24/7 Support Center</span></p>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-6 col-md-6 text-end d-none d-md-block">
@@ -316,9 +328,10 @@ s0.parentNode.insertBefore(s1,s0);
                                 alt="" /></a>
                         <a href="https://twitter.com/naturaljuices" target="_blank"><img src="{{ asset('imgs/theme/icons/icon-twitter-white.svg') }}"
                                 alt="" /></a>
-                        <a href="https://www.linkedin.com/company/natural-juices-direct" target="_blank" style="padding-top: 3px;"><img src="{{ asset('imgs/theme/icons/icon-linkedin-white.png') }}"
-                                alt="" height="21px;" /></a>
+                        <a href="https://www.linkedin.com/company/natural-juices-direct" target="_blank"><img src="{{ asset('imgs/theme/icons/icon-linkedin.svg') }}"
+                                alt="" /></a>
                     </div>
+                    <p class="font-sm">Up to 15% discount on your first subscribe</p>
                 </div>
             </div>
         </div>

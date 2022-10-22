@@ -69,7 +69,7 @@
                                             <td class="text-center detail-info" data-title="Stock">
                                                 <div class="detail-extralink mr-15">
                                                     <div class="detail-qty border radius">
-                                                        <a class="qty-down"><i class="fi-rs-angle-small-down" onclick="increaseCartValue({{$details['id']}})"></i></a>
+                                                        <a class="qty-down"><i class="fi-rs-angle-small-down" onclick="decreaseValue({{$details['id']}})"></i></a>
                                                         <input type="text" name="quantity" id="qty-value-{{$details['id']}}" class="qty-val" value="{{ $details['quantity'] }}">
                                                         <a class="qty-up"><i class="fi-rs-angle-small-up" onclick="increaseCartValue({{$details['id']}})"></i></a>
                                                     </div>
@@ -432,9 +432,6 @@
             let route = "{{ route('update.cart') }}";
             let token = "{{ csrf_token()}}";
 
-            console.log(parseInt(count));
-
-
             $.ajax({
                 url: route,
                 type: 'patch',
@@ -442,6 +439,30 @@
                     _token: token,
                     id: id,
                     quantity: parseInt(count) + 1
+                },
+                success: function(response) {
+                    let res = $.parseJSON(response);
+                    $('#cart_items_in_cart_page').html('');
+                    $('#cart_items_in_cart_page').html(res[0]);
+                },
+                error: function(xhr) {
+                    console.log('error');
+                }
+            });
+        }
+
+        function decreaseValue(id) {
+            var count = $('#qty-value-'+id).val();
+            let route = "{{ route('update.cart') }}";
+            let token = "{{ csrf_token()}}";
+
+            $.ajax({
+                url: route,
+                type: 'patch',
+                data: {
+                    _token: token,
+                    id: id,
+                    quantity: parseInt(count) - 1
                 },
                 success: function(response) {
                     let res = $.parseJSON(response);

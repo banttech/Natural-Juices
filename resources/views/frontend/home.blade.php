@@ -799,6 +799,8 @@
         </div>
     </section>
     <!--End 4 columns-->
+
+    <!-- Shop by Categories Start -->
     <section class="popular-categories section-padding">
         <div class="container">
             <div class="section-title">
@@ -815,21 +817,83 @@
             <div class="carausel-8-columns-cover position-relative">
                 <div class="carausel-8-columns" id="carausel-8-columns">
                     @foreach($categories as $key => $category)
-                        <div class="card-1">
-                            <figure class="img-hover-scale overflow-hidden" style="border-radius: 50%;">
-                                <a href="#"><img src="images/categories/{{ $category->home_banner_img }}"
-                                        alt="" /></a>
-                            </figure>
-                            <h6>
-                                <a href="shop-grid-right.html">{{$category->name}}</a>
-                            </h6>
-                        </div>
+                        @if($category->category_level == 3)
+                            <div class="card-1" style="height: 200px;">
+                                <figure class="img-hover-scale overflow-hidden" style="border-radius: 50%;">
+                                    <a href="#"><img src="images/categories/{{ $category->home_banner_img }}"
+                                            alt="" /></a>
+                                </figure>
+                                <h6 style="font-size: 12px !important;">
+                                    <a href="shop-grid-right.html">{{$category->name}}</a>
+                                </h6>
+                            </div>
+                        @endif
                     @endforeach
 
                 </div>
             </div>
         </div>
     </section>
+    <!-- Shop By Categories End -->
+
+      <!-- Shop by brand Start -->
+
+       <section class="popular-categories section-padding">
+        <div class="container">
+            <div class="section-title">
+                <div class="title">
+                    <h3>Shop by Brands</h3>
+                    <a class="show-all" href="#">
+                        All Brands
+                        <i class="fi-rs-angle-right"></i>
+                    </a>
+                </div>
+                
+            </div>
+            <div class="shop_detail">
+  <div class="scrollmenu">
+  <ul class="shop_list" style="display: flex;"> 
+    <li>
+      <i class="fa fa-pagelines"></i>
+      <a>Vegetarian</a>
+    </li>
+    <li>
+      <i class="fa fa-pagelines"></i>
+      <a>Vegetarian</a>
+    </li>
+    <li>
+      <i class="fa fa-pagelines"></i>
+      <a>Vegetarian</a>
+    </li>
+    <li>
+      <i class="fa fa-pagelines"></i>
+      <a>Vegetarian</a>
+    </li>
+    <li>
+      <i class="fa fa-pagelines"></i>
+      <a>Vegetarian</a>
+    </li>
+    <li>
+      <i class="fa fa-pagelines"></i>
+      <a>Vegetarian</a>
+    </li>
+    <li>
+      <i class="fa fa-pagelines"></i>
+      <a>Vegetarian</a>
+    </li>
+    <li>
+      <i class="fa fa-pagelines"></i>
+      <a>Vegetarian</a>
+    </li>
+    
+  </ul>
+</div>   
+</div>
+        </div>
+    </section>
+
+      <!-- Shop by brand end -->
+
     <!--End category slider-->
     <section class="newsletter mb-15">
             <div class="container">
@@ -864,8 +928,8 @@
                             </div>
                             <div class="banner-text">
                                 <h3 class="icon-box-title">Free UK Delivery</h3>
-                                <p style="font-size: 12px;"><span style="font-weight: bold; color: black;">FREE</span> UK Shipping On All</p>
-                                <p style="font-size: 12px;"><span style="font-weight: bold; color: black;">Orders.</span> No Minimum Cart Value</p>
+
+                                <p style="font-size: 13px;">FREE UK Shipping On All Orders. No Minimum Cart Value</p>
                             </div>
                         </div>
                     </div>
@@ -876,8 +940,7 @@
                             </div>
                             <div class="banner-text">
                                 <h3 class="icon-box-title">Repeat Same Order</h3>
-                                <p style="font-size: 12px;">Skip the Search & <span style="font-weight: bold; color: black;">Repeat Same</span></p>
-                                <p style="font-size: 12px;"><span style="font-weight: bold; color: black;">Order</span> From Your User Dashboard.</p>
+                                <p style="font-size: 13px;">Skip the Search &amp; Repeat Same Order From Your User Dashboard.</p>
                             </div>
                         </div>
                     </div>
@@ -888,8 +951,7 @@
                             </div>
                             <div class="banner-text">
                                 <h3 class="icon-box-title">Same Day Free Delivery in UK</h3>
-                                <p style="font-size: 12px;">Order Before 2 PM For <span style="font-weight: bold; color: black;">Same</span></p>
-                                <p style="font-size: 12px;"><span style="font-weight: bold; color: black;">Day/Next Day Shipping</span> For in Stock Items.</p>
+                                <p style="font-size: 13px;">Order Before 2 PM For Same Day/Next Day Shipping For in Stock Items.</p>
                             </div>
                         </div>
                     </div>
@@ -900,7 +962,7 @@
                             </div>
                             <div class="banner-text">
                                 <h3 class="icon-box-title">Save Big With Multiple Packs</h3>
-                                <p style="font-size: 12px;">Save Upto <span style="font-weight: bold; color: black;">50% OFF</span> By Choosing Different <span style="font-weight: bold; color: black;">Packs</span> Available on Product Page</p>
+                                <p style="font-size: 13px;">Save Upto 50% OFF By Choosing Different Packs Available on Product Page</p>
                             </div>
                         </div>
                     </div>
@@ -929,15 +991,15 @@
                             </div>
                         </div>
                         <div class="product-content-wrap">
-                            <div class="deals-content">
-                                <h2><a href="shop-product-right.html">{{$blog->title}}</a></h2>
+                            <div class="deals-content" style="height: 190px;">
+                                <h2 style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 4; line-clamp: 4; -webkit-box-orient: vertical; height: 80px;"><a href="shop-product-right.html">{{$blog->title}}</a></h2>
                                 <div>
                                     <span class="font-small text-muted">{{$blog->blog_category->cat_name }}</span>
                                 </div>
-                                <div class="product-card-bottom">
+                                <div class="product-card-bottom" style="margin-top: 5px;">
                                     <div>
                                         <span class="font-small text-muted">By <a
-                                                href="vendor-details-1.html">{{$blog->user_details->name}}</a></span>
+                                                href="vendor-details-1.html">Natural Juices Editor</a></span>
                                     </div>
                                 </div>
                             </div>
