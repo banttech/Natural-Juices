@@ -236,18 +236,18 @@ Route::post('filterByCategory', [FrontendController::class, 'filterByCategory'])
 
 
 
-// Add to cart
+// Cart
 Route::get('viewCart', [CartController::class, 'index'])->name('viewCart');
 Route::get('add-to-cart', [CartController::class, 'addToCart'])->name('add.to.cart');
 Route::patch('update-cart', [CartController::class, 'update'])->name('update.cart');
-Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove.from.cart');
-
+Route::post('remove-from-cart', [CartController::class, 'remove'])->name('remove.from.cart');
 
 
 
 // Product Detail
-Route::get('product/{id}', [ProductDetailController::class, 'productDetail'])->name('productDetail');
+Route::get('product/{slug}', [ProductDetailController::class, 'productDetail'])->name('productDetail');
 Route::get('allProducts', [ProductDetailController::class, 'allProducts'])->name('allProducts');
+Route::get('filter.by.product.pack', [ProductDetailController::class, 'filterByProductPack'])->name('filter.by.product.pack');
 
 
 // User Dashboard
@@ -255,3 +255,12 @@ Route::get('myDashboard', [UserDashboardController::class, 'index'])->name('myDa
 Route::get('myProfile', [UserDashboardController::class, 'myProfile'])->name('myProfile');
 Route::get('changePassword', [UserDashboardController::class, 'changePassword'])->name('changePassword');
 Route::get('manageAddress', [UserDashboardController::class, 'manageAddress'])->name('manageAddress');
+
+
+// Food Federation
+Route::get('the-organic-food-federation', [FrontendController::class, 'organicFoodFederation'])->name('the-organic-food-federation');
+Route::get('usda-organic', [FrontendController::class, 'usdaOrganic'])->name('usda-organic');
+Route::get('soil-association-organic', [FrontendController::class, 'soilAssociationOrganic'])->name('soil-association-organic');
+
+// Checkout
+Route::get('checkout', [CheckOutController::class, 'index'])->name('checkout');

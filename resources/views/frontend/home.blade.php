@@ -38,7 +38,7 @@
                                         <a aria-label="Quick view" class="action-btn" href="{{ url('product/' . $product->url_slug) }}"><i class="fi-rs-eye"></i></a>
                                     </div>
                                     <div class="product-badges product-badges-position product-badges-mrg">
-                                        <span class="sale">${{$product->reg_sel_price - $product->final_sel_price}} OFF</span>
+                                        <span class="sale">£{{$product->reg_sel_price - $product->final_sel_price}} OFF</span>
                                     </div>
                                 </div>
                                 <div class="product-content-wrap">
@@ -54,12 +54,12 @@
                                     </div>
                                     <div>
                                         <span class="font-small text-muted"><a
-                                                href="#" style="font-weight: bold;">Manual Discount: ${{$product->prod_manual_discount}}</a></span>
+                                                href="#" style="font-weight: bold;">Manual Discount: £{{$product->prod_manual_discount}}</a></span>
                                     </div>
                                     <div class="product-card-bottom">
                                         <div class="product-price">
-                                            <span>${{ $product->final_sel_price }}</span>
-                                            <span class="old-price">${{$product->reg_sel_price}}<span>
+                                            <span>£{{ $product->final_sel_price }}</span>
+                                            <span class="old-price">£{{$product->reg_sel_price}}<span>
                                         </div>
                                         <div class="add-cart" onclick="addToCart({{$product->id}})">
                                             <a class="add"><i
@@ -114,7 +114,7 @@
                                                         <a aria-label="Quick view" class="action-btn" href="{{ url('product/' . $product->url_slug) }}"> <i class="fi-rs-eye"></i></a>
                                                     </div>
                                                     <div class="product-badges product-badges-position product-badges-mrg">
-                                                        <span class="hot">${{$product->reg_sel_price - $product->final_sel_price}} OFF</span>
+                                                        <span class="hot">£{{$product->reg_sel_price - $product->final_sel_price}} OFF</span>
                                                     </div>
                                                 </div>
                                                 <div class="product-content-wrap">
@@ -126,8 +126,8 @@
                                                         <div class="product-rating" style="width: 80%"></div>
                                                     </div>
                                                     <div class="product-price mt-10">
-                                                        <span>${{ $product->final_sel_price }} </span>
-                                                        <span class="old-price">${{$product->reg_sel_price}}</span>
+                                                        <span>£{{ $product->final_sel_price }} </span>
+                                                        <span class="old-price">£{{$product->reg_sel_price}}</span>
                                                     </div>
                                                     <div class="sold mt-15 mb-15">
                                                         <div class="progress mb-5">
@@ -187,8 +187,8 @@
                                                 <div class="product-rating" style="width: 80%"></div>
                                             </div>
                                             <div class="product-price mt-10">
-                                                <span>$238.85 </span>
-                                                <span class="old-price">$245.8</span>
+                                                <span>£238.85 </span>
+                                                <span class="old-price">£245.8</span>
                                             </div>
                                             <div class="sold mt-15 mb-15">
                                                 <div class="progress mb-5">
@@ -237,8 +237,8 @@
                                                 <div class="product-rating" style="width: 80%"></div>
                                             </div>
                                             <div class="product-price mt-10">
-                                                <span>$238.85 </span>
-                                                <span class="old-price">$245.8</span>
+                                                <span>£238.85 </span>
+                                                <span class="old-price">£245.8</span>
                                             </div>
                                             <div class="sold mt-15 mb-15">
                                                 <div class="progress mb-5">
@@ -287,8 +287,8 @@
                                                 <div class="product-rating" style="width: 80%"></div>
                                             </div>
                                             <div class="product-price mt-10">
-                                                <span>$238.85 </span>
-                                                <span class="old-price">$245.8</span>
+                                                <span>£238.85 </span>
+                                                <span class="old-price">£245.8</span>
                                             </div>
                                             <div class="sold mt-15 mb-15">
                                                 <div class="progress mb-5">
@@ -337,8 +337,8 @@
                                                 <div class="product-rating" style="width: 80%"></div>
                                             </div>
                                             <div class="product-price mt-10">
-                                                <span>$238.85 </span>
-                                                <span class="old-price">$245.8</span>
+                                                <span>£238.85 </span>
+                                                <span class="old-price">£245.8</span>
                                             </div>
                                             <div class="sold mt-15 mb-15">
                                                 <div class="progress mb-5">
@@ -387,8 +387,8 @@
                                                 <div class="product-rating" style="width: 80%"></div>
                                             </div>
                                             <div class="product-price mt-10">
-                                                <span>$238.85 </span>
-                                                <span class="old-price">$245.8</span>
+                                                <span>£238.85 </span>
+                                                <span class="old-price">£245.8</span>
                                             </div>
                                             <div class="sold mt-15 mb-15">
                                                 <div class="progress mb-5">
@@ -445,8 +445,8 @@
                                                 <div class="product-rating" style="width: 80%"></div>
                                             </div>
                                             <div class="product-price mt-10">
-                                                <span>$238.85 </span>
-                                                <span class="old-price">$245.8</span>
+                                                <span>£238.85 </span>
+                                                <span class="old-price">£245.8</span>
                                             </div>
                                             <div class="sold mt-15 mb-15">
                                                 <div class="progress mb-5">
@@ -495,8 +495,8 @@
                                                 <div class="product-rating" style="width: 80%"></div>
                                             </div>
                                             <div class="product-price mt-10">
-                                                <span>$238.85 </span>
-                                                <span class="old-price">$245.8</span>
+                                                <span>£238.85 </span>
+                                                <span class="old-price">£245.8</span>
                                             </div>
                                             <div class="sold mt-15 mb-15">
                                                 <div class="progress mb-5">
@@ -595,8 +595,8 @@
                                                 <div class="product-rating" style="width: 80%"></div>
                                             </div>
                                             <div class="product-price mt-10">
-                                                <span>$238.85 </span>
-                                                <span class="old-price">$245.8</span>
+                                                <span>£238.85 </span>
+                                                <span class="old-price">£245.8</span>
                                             </div>
                                             <div class="sold mt-15 mb-15">
                                                 <div class="progress mb-5">
@@ -645,8 +645,8 @@
                                                 <div class="product-rating" style="width: 80%"></div>
                                             </div>
                                             <div class="product-price mt-10">
-                                                <span>$238.85 </span>
-                                                <span class="old-price">$245.8</span>
+                                                <span>£238.85 </span>
+                                                <span class="old-price">£245.8</span>
                                             </div>
                                             <div class="sold mt-15 mb-15">
                                                 <div class="progress mb-5">
@@ -695,8 +695,8 @@
                                             <span class="font-small ml-5 text-muted"> (4.0)</span>
                                         </div>
                                         <div class="product-price">
-                                            <span>${{ $product->final_sel_price }}</span>
-                                            <span class="old-price">${{$product->reg_sel_price}}</span>
+                                            <span>£{{ $product->final_sel_price }}</span>
+                                            <span class="old-price">£{{$product->reg_sel_price}}</span>
                                         </div>
                                     </div>
                                 </article>
@@ -726,8 +726,8 @@
                                             <span class="font-small ml-5 text-muted"> (4.0)</span>
                                         </div>
                                         <div class="product-price">
-                                            <span>${{ $product->final_sel_price }}</span>
-                                            <span class="old-price">${{$product->reg_sel_price}}</span>
+                                            <span>£{{ $product->final_sel_price }}</span>
+                                            <span class="old-price">£{{$product->reg_sel_price}}</span>
                                         </div>
                                     </div>
                                 </article>
@@ -756,8 +756,8 @@
                                             <span class="font-small ml-5 text-muted"> (4.0)</span>
                                         </div>
                                         <div class="product-price">
-                                            <span>${{ $product->final_sel_price }}</span>
-                                            <span class="old-price">${{$product->reg_sel_price}}</span>
+                                            <span>£{{ $product->final_sel_price }}</span>
+                                            <span class="old-price">£{{$product->reg_sel_price}}</span>
                                         </div>
                                     </div>
                                 </article>
@@ -786,8 +786,8 @@
                                             <span class="font-small ml-5 text-muted"> (4.0)</span>
                                         </div>
                                         <div class="product-price">
-                                            <span>${{ $product->final_sel_price }}</span>
-                                            <span class="old-price">${{$product->reg_sel_price}}</span>
+                                            <span>£{{ $product->final_sel_price }}</span>
+                                            <span class="old-price">£{{$product->reg_sel_price}}</span>
                                         </div>
                                     </div>
                                 </article>

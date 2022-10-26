@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\ProductsPack;
 
 class CartController extends Controller
 {
@@ -16,10 +17,25 @@ class CartController extends Controller
 
     public function addToCart(Request $request)
     {
-        $product = Product::with('feature_img')->findOrFail($request->id);
-          
+        $product = '';
+        if($request->packId !== '0'){
+            $product = Product::with('feature_img', 'product_packs')->findOrFail($request->id);
+        }else{
+            $product = Product::with('feature_img')->findOrFail($request->id);
+        }          
         $cart = session()->get('cart', []);
-  
+
+        $price = '';
+        if($request->packId !== '0'){
+            foreach($product->product_packs as $product_pack){
+                if($product_pack->id == $request->packId){
+                    $price = $product_pack->pack_final_sel_price;
+                }
+            }
+        }else{
+            $price = $product->final_sel_price;
+        }
+
         if(isset($cart[$request->id])) {
             $cart[$request->id]['quantity']++;
         } else {
@@ -27,11 +43,11 @@ class CartController extends Controller
                 "id" => $product->id,
                 "name" => $product->prod_name,
                 "quantity" => 1,
-                "price" => $product->final_sel_price,
+                "price" => $price,
                 "image" => $product->feature_img[0]->image_name,
             ];
         }
-          
+
         session()->put('cart', $cart);
 
         $html = "";

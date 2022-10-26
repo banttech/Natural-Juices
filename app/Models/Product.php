@@ -23,4 +23,9 @@ class Product extends Model
     {
         return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
+
+    public function product_packs()
+    {
+        return $this->hasMany('App\Models\ProductsPack', 'product_id', 'id');
+    }
 }

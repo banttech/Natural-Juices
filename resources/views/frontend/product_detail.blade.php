@@ -3,12 +3,142 @@
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+.hidden { display: block; }
+
+.exzoom {
+  box-sizing: border-box; }
+  .exzoom * {
+    box-sizing: border-box; }
+  .exzoom .exzoom_img_box {
+    background: #eee;
+    position: relative; }
+    .exzoom .exzoom_img_box .exzoom_main_img {
+      display: block;
+      width: 100%; }
+    
+  .exzoom .exzoom_preview {
+    margin: 0;
+    position: absolute;
+    top: 0;
+    overflow: hidden;
+    z-index: 999;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    display: none; }
+    .exzoom .exzoom_preview .exzoom_preview_img {
+      position: relative;
+      max-width: initial !important;
+      max-height: initial !important;
+      left: 0;
+      top: 0; }
+  .exzoom .exzoom_nav {
+    margin-top: 10px;
+    overflow: hidden;
+    position: relative;
+    left: 15px; }
+    .exzoom .exzoom_nav .exzoom_nav_inner {
+      position: absolute;
+      left: 0;
+      top: 0;
+      margin: 0; }
+      .exzoom .exzoom_nav .exzoom_nav_inner span {
+        border: 1px solid #ddd;
+        overflow: hidden;
+        position: relative;
+        float: left; }
+        .exzoom .exzoom_nav .exzoom_nav_inner span.current {
+          border: 1px solid #3BB77E ; }
+        .exzoom .exzoom_nav .exzoom_nav_inner span img {
+          max-width: 100%;
+          max-height: 100%;
+          position: relative; }
+  .exzoom .exzoom_btn {
+    position: relative;
+    margin: 0; }
+    .exzoom .exzoom_btn a {
+      display: block;
+      width: 15px;
+      border: 1px solid #ddd;
+      height: 60px;
+      line-height: 60px;
+      background: #eee;
+      text-align: center;
+      font-size: 18px;
+      position: absolute;
+      left: 0;
+      top: -62px;
+      text-decoration: none;
+      color: #999; }
+    .exzoom .exzoom_btn a:hover {
+      background: #3BB77E ;
+      color: #fff; }
+    .exzoom .exzoom_btn a.exzoom_next_btn {
+      left: auto;
+      right: 0; }
+  .exzoom .exzoom_zoom {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+    z-index: 5;
+    cursor: pointer; }
+  @media screen and (max-width: 768px) {
+    .exzoom .exzoom_zoom_outer {
+      display: none; } }
+  .exzoom .exzoom_img_ul_outer {
+    border: 1px solid #ddd;
+    position: absolute;
+    overflow: hidden; }
+    .exzoom .exzoom_img_ul_outer .exzoom_img_ul {
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+      position: absolute; }
+      .exzoom .exzoom_img_ul_outer .exzoom_img_ul li {
+        list-style: none;
+        display: inline-block;
+        text-align: center;
+        float: left; }
+        .exzoom .exzoom_img_ul_outer .exzoom_img_ul li img {
+          width: 100%; }
+          .slct-pks {
+    font-size: 14px;
+    font-weight: bold;
+}
+.pack h3 {
+    margin: 8px 0;
+}
+.custom-select.size {
+    width: 57%;
+    border-radius: inherit;
+    padding: 12px 0px;
+    height: 46px;
+    padding-left: 10px;
+    padding-right: 20px;
+    border-radius: 0;
+    font-weight: normal;
+    font-size: 1.4rem;
+    color: #333;
+    border: 2px solid #3BB77E !important;
+    border-radius: 5px;
+}
+.custom-select.size {
+    font-weight: normal;
+    font-size: 1rem;
+    color: #333;
+}
+.pack{margin-bottom: 15px}
+
+
+
+  </style>
 	<main class="main">
         <div class="page-header breadcrumb-wrap">
             <div class="container">
                 <div class="breadcrumb">
                     <a href="{{url('/')}}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                    <span></span> <a href="#">Vegetables & tubers</a> <span></span> Seeds of Change Organic
+                    <span></span> <a href="#">{{$product->category[0]->name}}</a> <span></span> {{$product->prod_name}}
                 </div>
             </div>
         </div>
@@ -19,29 +149,42 @@
                         <div class="col-xl-9">
                             <div class="product-detail accordion-detail">
                                 <div class="row mb-50 mt-30">
-                                    <div class="col-md-6 col-sm-12 col-xs-12 mb-md-0 mb-sm-5">
+                                    <div class="col-md-5 col-sm-12 col-xs-12 mb-md-0 mb-sm-5">
                                         <div class="detail-gallery">
-                                            <span class="zoom-icon"><i class="fi-rs-search"></i></span>
-                                            <!-- MAIN SLIDES -->
-                                            <div class="product-image-slider">
+                                            <div class="exzoom hidden" id="exzoom">
+                                            <div class="exzoom_img_box">
+                                                <ul class='exzoom_img_ul'>
+                                                    @foreach($product->feature_img as $key => $img)
+                                                        <li><img src="{{url('/')}}/images/products/{{ $img->image_name }}"/></li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                            <div class="exzoom_nav"></div>
+                                            <p class="exzoom_btn">
+                                                <a href="javascript:void(0);" class="exzoom_prev_btn"> < </a>
+                                                <a href="javascript:void(0);" class="exzoom_next_btn"> > </a>
+                                            </p>
+                                        </div>
+                                            
+                                            <!-- <div class="product-image-slider">
                 								@foreach($product->feature_img as $key => $img)
 	                                                <figure class="border-radius-10">
 	                                                    <img src="{{url('/')}}/images/products/{{ $img->image_name }}" alt="product image" />
 	                                                </figure>
                                             	@endforeach
                                             </div>
-                                            <!-- THUMBNAILS -->
+                                           
                                             <div class="slider-nav-thumbnails">
                 								@foreach($product->feature_img as $key => $img)
                                             		<div><img src="{{url('/')}}/images/products/{{ $img->image_name }}" alt="product image"  /></div>
                                             	@endforeach
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <!-- End Gallery -->
                                     </div>
-                                    <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="col-md-7 col-sm-12 col-xs-12">
                                         <div class="detail-info pr-30 pl-30">
-                                            <span class="stock-status out-stock"> ${{$product->reg_sel_price - $product->final_sel_price}} OFF </span>
+                                            <span class="stock-status out-stock"> £{{$product->reg_sel_price - $product->final_sel_price}} OFF </span>
                                             <h2 class="title-detail">{{ $product->prod_name }}</h2>
                                             <div class="product-detail-rating">
                                                 <div class="product-rate-cover text-end">
@@ -52,27 +195,27 @@
                                                 </div>
                                             </div>
                                             <div class="clearfix product-price-cover">
-                                                <div class="product-price primary-color float-left">
-                                                    <span class="current-price text-brand">${{ $product->final_sel_price }}</span>
+                                                <div class="product-price primary-color float-left" id="prod-price-and-off-price">
+                                                    <span class="current-price text-brand">£{{ $product->final_sel_price }}</span>
                                                     <span>
                                                     	<?php $percentOff = ($product->final_sel_price * 100) / $product->reg_sel_price ?>
                                                         <span class="save-price font-md color3 ml-15">{{ 100 - $percentOff }}% Off</span>
-                                                        <span class="old-price font-md ml-15">${{$product->reg_sel_price}}</span>
+                                                        <span class="old-price font-md ml-15">£{{$product->reg_sel_price}}</span>
                                                     </span>
                                                 </div>
                                             </div>
                                             <div class="short-desc mb-30">
                                                 <p class="font-lg"><?=$product->prod_description?></p>
                                             </div>
-                                            <div class="attr-detail attr-size mb-30">
-                                                <strong class="mr-10">Size / Weight: </strong>
-                                                <ul class="list-filter size-filter font-small">
-                                                    <li><a href="#">50g</a></li>
-                                                    <li class="active"><a href="#">60g</a></li>
-                                                    <li><a href="#">80g</a></li>
-                                                    <li><a href="#">100g</a></li>
-                                                    <li><a href="#">150g</a></li>
-                                                </ul>
+                                            <div class="pack">
+                                             <h3 class="slct-pks">Select Your Money Saving Multipack</h3>
+                                             <span id="choose_pack_error_msg"></span>
+                                             <select name="pack_id" class="custom-select size" id="packdisplay" onchange="filterByProductPack(this.value);">
+                                                <option selected="true" disabled="disabled">Select</option>
+                                                @foreach($product->product_packs as $key => $product_pack)
+                                                    <option value="{{$product_pack->id}}">{{$product_pack->pack_name}}</option>
+                                                @endforeach
+                                            </select>
                                             </div>
                                             <div class="detail-extralink mb-50">
                                                 <div class="detail-qty border radius">
@@ -82,8 +225,6 @@
                                                 </div>
                                                 <div class="product-extra-link2">
                                                     <button type="submit" class="button button-add-to-cart" onclick="addToCart({{$product->id}})"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
-                                                    <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                                    <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
                                                 </div>
                                             </div>
                                             <div class="font-xs">
@@ -94,14 +235,13 @@
                                                 </ul>
                                                 <ul class="float-start">
                                                     <li class="mb-5">SKU: <a href="#">FWM15VKT</a></li>
-                                                    <?php echo($product->seo_tags); ?>
                                                     <?php $tags =  explode(',', $product->seo_tags); ?>
                                                     <li class="mb-5">Tags:
-                                                    	@foreach($tags as $key => $tag) 
+                                                    	@foreach($tags as $key => $tag)
                                                     		<a href="#" rel="tag">{{ $tag }}</a>,
                                                     	@endforeach 
                                                     </li>
-                                                    <li>Stock:<span class="in-stock text-brand ml-5">{{ $product->prod_stock_unit }} Items In Stock</span></li>
+                                                    <li>Stock: <span class="in-stock text-brand ml-5"><span id="prod_stock">{{ $product->prod_stock_unit }}</span> Items In Stock</span></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -355,7 +495,6 @@
                                                                 <span>1 star</span>
                                                                 <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%</div>
                                                             </div>
-                                                            <a href="#" class="font-xs text-muted">How are ratings calculated?</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -419,7 +558,7 @@
     	                                                            <a aria-label="Quick view" class="action-btn small hover-up" href="{{ url('product/' . $relatedProduct->url_slug) }}"> <i class="fi-rs-eye"></i></a>
     	                                                        </div>
     	                                                        <div class="product-badges product-badges-position product-badges-mrg">
-    	                                                            <span class="hot"> ${{$relatedProduct->reg_sel_price - $relatedProduct->final_sel_price}} OFF</span>
+    	                                                            <span class="hot"> £{{$relatedProduct->reg_sel_price - $relatedProduct->final_sel_price}} OFF</span>
     	                                                        </div>
     	                                                    </div>
     	                                                    <div class="product-content-wrap">
@@ -428,8 +567,8 @@
     	                                                            <span> </span>
     	                                                        </div>
     	                                                        <div class="product-price">
-    	                                                            <span>${{$relatedProduct->reg_sel_price}} </span>
-    	                                                            <span class="old-price">${{$relatedProduct->final_sel_price}}</span>
+    	                                                            <span>£{{$relatedProduct->reg_sel_price}} </span>
+    	                                                            <span class="old-price">£{{$relatedProduct->final_sel_price}}</span>
     	                                                        </div>
     	                                                    </div>
     	                                                </div>
@@ -453,7 +592,7 @@
                                             </div>
                                             <div class="content pt-10">
                                                 <h5><a href="shop-product-detail.html">{{ $product->prod_name }}</a></h5>
-                                                <p class="price mb-0 mt-5">${{ $product->final_sel_price }}</p>
+                                                <p class="price mb-0 mt-5">£{{ $product->final_sel_price }}</p>
                                                 <div class="product-rate">
                                                     <div class="product-rating" style="width: 90%"></div>
                                                 </div>
@@ -470,10 +609,9 @@
     </main>
 
 
-     <div class="modal" id="myModal">
-  <div class="modal-dialog">
+    <div class="modal" id="myModal">
+    <div class="modal-dialog">
     <div class="modal-content">
-
       <!-- Modal Header -->
      <!--  <div class="modal-header">
         <h4 class="modal-title">Modal Heading</h4>
@@ -624,81 +762,104 @@
     </div>
 
 
-    <script type="text/javascript">
-        function addToCart(id) {
-            let route = "{{ route('add.to.cart') }}";
-            let token = "{{ csrf_token()}}";
+<script type="text/javascript">
+    function addToCart(id) {
+        let route = "{{ route('add.to.cart') }}";
+        let token = "{{ csrf_token()}}";
+        let packId = $('#packdisplay').val() == null ? 0 : $('#packdisplay').val();
 
-            $.ajax({
-                url: route,
-                type: 'GET',
-                data: {
-                    id: id
-                },
-                success: function(response) {
-                    let res = $.parseJSON(response);
-                    console.log('res', res);
-                    swal("Added To Cart!", "", "success");
-                    $('#parent_head_cart').html('');
-                    $('#parent_head_cart').html(res[0]);
-                    $('#cart_head_count').text('');
-                    $('#cart_head_count').text(res[1]);
-                },
-                error: function(xhr) {
-                    console.log('error');
-                }
-            });
+        $.ajax({
+            url: route,
+            type: 'GET',
+            data: {
+                id: id,
+                packId: packId,
+            },
+            success: function(response) {
+                let res = $.parseJSON(response);
+                swal("Added To Cart!", "", "success");
+                $('#parent_head_cart').html('');
+                $('#parent_head_cart').html(res[0]);
+                $('#cart_head_count').text('');
+                $('#cart_head_count').text(res[1]);
+            },
+            error: function(xhr) {
+                console.log('error');
+            }
+        });
+    }
+
+    function filterByProductPack(id) {
+        let route = "{{ route('filter.by.product.pack') }}";
+        let token = "{{ csrf_token()}}";
+
+        $.ajax({
+            url: route,
+            type: 'GET',
+            data: {
+                _token:token,
+                id: id
+            },
+            success: function(response) {
+                let res = $.parseJSON(response);
+                $('#prod-price-and-off-price').html('');
+                $('#prod-price-and-off-price').html(res[0]);
+                $('#prod_stock').text('');
+                $('#prod_stock').text(res[1]);
+            },
+            error: function(xhr) {
+                console.log('Some Error Occured!')
+            }
+        });
+    }
+
+    $(document).ready(function(){
+  
+      /* 1. Visualizing things on Hover - See next part for action on click */
+      $('#stars li').on('mouseover', function(){
+        var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
+       
+        // Now highlight all the stars that's not after the current hovered star
+        $(this).parent().children('li.star').each(function(e){
+          if (e < onStar) {
+            $(this).addClass('hover');
+          }
+          else {
+            $(this).removeClass('hover');
+          }
+        });
+        
+      }).on('mouseout', function(){
+        $(this).parent().children('li.star').each(function(e){
+          $(this).removeClass('hover');
+        });
+    });
+  
+    /* 2. Action to perform on click */
+    $('#stars li').on('click', function(){
+        var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+        var stars = $(this).parent().children('li.star');
+        
+        for (i = 0; i < stars.length; i++) {
+          $(stars[i]).removeClass('selected');
         }
-
-         $(document).ready(function(){
-  
-  /* 1. Visualizing things on Hover - See next part for action on click */
-  $('#stars li').on('mouseover', function(){
-    var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
-   
-    // Now highlight all the stars that's not after the current hovered star
-    $(this).parent().children('li.star').each(function(e){
-      if (e < onStar) {
-        $(this).addClass('hover');
-      }
-      else {
-        $(this).removeClass('hover');
-      }
+        
+        for (i = 0; i < onStar; i++) {
+          $(stars[i]).addClass('selected');
+        }
+        
+        // JUST RESPONSE (Not needed)
+        var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+        var msg = "";
+        if (ratingValue > 1) {
+            msg = "Thanks! You rated this " + ratingValue + " stars.";
+        }
+        else {
+            msg = "We will improve ourselves. You rated this " + ratingValue + " stars.";
+        }
+        responseMessage(msg);
+        
+      });
     });
-    
-  }).on('mouseout', function(){
-    $(this).parent().children('li.star').each(function(e){
-      $(this).removeClass('hover');
-    });
-  });
-  
-  
-  /* 2. Action to perform on click */
-  $('#stars li').on('click', function(){
-    var onStar = parseInt($(this).data('value'), 10); // The star currently selected
-    var stars = $(this).parent().children('li.star');
-    
-    for (i = 0; i < stars.length; i++) {
-      $(stars[i]).removeClass('selected');
-    }
-    
-    for (i = 0; i < onStar; i++) {
-      $(stars[i]).addClass('selected');
-    }
-    
-    // JUST RESPONSE (Not needed)
-    var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
-    var msg = "";
-    if (ratingValue > 1) {
-        msg = "Thanks! You rated this " + ratingValue + " stars.";
-    }
-    else {
-        msg = "We will improve ourselves. You rated this " + ratingValue + " stars.";
-    }
-    responseMessage(msg);
-    
-  });
-});
-
-    </script>
+</script>
 @endsection

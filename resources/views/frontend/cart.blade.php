@@ -64,7 +64,7 @@
                                                 </div>
                                             </td>
                                             <td class="price" data-title="Price">
-                                                <h4 class="text-body">${{ $details['price'] }} </h4>
+                                                <h4 class="text-body">£{{ $details['price'] }} </h4>
                                             </td>
                                             <td class="text-center detail-info" data-title="Stock">
                                                 <div class="detail-extralink mr-15">
@@ -76,7 +76,7 @@
                                                 </div>
                                             </td>
                                             <td class="price" data-title="Price">
-                                                <h4 class="text-brand">${{ $details['price'] * $details['quantity'] }} </h4>
+                                                <h4 class="text-brand">£{{ $details['price'] * $details['quantity'] }} </h4>
                                             </td>
                                             <td class="action text-center" data-title="Remove"><a class="text-body" onclick="deleteItem({{ $details['id'] }})"><i class="fi-rs-trash"></i></a></td>
                                         </tr>
@@ -384,7 +384,7 @@
                                             <h6 class="text-muted">Subtotal</h6>
                                         </td>
                                         <td class="cart_total_amount">
-                                            <h4 class="text-brand text-end">$12.31</h4>
+                                            <h4 class="text-brand text-end">£12.31</h4>
                                         </td>
                                     </tr>
                                     <tr>
@@ -412,7 +412,7 @@
                                             <h6 class="text-muted">Total</h6>
                                         </td>
                                         <td class="cart_total_amount">
-                                            <h4 class="text-brand text-end">$12.31</h4>
+                                            <h4 class="text-brand text-end">£12.31</h4>
                                         </td>
                                     </tr>
                                 </tbody>

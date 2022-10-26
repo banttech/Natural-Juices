@@ -16,9 +16,7 @@ class CheckOutController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
-        $grandTotal = $this->grandTotal();
-        return view('frontend.checkout', compact('categories', 'grandTotal'));
+        return view('frontend.checkout');
     }
 
     public function placeorder(AddOrderRequest $request)
