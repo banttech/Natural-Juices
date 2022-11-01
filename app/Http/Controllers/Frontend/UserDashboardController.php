@@ -33,4 +33,15 @@ class UserDashboardController extends Controller
         return view('frontend.dashboard.manageAddress', compact('countries', 'active'));
     }
 
+    public function myOrders()
+    {
+        $active = 'my_orders';
+        return view('frontend.dashboard.myOrders', compact('active'));
+    }
+
+    public function invoice($invoice_number)
+    {
+        return view('frontend.dashboard.invoice', compact('invoice_number'));
+    }
+
 }

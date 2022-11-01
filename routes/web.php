@@ -1,4 +1,3 @@
-
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -35,6 +34,11 @@ use App\Http\Controllers\Frontend\ProductDetailController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckOutController;
 use App\Http\Controllers\Frontend\UserDashboardController;
+use App\Http\Controllers\Frontend\PayPalController;
+use App\Http\Controllers\Frontend\ShopByCategoryController;
+use App\Http\Controllers\Frontend\ShopByBrandController;
+use App\Http\Controllers\Frontend\BlogController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -89,6 +93,9 @@ Route::post('/updateShippingCategory/{id}', [ShippingCategoryController::class, 
 
 
 Route::get('/addCategory', [CategoryController::class, 'add'])->name('addCategory');
+
+Route::post('/updateCategorySort/{id}', [CategoryController::class, 'updateCategorySort'])->name('updateCategorySort');
+Route::get('/viewCategoriess', [CategoryController::class, 'view'])->name('viewCategoriess');
 
 Route::group(['namespace' => 'Admin', 'middleware' => ['auth','permission']], function () {
 
@@ -242,8 +249,6 @@ Route::get('add-to-cart', [CartController::class, 'addToCart'])->name('add.to.ca
 Route::patch('update-cart', [CartController::class, 'update'])->name('update.cart');
 Route::post('remove-from-cart', [CartController::class, 'remove'])->name('remove.from.cart');
 
-
-
 // Product Detail
 Route::get('product/{slug}', [ProductDetailController::class, 'productDetail'])->name('productDetail');
 Route::get('allProducts', [ProductDetailController::class, 'allProducts'])->name('allProducts');
@@ -255,6 +260,15 @@ Route::get('myDashboard', [UserDashboardController::class, 'index'])->name('myDa
 Route::get('myProfile', [UserDashboardController::class, 'myProfile'])->name('myProfile');
 Route::get('changePassword', [UserDashboardController::class, 'changePassword'])->name('changePassword');
 Route::get('manageAddress', [UserDashboardController::class, 'manageAddress'])->name('manageAddress');
+Route::get('myOrders', [UserDashboardController::class, 'myOrders'])->name('myOrders');
+Route::get('invoice/{invoice_number}', [UserDashboardController::class, 'invoice'])->name('invoice');
+
+// Shop By Category || Brand
+Route::get('category/{slug}', [ShopByCategoryController::class, 'index'])->name('shop.by.category');
+Route::get('brand/{slug}', [ShopByBrandController::class, 'index'])->name('shop.by.brand');
+
+// Blog Detail
+Route::get('single_category_blog/{id}', [BlogController::class, 'singleCategoryBlog'])->name('single.category.blog');
 
 
 // Food Federation
@@ -262,5 +276,13 @@ Route::get('the-organic-food-federation', [FrontendController::class, 'organicFo
 Route::get('usda-organic', [FrontendController::class, 'usdaOrganic'])->name('usda-organic');
 Route::get('soil-association-organic', [FrontendController::class, 'soilAssociationOrganic'])->name('soil-association-organic');
 
+// Cookie
+Route::get('cookie', [FrontendController::class, 'cookie'])->name('cookie');
+
 // Checkout
 Route::get('checkout', [CheckOutController::class, 'index'])->name('checkout');
+
+// paypal
+Route::get('payment', [PayPalController::class, 'payment'])->name('payment');
+Route::get('cancel', [PayPalController::class, 'cancel'])->name('payment.cancel');
+Route::get('payment/success', [PayPalController::class, 'success'])->name('payment.success');

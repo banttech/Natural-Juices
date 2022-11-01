@@ -19,8 +19,8 @@ class CreateCouponCodesTable extends Migration
             $table->string('coupon_type');
             $table->integer('discount');
             $table->string('coupon_status');
-            $table->timestamps('valid_from');
-            $table->timestamps('end_date');
+            $table->string('valid_from');
+            $table->string('end_date');
             $table->string('usage_allowed');
             $table->string('limit_per_customer');
             $table->integer('minimum_apply_value');

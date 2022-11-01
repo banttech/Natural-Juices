@@ -25,8 +25,11 @@ class FrontendController extends Controller
 
         $blogs = BlogPost::with('blog_category', 'user_details')->get();
         $categories = Category::all();
+        $brands = Brand::all();
 
-        return view('frontend.home', compact('products', 'homePageAds', 'homePageOffer', 'offerCategories', 'categories', 'blogs'));
+        // dd($brands);
+
+        return view('frontend.home', compact('products', 'homePageAds', 'homePageOffer', 'offerCategories', 'categories', 'blogs', 'brands'));
     }
 
     public function filterByCategory(Request $request)
@@ -55,5 +58,10 @@ class FrontendController extends Controller
     public function soilAssociationOrganic()
     {
         return view('frontend.soil-association-organic');
+    }
+
+    public function cookie()
+    {
+        return view('frontend.cookie');
     }
 }

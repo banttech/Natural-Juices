@@ -19,8 +19,8 @@ class CreateShoppingCartOffersTable extends Migration
             $table->integer('minimum_cart_value');
             $table->string('discount_type');
             $table->integer('discount');
-            $table->timestamps('valid_from');
-            $table->timestamps('end_date');
+            $table->string('valid_from');
+            $table->string('end_date');
             $table->string('status');
             $table->string('description');
             $table->timestamps();

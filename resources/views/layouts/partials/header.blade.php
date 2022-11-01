@@ -218,7 +218,7 @@ $('#multibox').selectator();
                                                     <a href="{{ route('myDashboard') }}"><i class="fi fi-rs-dashboard mr-10"></i>My Dashboard</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#"><i class="fi fi-rs-location-alt mr-10"></i>My Orders</a>
+                                                    <a href="{{ url('/myOrders') }}"><i class="fi fi-rs-location-alt mr-10"></i>My Orders</a>
                                                 </li>
                                                 <li>
                                                     <a href="#"><i class="fi fi-rs-eye mr-10"></i>My Reviews</a>

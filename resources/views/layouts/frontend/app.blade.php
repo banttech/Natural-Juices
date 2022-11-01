@@ -93,6 +93,8 @@ s0.parentNode.insertBefore(s1,s0);
 
 <body>
     <!-- Quick view -->
+        <!-- <a href="{{ route('payment') }}" class="btn btn-success">Pay $100 from Paypal</a> -->
+
     <div class="modal fade custom-modal" id="quickViewModal" tabindex="-1" aria-labelledby="quickViewModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
@@ -297,7 +299,7 @@ s0.parentNode.insertBefore(s1,s0);
                     <p class="font-sm mb-0">Copyright © 2019 <strong class="text-brand">Natural Juices & Vitamins Ltd.</strong><br /> 
                         Company Reg. No.<strong class="text-brand"> 07539535, VAT No. 151772511</strong><br /> All Rights Reserved.
                         <br /></p>
-                        <strong style="font-size: 12px;">"We use cookies to give you the best possible experience on our site. By continuing to use the site you agree to our use of cookies. <a href="#">Find out more."</a></strong>
+                        <strong style="font-size: 12px;">"We use cookies to give you the best possible experience on our site. By continuing to use the site you agree to our use of cookies. <a href="{{ url('cookie') }}">Find out more."</a></strong>
                 </div>
                 <div class="col-xl-4 col-lg-6 text-center d-none d-xl-block">
                     <div class="hotline d-lg-inline-flex mr-30">

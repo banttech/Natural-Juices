@@ -1,59 +1,35 @@
 @extends('frontend.dashboard.index')
 @section('myDashboardContent')
-<section class="content-main">
-    <div class="card mb-4">
-        @include('layouts.partials.messages')
-        <form method="POST" action="#" enctype="multipart/form-data">
-            @csrf
-            <div class="card-body">
-                <div class="row mb-3">
-                    <div class="">
-                        <label for="first_name" class="form-label">First Name<span class="text-danger" style="font-size: 17px;">*</span></label>
-                        <input type="text" value="{{ old('name') }}" name="name" placeholder="First Name" class="form-control" />
-                        @if ($errors->has('first_name'))
-                        <span class="text-danger text-left">{{ $errors->first('first_name') }}</span>
-                        @endif
+<div id="account-detail">
+    <div class="card">
+        <div class="card-header">
+            <h5>Account Details</h5>
+        </div>
+        <div class="card-body">
+            <form method="post" name="enq">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label>First Name <span class="required">*</span></label>
+                        <input class="form-control" name="fname" type="text" />
                     </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="">
-                        <label for="last_name" class="form-label">Last Name</label>
-                        <input type="text" value="{{ old('last_name') }}" name="name" placeholder="Last Name" class="form-control" />
-                        @if ($errors->has('last_name'))
-                        <span class="text-danger text-left">{{ $errors->first('last_name') }}</span>
-                        @endif
+                    <div class="form-group col-md-6">
+                        <label>Last Name</label>
+                        <input class="form-control" name="lname" type="text" />
                     </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="">
-                        <label for="email_address" class="form-label">Email Address<span class="text-danger" style="font-size: 17px;">*</span></label>
-                        <input type="text" value="{{ old('email_address') }}" name="name" placeholder="Email Address" class="form-control" />
-                        @if ($errors->has('email_address'))
-                        <span class="text-danger text-left">{{ $errors->first('email_address') }}</span>
-                        @endif
+                    <div class="form-group col-md-12">
+                        <label>Email Address <span class="required">*</span></label>
+                        <input class="form-control" name="email" type="email" />
                     </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="">
-                        <label for="mobile_no" class="form-label">Mobile No<span class="text-danger" style="font-size: 17px;">*</span></label>
-                        <input type="number" value="{{ old('mobile_no') }}" name="name" placeholder="Mobile No" class="form-control" />
-                        @if ($errors->has('mobile_no'))
-                        <span class="text-danger text-left">{{ $errors->first('mobile_no') }}</span>
-                        @endif
+                    <div class="form-group col-md-12">
+                        <label>Mobile No <span class="required">*</span></label>
+                        <input class="form-control" name="mobile_no" type="number" />
                     </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-6">
-                        <div>
-                            <label for="dob" class="form-label">Date of Birth<span class="text-danger" style="font-size: 17px;">*</span></label>
-                            <input type="date" name="dob" class="form-control" />
-                            @if ($errors->has('dob'))
-                            <span class="text-danger text-left">{{ $errors->first('dob') }}</span>
-                            @endif
-                        </div>
+                    <div class="form-group col-md-6">
+                        <label>Date of Birth <span class="required">*</span></label>
+                        <input class="form-control" name="password" type="date" />
                     </div>
-                    <div class="col-6">
-                        <label for="gender" class="form-label">Gender<span class="text-danger" style="font-size: 17px;">*</span></label>
+                    <div class="form-group col-md-6">
+                        <label>Gender <span class="required">*</span></label>
                         <div class="mt-2">
                             <input type="radio" name="gender" value="Male" style="height: 12px; width: 7%;">
                             <label for="male">Male</label>
@@ -61,24 +37,19 @@
                             <label for="female">Female</label>
                         </div>
                     </div>
+                    <div class="form-group col-md-12">
+                        <label>Profile Image <span class="required">*</span></label>
+                        <input class="form-control" name="password" type="file" />
+                    </div>
+                    <span>You can upload photos that are *.jpeg, *.jpg, or *.png</span>
+                    <br />
+                    <span>Preferred dimension 300px X 300px" message after this image field.</span>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-fill-out submit font-weight-bold" name="submit" value="Submit">Save</button>
+                    </div>
                 </div>
-                <div class="row mb-2">
-                    <div>
-                        <label class="form-label">Profile Image<span class="text-danger" style="font-size: 17px;">*</span></label>
-                        <input class="form-control" type="file" name="profile_img" id="profile_img" value="{{ old('profile_img') }}">
-                        @if ($errors->has('profile_img'))
-                        <span class="text-danger text-left">{{ $errors->first('profile_img') }}</span>
-                        @endif
-                    </div>  
-                </div>
-                <span>You can upload photos that are *.jpeg, *.jpg, or *.png</span>
-                <br />
-                <span>Preferred dimension 300px X 300px" message after this image field.</span>
-                <div class="mb-3 mt-3">
-                    <button type="submit" class="btn btn-sm btn-primary">Save</button>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</section>
+</div>
 @endsection

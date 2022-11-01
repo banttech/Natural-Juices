@@ -1,6 +1,9 @@
 @extends('layouts.frontend.app')
 @section('content')
     @include('frontend.layouts.slider')
+    <style type="text/css">
+        .bold-icon{color: #000;}
+    </style>
     <section class="product-tabs section-padding position-relative">
         <div class="container">
             <div class="section-title style-2">
@@ -29,7 +32,7 @@
                             <div class="product-cart-wrap mb-30">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
-                                        <a href="shop-product-right.html">
+                                        <a href="#">
                                             <img class="default-img" src="{{url('/')}}/images/products/{{$product->feature_img[0]->image_name}}" alt="" />
                                             <img class="hover-img" src="{{url('/')}}/images/products/{{$product->feature_img[1]->image_name}}" alt="" />
                                         </a>
@@ -820,11 +823,11 @@
                         @if($category->category_level == 3)
                             <div class="card-1" style="height: 200px;">
                                 <figure class="img-hover-scale overflow-hidden" style="border-radius: 50%;">
-                                    <a href="#"><img src="images/categories/{{ $category->home_banner_img }}"
+                                    <a href="{{ url('category/' . $category->url_slug) }}"><img src="images/categories/{{ $category->home_banner_img }}"
                                             alt="" /></a>
                                 </figure>
                                 <h6 style="font-size: 12px !important;">
-                                    <a href="shop-grid-right.html">{{$category->name}}</a>
+                                    <a href="{{ url('category/' . $category->url_slug) }}">{{$category->name}}</a>
                                 </h6>
                             </div>
                         @endif
@@ -838,57 +841,25 @@
 
       <!-- Shop by brand Start -->
 
-       <section class="popular-categories section-padding">
+    <section class="popular-categories section-padding">
         <div class="container">
             <div class="section-title">
                 <div class="title">
                     <h3>Shop by Brands</h3>
-                    <a class="show-all" href="#">
-                        All Brands
-                        <i class="fi-rs-angle-right"></i>
-                    </a>
                 </div>
-                
             </div>
             <div class="shop_detail">
-  <div class="scrollmenu">
-  <ul class="shop_list" style="display: flex;"> 
-    <li>
-      <i class="fa fa-pagelines"></i>
-      <a>Vegetarian</a>
-    </li>
-    <li>
-      <i class="fa fa-pagelines"></i>
-      <a>Vegetarian</a>
-    </li>
-    <li>
-      <i class="fa fa-pagelines"></i>
-      <a>Vegetarian</a>
-    </li>
-    <li>
-      <i class="fa fa-pagelines"></i>
-      <a>Vegetarian</a>
-    </li>
-    <li>
-      <i class="fa fa-pagelines"></i>
-      <a>Vegetarian</a>
-    </li>
-    <li>
-      <i class="fa fa-pagelines"></i>
-      <a>Vegetarian</a>
-    </li>
-    <li>
-      <i class="fa fa-pagelines"></i>
-      <a>Vegetarian</a>
-    </li>
-    <li>
-      <i class="fa fa-pagelines"></i>
-      <a>Vegetarian</a>
-    </li>
-    
-  </ul>
-</div>   
-</div>
+                <div class="scrollmenu">
+                     <ul class="shop_list" style="display: flex;">
+                        @foreach($brands as $key => $brand)
+                            <li>
+                              <i class="fa fa-pagelines"></i>
+                              <a href="{{ url('brand/' . $brand->url_slug) }}" style="color: #fff;">{{$brand->name}}</a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>   
+            </div>      
         </div>
     </section>
 
@@ -929,7 +900,7 @@
                             <div class="banner-text">
                                 <h3 class="icon-box-title">Free UK Delivery</h3>
 
-                                <p style="font-size: 13px;">FREE UK Shipping On All Orders. No Minimum Cart Value</p>
+                                <p style="font-size: 13px;">FREE UK Shipping On All Orders. No Minimum Cart Value.</p>
                             </div>
                         </div>
                     </div>
@@ -962,7 +933,7 @@
                             </div>
                             <div class="banner-text">
                                 <h3 class="icon-box-title">Save Big With Multiple Packs</h3>
-                                <p style="font-size: 13px;">Save Upto 50% OFF By Choosing Different Packs Available on Product Page</p>
+                                <p style="font-size: 13px;">Save Upto 50% OFF By Choosing Different Packs Available on Product Page.</p>
                             </div>
                         </div>
                     </div>
@@ -992,14 +963,13 @@
                         </div>
                         <div class="product-content-wrap">
                             <div class="deals-content" style="height: 190px;">
-                                <h2 style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 4; line-clamp: 4; -webkit-box-orient: vertical; height: 80px;"><a href="shop-product-right.html">{{$blog->title}}</a></h2>
+                                <h2 style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 4; line-clamp: 4; -webkit-box-orient: vertical; height: 80px;"><a href="#">{{$blog->title}}</a></h2>
                                 <div>
-                                    <span class="font-small text-muted">{{$blog->blog_category->cat_name }}</span>
+                                    <span class="font-small text-muted">Category: <a href="{{ url('single_category_blog/' . $blog->category) }}">{{$blog->blog_category->cat_name }}</a></span>
                                 </div>
                                 <div class="product-card-bottom" style="margin-top: 5px;">
                                     <div>
-                                        <span class="font-small text-muted">By <a
-                                                href="vendor-details-1.html">Natural Juices Editor</a></span>
+                                        <span class="font-small text-muted">By: <span style="color: #3BB77E;">Natural Juices Editor</span></span>
                                     </div>
                                 </div>
                             </div>
@@ -1010,7 +980,112 @@
             </div>
         </div>
     </section>
-    <!--End Deals-->
+
+    <section class="section-padding pb-5">
+        <div class="container">
+            <div class="section-title">
+                <h3 class="">Testimonials</h3>
+                 <a class="show-all" href="#">
+                    View All
+                    <i class="fi-rs-angle-right"></i>
+                </a>
+            </div>
+            <div class="row">
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="product-cart-wrap style-2">
+                        <div class="product-content-wrap" style="margin-top: 0px;">
+                            <div class="deals-content" style="height: 300px;">
+                                <h2><a href="#">DIET ELEMENTS TO ENHANCE</a></h2>
+                                <hr />
+                                <p><i class="fa fa-quote-right bold-icon"></i> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum exercitationem porro praesentium, assumenda facilis excepturi iure repellat eius pariatur asperiores! <i class="fa fa-quote-right bold-icon"></i></p>
+                                <div class="product-card-bottom" style="margin-top: 5px;">
+                                    <div>
+                                        <span class="font-small text-muted">By: <span style="color: #3BB77E;">Chris</span></span>
+                                    </div>
+                                </div>
+                                <div class="product-rate-cover">
+                                    <span class="mr-5">Rating: </span>
+                                    <div class="product-rate d-inline-block">
+                                        <div class="product-rating" style="width: 70%"></div>
+                                    </div>
+                                    <span class="font-small ml-5 text-muted"> (3.5)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="product-cart-wrap style-2">
+                        <div class="product-content-wrap" style="margin-top: 0px;">
+                            <div class="deals-content" style="height: 300px;">
+                                <h2><a href="#">DIET ELEMENTS TO ENHANCE</a></h2>
+                                <hr />
+                                <p><i class="fa fa-quote-right bold-icon"></i> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum exercitationem porro praesentium, assumenda facilis excepturi iure repellat eius pariatur asperiores! <i class="fa fa-quote-right bold-icon"></i></p>
+                                <div class="product-card-bottom" style="margin-top: 5px;">
+                                    <div>
+                                        <span class="font-small text-muted">By: <span style="color: #3BB77E;">Chris</span></span>
+                                    </div>
+                                </div>
+                                <div class="product-rate-cover">
+                                    <span class="mr-5">Rating: </span>
+                                    <div class="product-rate d-inline-block">
+                                        <div class="product-rating" style="width: 70%"></div>
+                                    </div>
+                                    <span class="font-small ml-5 text-muted"> (3.5)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="product-cart-wrap style-2">
+                        <div class="product-content-wrap" style="margin-top: 0px;">
+                            <div class="deals-content" style="height: 300px;">
+                                <h2><a href="#">DIET ELEMENTS TO ENHANCE</a></h2>
+                                <hr />
+                                <p><i class="fa fa-quote-right bold-icon"></i> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum exercitationem porro praesentium, assumenda facilis excepturi iure repellat eius pariatur asperiores! <i class="fa fa-quote-right bold-icon"></i></p>
+                                <div class="product-card-bottom" style="margin-top: 5px;">
+                                    <div>
+                                        <span class="font-small text-muted">By: <span style="color: #3BB77E;">Chris</span></span>
+                                    </div>
+                                </div>
+                                <div class="product-rate-cover">
+                                    <span class="mr-5">Rating: </span>
+                                    <div class="product-rate d-inline-block">
+                                        <div class="product-rating" style="width: 70%"></div>
+                                    </div>
+                                    <span class="font-small ml-5 text-muted"> (3.5)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="product-cart-wrap style-2">
+                        <div class="product-content-wrap" style="margin-top: 0px;">
+                            <div class="deals-content" style="height: 300px;">
+                                <h2><a href="#">DIET ELEMENTS TO ENHANCE</a></h2>
+                                <hr />
+                                <p><i class="fa fa-quote-right bold-icon"></i> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum exercitationem porro praesentium, assumenda facilis excepturi iure repellat eius pariatur asperiores! <i class="fa fa-quote-right bold-icon"></i></p>
+                                <div class="product-card-bottom" style="margin-top: 5px;">
+                                    <div>
+                                        <span class="font-small text-muted">By: <span style="color: #3BB77E;">Chris</span></span>
+                                    </div>
+                                </div>
+                                <div class="product-rate-cover">
+                                    <span class="mr-5">Rating: </span>
+                                    <div class="product-rate d-inline-block">
+                                        <div class="product-rating" style="width: 70%"></div>
+                                    </div>
+                                    <span class="font-small ml-5 text-muted"> (3.5)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
     <script type="text/javascript">

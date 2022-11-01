@@ -112,7 +112,7 @@
 .custom-select.size {
     width: 57%;
     border-radius: inherit;
-    padding: 12px 0px;
+    /*padding: 12px 0px;*/
     height: 46px;
     padding-left: 10px;
     padding-right: 20px;
@@ -129,6 +129,11 @@
     color: #333;
 }
 .pack{margin-bottom: 15px}
+.money_saving_pack{display: flex; justify-content: space-between; align-items: center;}
+.money_saving_pack p{font-weight: bold;}
+.text-bold{color: #000; font-weight: bold;}
+.noni-juice-raberry{background: #EB4960; color: #fff; width: fit-content; padding: 5px 16px; border-radius: 7px;}
+.detail-info .product-price{margin: 15px 0 15px 0;}
 
 
 
@@ -138,7 +143,7 @@
             <div class="container">
                 <div class="breadcrumb">
                     <a href="{{url('/')}}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                    <span></span> <a href="#">{{$product->category[0]->name}}</a> <span></span> {{$product->prod_name}}
+                    <span></span> <a href="{{ url('category/' .$product->category[0]->url_slug) }}">{{$product->category[0]->name}}</a> <span></span> {{$product->prod_name}}
                 </div>
             </div>
         </div>
@@ -165,20 +170,6 @@
                                                 <a href="javascript:void(0);" class="exzoom_next_btn"> > </a>
                                             </p>
                                         </div>
-                                            
-                                            <!-- <div class="product-image-slider">
-                								@foreach($product->feature_img as $key => $img)
-	                                                <figure class="border-radius-10">
-	                                                    <img src="{{url('/')}}/images/products/{{ $img->image_name }}" alt="product image" />
-	                                                </figure>
-                                            	@endforeach
-                                            </div>
-                                           
-                                            <div class="slider-nav-thumbnails">
-                								@foreach($product->feature_img as $key => $img)
-                                            		<div><img src="{{url('/')}}/images/products/{{ $img->image_name }}" alt="product image"  /></div>
-                                            	@endforeach
-                                            </div> -->
                                         </div>
                                         <!-- End Gallery -->
                                     </div>
@@ -204,20 +195,36 @@
                                                     </span>
                                                 </div>
                                             </div>
+                                            <div class="mb-15">
+                                                <h6 class="noni-juice-raberry">Noni Juice with Rasberry Falvour</h6>
+                                            </div>
                                             <div class="short-desc mb-30">
-                                                <p class="font-lg"><?=$product->prod_description?></p>
+                                                <?php  
+                                                    $string = strip_tags($product->prod_description);
+                                                    if (strlen($string) > 350) {
+                                                        // truncate string
+                                                        $stringCut = substr($string, 0, 350);
+                                                        $endPoint = strrpos($stringCut, ' ');
+                                                        $string = $endPoint? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
+                                                        $string .= '... <a href="#Description-tab">Read More</a>';
+                                                    }
+                                                    echo $string;
+                                                ?>
                                             </div>
                                             <div class="pack">
-                                             <h3 class="slct-pks">Select Your Money Saving Multipack</h3>
-                                             <span id="choose_pack_error_msg"></span>
-                                             <select name="pack_id" class="custom-select size" id="packdisplay" onchange="filterByProductPack(this.value);">
-                                                <option selected="true" disabled="disabled">Select</option>
-                                                @foreach($product->product_packs as $key => $product_pack)
-                                                    <option value="{{$product_pack->id}}">{{$product_pack->pack_name}}</option>
-                                                @endforeach
-                                            </select>
+                                                <h3 class="slct-pks">Select Your Money Saving Multipack</h3>
+                                                <span id="choose_pack_error_msg"></span>
+                                                <div class="money_saving_pack">
+                                                    <select name="pack_id" class="custom-select size" id="packdisplay" onchange="filterByProductPack(this.value);">
+                                                        <option selected="true" disabled="disabled">Select</option>
+                                                        @foreach($product->product_packs as $key => $product_pack)
+                                                            <option value="{{$product_pack->id}}">{{$product_pack->pack_name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <p><span id="prod_stock">{{ $product->prod_stock_unit }}</span><span class="text-brand"> In Stock</span></p>
+                                                </div>
                                             </div>
-                                            <div class="detail-extralink mb-50">
+                                            <div class="detail-extralink mb-20">
                                                 <div class="detail-qty border radius">
                                                     <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
                                                     <input type="text" name="quantity" class="qty-val" value="1" min="1" max="12">
@@ -227,21 +234,23 @@
                                                     <button type="submit" class="button button-add-to-cart" onclick="addToCart({{$product->id}})"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
                                                 </div>
                                             </div>
+                                            <div class="mb-20">
+                                                <p>Ready to shop in <span class="text-bold">£22.99 </span>to <span class="text-bold">India </span>in <span class="text-bold">7-10 business days</span></p>
+                                            </div>
                                             <div class="font-xs">
                                                 <ul class="mr-50 float-start">
-                                                    <li class="mb-5">Type: <span class="text-brand">{{$product->category[0]->name}}</span></li>
+                                                    <li class="mb-5">Size: <span class="text-brand">500 mL per Bottle</span></li>
                                                     <li class="mb-5">MFG:<span class="text-brand"> Jun 4.2022</span></li>
                                                     <li>LIFE: <span class="text-brand">70 days</span></li>
                                                 </ul>
                                                 <ul class="float-start">
-                                                    <li class="mb-5">SKU: <a href="#">FWM15VKT</a></li>
+                                                    <li class="mb-5">SKU: <span class="text-brand">FWM15VKT</span></li>
                                                     <?php $tags =  explode(',', $product->seo_tags); ?>
                                                     <li class="mb-5">Tags:
                                                     	@foreach($tags as $key => $tag)
-                                                    		<a href="#" rel="tag">{{ $tag }}</a>,
+                                                    		<span class="text-brand">{{ $tag }}</span>@if($key < count($tags) - 1), @endif
                                                     	@endforeach 
                                                     </li>
-                                                    <li>Stock: <span class="in-stock text-brand ml-5"><span id="prod_stock">{{ $product->prod_stock_unit }}</span> Items In Stock</span></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -255,10 +264,10 @@
                                                 <a class="nav-link active" id="Description-tab" data-bs-toggle="tab" href="#Description">Description</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" id="Additional-info-tab" data-bs-toggle="tab" href="#Additional-info">Additional info</a>
+                                                <a class="nav-link" id="Additional-info-tab" data-bs-toggle="tab" href="#Supplements-facts">Supplements Facts</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" id="Vendor-info-tab" data-bs-toggle="tab" href="#Vendor-info">Vendor</a>
+                                                <a class="nav-link" id="Vendor-info-tab" data-bs-toggle="tab" href="#Manufacturer-info">Manufacturer Info</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews">Reviews (3)</a>
@@ -270,7 +279,7 @@
                                                     <?=$product->meta_description?>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade" id="Additional-info">
+                                            <div class="tab-pane fade" id="Supplements-facts">
                                                 <table class="font-md">
                                                     <tbody>
                                                         <tr class="stand-up">
@@ -360,7 +369,7 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <div class="tab-pane fade" id="Vendor-info">
+                                            <div class="tab-pane fade" id="Manufacturer-info">
                                                 <div class="vendor-logo d-flex mb-30">
                                                     <img src="assets/imgs/vendor/vendor-18.svg" alt="" />
                                                     <div class="vendor-name ml-15">
@@ -400,9 +409,13 @@
                                             <div class="tab-pane fade" id="Reviews">
                                                 <!--Comments-->
                                                 <div class="comments-area">
+                                                    <div class="review_heading mb-40">
+                                                        <h4 class="mb-10">Ratings & Reviews</h4>
+                                                        <p>The views expressed below are the opinion of NaturalJuices.co.uk's customers. Natural Juices and Vitamins Ltd. does not endorse these views. nor should they be regarded as health claims or madical advice.</p>
+                                                    </div>
                                                     <div class="review_btn">
-                                                    <div class="text_review">Review</div>
-                                                    <div class="btn_review"><button  type="button" data-bs-toggle="modal" data-bs-target="#myModal">write a review</button></div>
+                                                        <div class="text_review">Reviews</div>
+                                                        <div class="btn_review"><button  type="button" data-bs-toggle="modal" data-bs-target="#myModal">Write a review</button></div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-lg-8">
@@ -423,6 +436,7 @@
                                                                                     <div class="product-rating" style="width: 100%"></div>
                                                                                 </div>
                                                                             </div>
+                                                                            <h5>Title Area</h5>
                                                                             <p class="mb-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, suscipit exercitationem accusantium obcaecati quos voluptate nesciunt facilis itaque modi commodi dignissimos sequi repudiandae minus ab deleniti totam officia id incidunt? <a href="#" class="reply">Reply</a></p>
                                                                         </div>
                                                                     </div>
@@ -499,41 +513,6 @@
                                                     </div>
                                                 </div>
                                                 <!--comment form-->
-                                                <div class="comment-form">
-                                                    <h4 class="mb-15">Add a review</h4>
-                                                    <div class="product-rate d-inline-block mb-30"></div>
-                                                    <div class="row">
-                                                        <div class="col-lg-8 col-md-12">
-                                                            <form class="form-contact comment_form" action="#" id="commentForm">
-                                                                <div class="row">
-                                                                    <div class="col-12">
-                                                                        <div class="form-group">
-                                                                            <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-6">
-                                                                        <div class="form-group">
-                                                                            <input class="form-control" name="name" id="name" type="text" placeholder="Name" />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-6">
-                                                                        <div class="form-group">
-                                                                            <input class="form-control" name="email" id="email" type="email" placeholder="Email" />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-12">
-                                                                        <div class="form-group">
-                                                                            <input class="form-control" name="website" id="website" type="text" placeholder="Website" />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <button type="submit" class="button button-contactForm">Submit Review</button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -561,6 +540,9 @@
     	                                                            <span class="hot"> £{{$relatedProduct->reg_sel_price - $relatedProduct->final_sel_price}} OFF</span>
     	                                                        </div>
     	                                                    </div>
+                                                             <div class="mb-15" style="padding: 3px 15px;">
+                                                                <h6 class="noni-juice-raberry">Noni Juice with Rasberry Falvour</h6>
+                                                            </div>
     	                                                    <div class="product-content-wrap">
     	                                                        <h2><a href="shop-product-right.html" tabindex="0">{{ $relatedProduct->prod_name }}</a></h2>
     	                                                        <div class="rating-result" title="90%">
@@ -605,6 +587,58 @@
                     </div>
                 </div>
             </div>
+            <section class="featured section-padding">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-1-3 col-md-3 col-12 col-sm-6 mb-md-4 mb-xl-0">
+                            <div class="banner-left-icon d-flex align-items-center wow fadeIn animated">
+                                <div class="banner-icon">
+                                    <img src="{{ url('frontend/assets/imgs/theme/car.png') }}" alt="" />
+                                </div>
+                                <div class="banner-text">
+                                    <h3 class="icon-box-title">Free UK Delivery</h3>
+
+                                    <p style="font-size: 13px;">FREE UK Shipping On All Orders. No Minimum Cart Value.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-1-3 col-md-3 col-12 col-sm-6">
+                            <div class="banner-left-icon d-flex align-items-center wow fadeIn animated">
+                                <div class="banner-icon">
+                                    <img src="{{ url('frontend/assets/imgs/theme/cart.png') }}" alt="" />
+                                </div>
+                                <div class="banner-text">
+                                    <h3 class="icon-box-title">Repeat Same Order</h3>
+                                    <p style="font-size: 13px;">Skip the Search &amp; Repeat Same Order From Your User Dashboard.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-1-3 col-md-3 col-12 col-sm-6">
+                            <div class="banner-left-icon d-flex align-items-center wow fadeIn animated">
+                                <div class="banner-icon">
+                                    <img src="{{ url('frontend/assets/imgs/theme/next_day_car.png') }}" alt="" />
+                                </div>
+                                <div class="banner-text">
+                                    <h3 class="icon-box-title">Same Day Free Delivery in UK</h3>
+                                    <p style="font-size: 13px;">Order Before 2 PM For Same Day/Next Day Shipping For in Stock Items.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-1-3 col-md-3 col-12 col-sm-6">
+                            <div class="banner-left-icon d-flex align-items-center wow fadeIn animated">
+                                <div class="banner-icon">
+                                    <img src="{{ url('frontend/assets/imgs/theme/bottles.png') }}" alt="" />
+                                </div>
+                                <div class="banner-text">
+                                    <h3 class="icon-box-title">Save Big With Multiple Packs</h3>
+                                    <p style="font-size: 13px;">Save Upto 50% OFF By Choosing Different Packs Available on Product Page.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- End Free Delivery UK Section -->
         </div>
     </main>
 
@@ -651,14 +685,14 @@
                     </div>
                     <h6 style="padding-top: 8px;">(Auto selected based on following rating)</h6>
                     </section>
-
-                <h6 style="padding-top: 30px;font-size: 18px;color:#3BB77E ;">Review Title*</h6>
-                <div class="card title_box">
-                    <p>Give a title to your review</p> 
+                    
+                <div class="form-group col-md-12">
+                    <h6 style="padding-top: 20px;font-size: 18px;color:#3BB77E; margin-bottom: 6px;">Review Title*</span></h6>
+                    <input class="form-control" name="fname" type="text" placeholder="Review Title" />
                 </div>
-                 <h6 style="padding-top: 30px;font-size: 18px;color:#3BB77E ;">Review Description*</h6>
-                <div class="card title_box" style="height: 100px;">
-                    <p>Give a title to your review</p> 
+                <div class="form-group col-md-12">
+                    <h6 style="padding-top: 20px;font-size: 18px;color:#3BB77E; margin-bottom: 6px;">Review Description*</h6>
+                    <input class="form-control" name="fname" type="text" placeholder="Review Description" />
                 </div>
                  <div class="card title_box" style="height: 100px;background:#3BB77E ;">
                     <div style="display: flex;padding-top: 32px;">

@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateCategoryRequest;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
+use DB;
 
 class CategoryController extends Controller
 {
@@ -15,17 +16,68 @@ class CategoryController extends Controller
     public function index()
     {
         $active = 'product';
-        $categories = Category::latest()->paginate(10);
+        $categories = Category::whereNull('parent_id')->latest()->paginate(10);
         $parentCategories = Category::whereNull('parent_id')->latest()->get();
         return view('admin.categories.view', compact('categories', 'parentCategories','active'));
     }
-
+    public function view()
+    {
+        $active = 'product';
+        $categories = Category::whereNull('parent_id')->latest()->paginate(10);
+        $parentCategories = Category::whereNull('parent_id')->latest()->get();
+        return view('admin.categories.view_s', compact('categories', 'parentCategories','active'));
+    }
+    // Route::post('/updateCategorySort/{id}', [CategoryController::class, 'updateCategorySort'])->name('updateCategorySort');
+    public function updateCategorySort($id = ""){
+        $data = explode(',', $id);
+        $value = $data[0];
+        $id = $data[1];
+        $already_exist = Category::whereNull('parent_id')->where('sort_order',$value)->count();
+        if($already_exist > 0){
+            echo 'fail';
+        }else{
+            Category::where('id',$id)->update(array('sort_order' => $value ));
+            echo 'success';
+        }
+    }
     public function add()
     {
         $active = 'product';
 
-        $categories = Category::all();
+        $categories = Category::whereNull('parent_id')->get();
+
         return view('admin.categories.add',  compact('categories','active'));
+    }
+    public function getCategories(){
+
+        $categories = Category::all();
+        $options = "<option value = ''>Select Category</option>";
+
+        foreach ($categories as $key => $value) {
+
+            $options .= "<option value = '".$value->id."'>".$value->name."</option>";
+
+            $level_one_categories = Category::where('parent_id',$value->id)->get();
+
+            if(isset($level_one_categories) && count($level_one_categories) > 0){
+
+                foreach ($level_one_categories as $key => $level_one_cat) {
+
+                    $options .= "<option value = '".$level_one_cat->id."'>-".$level_one_cat->name."</option>";
+               
+                    $level_two_categories = Category::where('parent_id',$level_one_cat->id)->get();
+
+                    if(isset($level_two_categories) && count($level_two_categories) > 0){
+
+                        foreach ($level_two_categories as $key => $level_two_cat) {
+                            $options .= "<option value = '".$level_two_cat->id."'>--".$level_two_cat->name."</option>";
+                        }
+                    }
+                }
+            }
+        }
+
+        return $options;
     }
 
     public function store(AddCategoryRequest $request)

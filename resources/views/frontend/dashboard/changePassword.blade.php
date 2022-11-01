@@ -1,43 +1,32 @@
 @extends('frontend.dashboard.index')
 @section('myDashboardContent')
-	<section class="content-main">
-    <div class="card mb-4">
-        @include('layouts.partials.messages')
-        <form method="POST" action="#" enctype="multipart/form-data">
-            @csrf
-            <div class="card-body">
-                <div class="row mb-3">
-                    <div class="">
-                        <label for="old_pass" class="form-label">Old Password<span class="text-danger" style="font-size: 17px;">*</span></label>
-                        <input type="password" value="{{ old('old_pass') }}" name="name" placeholder="Old Password" class="form-control" />
-                        @if ($errors->has('old_pass'))
-                        <span class="text-danger text-left">{{ $errors->first('old_pass') }}</span>
-                        @endif
+<div id="account-detail">
+    <div class="card">
+        <div class="card-header">
+            <h5>Change Password</h5>
+        </div>
+        <div class="card-body">
+            <form method="post" name="enq">
+                @csrf
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label>Old Password <span class="required">*</span></label>
+                        <input class="form-control" name="fname" type="password" />
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>New Password</label>
+                        <input class="form-control" name="lname" type="text" />
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>Confirm Password</label>
+                        <input class="form-control" name="lname" type="text" />
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-fill-out submit font-weight-bold" name="submit" value="Submit">Update</button>
                     </div>
                 </div>
-                <div class="row mb-3">
-                    <div class="">
-                        <label for="new_pass" class="form-label">New Password<span class="text-danger" style="font-size: 17px;">*</span></label>
-                        <input type="password" value="{{ old('new_pass') }}" name="name" placeholder="New Password" class="form-control" />
-                        @if ($errors->has('new_pass'))
-                        <span class="text-danger text-left">{{ $errors->first('new_pass') }}</span>
-                        @endif
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="">
-                        <label for="confirm_pass" class="form-label">Confirm Password<span class="text-danger" style="font-size: 17px;">*</span></label>
-                        <input type="password" value="{{ old('confirm_pass') }}" name="name" placeholder="Confirm Password" class="form-control" />
-                        @if ($errors->has('confirm_pass'))
-                        <span class="text-danger text-left">{{ $errors->first('confirm_pass') }}</span>
-                        @endif
-                    </div>
-                </div>
-                <div class="mb-3 mt-3">
-                    <button type="submit" class="btn btn-sm btn-primary">Update</button>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</section>
+</div>
 @endsection

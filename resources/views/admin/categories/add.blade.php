@@ -23,11 +23,37 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Choose Parent Category</label>
-                    <select class="form-select" name="parent_id" value="{{ old('parent_id') }}">
-                        <option value="">Select Category</option>
-                        @foreach($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                        @endforeach
+                    <select class="form-select" name="parent_id" value="{{ old('parent_id') }}" style="font-size: 15px;">
+                        {{-- <option value=""></option> --}}
+                        {{-- {{ $categories }} --}}
+                        @php
+                            foreach ($categories as $key => $value) {
+                        @endphp
+                                <option value = "{{$value->id}}">{{ $value->name }}</option>
+                          @php
+                                $level_one_categories = DB::table('categories')->where('parent_id',$value->id)->get();
+
+                                if(isset($level_one_categories) && count($level_one_categories) > 0){
+
+                                    foreach ($level_one_categories as $key => $level_one_cat) {
+                        @endphp
+                                        <option value = "{{$level_one_cat->id}}">&nbsp;&nbsp;-{{$level_one_cat->name}}</option>
+                        @php
+                                        $level_two_categories = DB::table('categories')->where('parent_id',$level_one_cat->id)->get();
+
+                                        if(isset($level_two_categories) && count($level_two_categories) > 0){
+
+                                            foreach ($level_two_categories as $key => $level_two_cat) {
+                        @endphp
+                                                <option value = '{{$level_two_cat->id}}'>&nbsp;&nbsp;&nbsp;&nbsp; --{{$level_two_cat->name}}</option>
+                        @php
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                        @endphp
                     </select>
                 </div>
                 {{-- <div class="mb-3">

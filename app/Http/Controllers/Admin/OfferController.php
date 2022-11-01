@@ -48,6 +48,7 @@ class OfferController extends Controller
                 $data[$key]['img_name'] = $offerImgNmae;
                 $data[$key]['offer_id'] = $offer_id;
                 $data[$key]['img_description'] = $request->description[$key];
+                $data[$key]['offer_title'] = $request->title[$key];
                 
                 OfferHasImage::insert($data);
             }
@@ -88,6 +89,7 @@ class OfferController extends Controller
                 $data[$key]['img_name'] = $offerImg;
                 $data[$key]['offer_id'] = $id;
                 $data[$key]['img_description'] = $request->description[$key];
+                $data[$key]['offer_title'] = $request->title[$key];
             }
             
             OfferHasImage::insert($data);

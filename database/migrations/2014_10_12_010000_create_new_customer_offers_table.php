@@ -18,8 +18,8 @@ class CreateNewCustomerOffersTable extends Migration
             $table->string('name');
             $table->string('discount_type');
             $table->integer('discount');
-            $table->timestamps('valid_from');
-            $table->timestamps('end_date');
+            $table->string('valid_from');
+            $table->string('end_date');
             $table->string('status');
             $table->timestamps();
         });

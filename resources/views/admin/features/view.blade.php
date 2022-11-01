@@ -21,7 +21,7 @@
             </div>
         </div>
         <div>
-            <h5 class="content-title card-title">Total Features: {{ count($features) }}</h5>
+            <h5 class="content-title card-title">Total Features: {{ $features->total() }}</h5>
         </div>
     </div>
     <div class="card mb-4">
@@ -44,11 +44,11 @@
                         <?php $count = 1 ?>
                          @foreach ($features as $feature)
                         <tr>
-                            <td>{{ $count }}</td>
+                            <td>{{ ($features->perPage() * ($features->currentPage() - 1)) + $count }}</td>
                             <td>{{ $feature->name }}</td>
                             <td><img src="images/features/{{ $feature->icon }}" class="img-sm img-thumbnail" alt="Item" style="width: 150px !important;" />
                             </td>
-                            <td><?=$feature->short_description;?></td>
+                            <td><?=$feature->description;?></td>
                             <td>
                                 @foreach($feature->categories as $category)
                                     - {{ $category->name }} <br>
